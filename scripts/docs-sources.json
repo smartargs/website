@@ -1,0 +1,7 @@
+{
+  "vantage-dev": {
+    "repo": "git@github.com:ykoitzsch/vantage-dev.git",
+    "ref": "main",
+    "path": "Packages/com.smartargs.vantage/Documentation~"
+  }
+}

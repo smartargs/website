@@ -53,13 +53,16 @@ Docs live in `src/content/docs/<project-id>/` as plain Markdown, copied unchange
 - ` ```mermaid ` blocks render as diagrams. The Mermaid library loads only on pages that contain one.
 - Page titles come from the first `# Heading`; optional front matter `title` and `description` override it.
 
-To update the vantage-dev docs after changing them in the Unity project:
+Where each product's docs come from (repository, branch, folder) is set in `scripts/docs-sources.json`. After pushing doc changes in the product repository:
 
 ```sh
-npm run docs:sync -- vantage-dev "/mnt/c/Users/yanni/workspace/vantage-dev/Packages/com.smartargs.vantage/Documentation~"
+npm run docs:sync                    # every product, or: npm run docs:sync -- vantage-dev
+git add src/content/docs && git commit -m "docs: sync vantage-dev docs"
 ```
 
-This replaces the folder with a fresh copy, so files deleted at the source disappear here too.
+- **Download:** the script fetches only the docs folder from GitHub over SSH (a few hundred KB, even for a large Unity repository) and replaces the local copy. Files deleted at the source disappear here too.
+- **Commit:** the synced copy is committed to this repository, so Cloudflare builds never need access to the private product repositories.
+- **Preview unpushed docs:** `npm run docs:sync -- vantage-dev --from "/path/to/Documentation~"` copies from a local folder instead.
 
 ## Other content
 
