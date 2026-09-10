@@ -1,0 +1,110 @@
+---
+import type { CoverPattern } from '@/lib/projects';
+import { cn } from '@/lib/utils';
+
+interface Props {
+  pattern: CoverPattern;
+  color: string;
+  glyph: string;
+  size?: 'md' | 'lg';
+  class?: string;
+}
+
+const { pattern, color, glyph, size = 'md', class: className } = Astro.props;
+
+// Every pattern is drawn on a 400×300 canvas, then cropped to fill its container.
+const range = (count: number) => Array.from({ length: count }, (_, i) => i);
+
+const rings = range(16).map((i) => 12 + i * 20);
+
+const horizon = 110;
+const floorLines = range(9).map((i) => horizon + (300 - horizon) * ((i + 1) / 9) ** 2);
+const rays = range(21).map((i) => -600 + i * 80);
+
+const stripes = range(46).map((i) => -320 + i * 16);
+
+const dots = range(15).flatMap((row) =>
+  range(20).map((column) => {
+    const x = 10 + column * 20;
+    const y = 10 + row * 20;
+    return { x, y, r: Math.max(0.8, 7 * (1 - Math.hypot(x - 330, y - 50) / 380)) };
+  }),
+);
+
+const waves = range(14).map((i) => {
+  const base = 10 + i * 22;
+  const amplitude = 5 + i * 0.9;
+  return range(42)
+    .map((step) => `${step === 0 ? 'M' : 'L'}${step * 10} ${(base + Math.sin((step * 10) / 38 + i * 0.55) * amplitude).toFixed(1)}`)
+    .join(' ');
+});
+
+const blocks = range(10).map((i) => ({ x: 22 + i * 37, height: 50 + ((i * 53) % 9) * 24 }));
+---
+
+<div class={cn('absolute inset-0 overflow-hidden', className)} style={`background-color: ${color}`} aria-hidden="true">
+  <svg
+    viewBox="0 0 400 300"
+    preserveAspectRatio="xMidYMid slice"
+    fill="none"
+    stroke="white"
+    stroke-opacity="0.3"
+    class="absolute inset-0 size-full [&_*]:[vector-effect:non-scaling-stroke]"
+  >
+    {
+      pattern === 'rings' && (
+        <>
+          {rings.map((r) => (
+            <circle cx="270" cy="150" r={r} />
+          ))}
+          <line x1="270" y1="150" x2="400" y2="70" stroke-opacity="0.75" />
+          <circle cx="270" cy="150" r="5" fill="white" stroke="none" />
+        </>
+      )
+    }
+    {
+      pattern === 'grid' && (
+        <>
+          {floorLines.map((y) => (
+            <line x1="0" y1={y} x2="400" y2={y} />
+          ))}
+          {rays.map((x) => (
+            <line x1="200" y1={horizon} x2={x} y2="300" />
+          ))}
+          <line x1="0" y1={horizon} x2="400" y2={horizon} stroke-opacity="0.75" />
+          <circle cx="200" cy={horizon - 38} r="30" fill="white" fill-opacity="0.9" stroke="none" />
+        </>
+      )
+    }
+    {
+      pattern === 'stripes' && (
+        <>
+          {stripes.map((x) => (
+            <line x1={x} y1="0" x2={x + 300} y2="300" />
+          ))}
+          <circle cx="130" cy="150" r="80" fill={color} stroke-opacity="0.85" />
+          <circle cx="130" cy="150" r="46" stroke-opacity="0.5" />
+        </>
+      )
+    }
+    {
+      pattern === 'dots' &&
+        dots.map(({ x, y, r }) => <circle cx={x} cy={y} r={r.toFixed(2)} fill="white" fill-opacity="0.55" stroke="none" />)
+    }
+    {pattern === 'waves' && waves.map((d) => <path d={d} />)}
+    {
+      pattern === 'blocks' &&
+        blocks.map(({ x, height }) => (
+          <rect x={x} y={300 - height} width="26" height={height} fill="white" fill-opacity="0.12" />
+        ))
+    }
+  </svg>
+  <span
+    class={cn(
+      'absolute font-mono leading-none font-medium tracking-tighter text-white',
+      size === 'lg' ? 'bottom-5 left-5 text-6xl sm:bottom-8 sm:left-8 sm:text-8xl' : 'bottom-4 left-4 text-4xl',
+    )}
+  >
+    {glyph}
+  </span>
+</div>

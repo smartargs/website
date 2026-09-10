@@ -1,0 +1,39 @@
+---
+/**
+ * Turns ```mermaid code blocks into diagrams in the browser. Render it only on pages that have
+ * a diagram: the mermaid library is loaded on demand and never ships to other pages.
+ */
+---
+
+<script>
+  const blocks = [...document.querySelectorAll<HTMLElement>('pre:has(> code.language-mermaid), pre[data-language="mermaid"]')];
+
+  if (blocks.length > 0) {
+    const figures = blocks.map((block) => {
+      const figure = document.createElement('figure');
+      figure.className = 'mermaid-diagram';
+      figure.dataset.source = block.textContent ?? '';
+      block.replaceWith(figure);
+      return figure;
+    });
+
+    let run = 0;
+    const renderAll = async () => {
+      const current = ++run;
+      const { default: mermaid } = await import('mermaid');
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: document.documentElement.classList.contains('dark') ? 'dark' : 'neutral',
+        fontFamily: 'inherit',
+      });
+      for (const [index, figure] of figures.entries()) {
+        const { svg } = await mermaid.render(`mermaid-${current}-${index}`, figure.dataset.source ?? '');
+        if (current === run) figure.innerHTML = svg;
+      }
+    };
+
+    renderAll();
+    // Re-render when the theme toggle flips light and dark.
+    new MutationObserver(renderAll).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  }
+</script>

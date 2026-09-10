@@ -1,0 +1,33 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "smartargs-website",
+	"compatibility_date": "2026-09-08",
+	// The site is static HTML from `astro build`, served straight from dist/.
+	// The Worker only runs for /api/* (the contact form).
+	"main": "./worker/index.ts",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"html_handling": "drop-trailing-slash",
+		"not_found_handling": "404-page",
+		"run_worker_first": ["/api/*"]
+	},
+	// Contact form mail goes out through Cloudflare Email Routing. Requires Email Routing
+	// on smartargs.com, with CONTACT_TO added and verified as a destination address.
+	"send_email": [{ "name": "CONTACT_EMAIL" }],
+	"vars": {
+		"CONTACT_FROM": "website@smartargs.com",
+		"CONTACT_TO": "TODO-your-inbox@example.com"
+	},
+	// Secret, set with `npx wrangler secret put TURNSTILE_SECRET_KEY` or in the dashboard:
+	//   TURNSTILE_SECRET_KEY
+	//
+	// Uncomment once smartargs.com is a zone in your Cloudflare account:
+	// "routes": [
+	// 	{ "pattern": "smartargs.com", "custom_domain": true },
+	// 	{ "pattern": "www.smartargs.com", "custom_domain": true }
+	// ],
+	"observability": {
+		"enabled": true
+	}
+}

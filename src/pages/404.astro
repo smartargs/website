@@ -1,0 +1,25 @@
+---
+import LinkButton from '@/components/LinkButton.astro';
+import MetaBar from '@/components/MetaBar.astro';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Page not found" noindex>
+  <MetaBar>
+    <span>Error</span>
+    <span>404</span>
+  </MetaBar>
+
+  <section class="px-5 pt-16 pb-24 sm:px-8 sm:pt-24 sm:pb-32">
+    <h1 class="text-[length:clamp(3.5rem,11vw,9.5rem)] leading-[0.85] font-semibold tracking-[-0.06em]">
+      Not <span class="text-muted-foreground">found.</span>
+    </h1>
+    <p class="mt-6 max-w-md text-lg text-pretty text-muted-foreground">
+      This page doesn't exist or has moved. The catalog is a good place to start.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <LinkButton href="/#catalog" size="lg" class="h-11 px-5">Browse the catalog</LinkButton>
+      <LinkButton href="/contact" size="lg" variant="outline" class="h-11 px-5">Contact</LinkButton>
+    </div>
+  </section>
+</Layout>

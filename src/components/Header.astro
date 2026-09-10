@@ -1,0 +1,79 @@
+---
+import { Menu } from '@lucide/astro';
+import Logo from '@/components/Logo.astro';
+import ThemeToggle from '@/components/ThemeToggle.astro';
+import { buttonVariants } from '@/components/ui/button';
+import { site } from '@/config/site';
+import { publicPath } from '@/lib/url';
+import { cn } from '@/lib/utils';
+
+const currentPath = publicPath(Astro.url);
+const isCurrent = (href: string) => currentPath === href;
+---
+
+<header class="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-md">
+  <div class="flex h-14 items-center gap-6 px-5 sm:px-8">
+    <a href="/" aria-label={`${site.name} home`} class="flex items-center rounded-md">
+      <Logo />
+    </a>
+    <span class="hidden font-mono text-[11px] tracking-wider text-muted-foreground uppercase lg:inline">
+      IT solutions &amp; software
+    </span>
+
+    <nav aria-label="Main" class="ml-auto hidden items-center gap-7 font-mono text-xs tracking-wider uppercase sm:flex">
+      {
+        site.nav.map((item, index) => (
+          <a
+            href={item.href}
+            aria-current={isCurrent(item.href) ? 'page' : undefined}
+            class="flex items-baseline gap-2 text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:text-foreground"
+          >
+            <span class="text-[10px] opacity-60">{String(index + 1).padStart(2, '0')}</span>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto flex items-center gap-1 sm:ml-0">
+      <ThemeToggle />
+      <button
+        type="button"
+        popovertarget="mobile-nav"
+        aria-label="Open menu"
+        class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'sm:hidden')}
+      >
+        <Menu />
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-nav"
+    popover
+    class="inset-x-0 top-14 bottom-auto m-0 w-full max-w-none border-0 border-b bg-background p-3 text-foreground shadow-lg sm:hidden"
+  >
+    <nav aria-label="Mobile">
+      <ul class="grid gap-1 font-mono text-sm tracking-wider uppercase">
+        {
+          site.nav.map((item, index) => (
+            <li>
+              <a href={item.href} class="flex items-baseline gap-3 rounded-md px-3 py-3 hover:bg-muted">
+                <span class="text-[10px] text-muted-foreground">{String(index + 1).padStart(2, '0')}</span>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Close the mobile menu when following a link, including same-page anchors.
+  const menu = document.getElementById('mobile-nav');
+  menu?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) menu.hidePopover();
+  });
+</script>

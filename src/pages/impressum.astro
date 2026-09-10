@@ -1,0 +1,58 @@
+---
+import MetaBar from '@/components/MetaBar.astro';
+import { legal } from '@/config/site';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Impressum" description="Legal notice (Impressum) for smartargs according to § 5 DDG.">
+  <MetaBar>
+    <span>Legal</span>
+    <span>§ 5 DDG</span>
+  </MetaBar>
+
+  <article class="px-5 pt-12 pb-16 sm:px-8 sm:pt-16 sm:pb-24">
+    <h1 class="text-[length:clamp(3rem,7vw,6rem)] leading-[0.9] font-semibold tracking-[-0.05em]">Impressum</h1>
+    <p class="mt-4 text-muted-foreground">Legal notice according to § 5 DDG</p>
+
+    <div class="prose-legal mt-12 max-w-2xl">
+      <h2>Provider</h2>
+      <address>
+        {legal.name}<br />
+        {legal.businessName && <>{legal.businessName}<br /></>}
+        {legal.street}<br />
+        {`${legal.postalCode} ${legal.city}`}<br />
+        {legal.country}
+      </address>
+
+      <h2>Contact</h2>
+      <p>
+        Email: <a href={`mailto:${legal.email}`}>{legal.email}</a><br />
+        {legal.phone && <>Phone: <a href={`tel:${legal.phone.replace(/[^\d+]/g, '')}`}>{legal.phone}</a><br /></>}
+        Contact form: <a href="/contact">smartargs.com/contact</a>
+      </p>
+
+      {
+        legal.vatId && (
+          <>
+            <h2>VAT ID</h2>
+            <p>VAT identification number according to § 27a UStG: {legal.vatId}</p>
+          </>
+        )
+      }
+
+      {
+        legal.register && (
+          <>
+            <h2>Commercial register</h2>
+            <p>
+              Registered at {legal.register.court}, {legal.register.number}
+            </p>
+          </>
+        )
+      }
+
+      <h2>Consumer dispute resolution</h2>
+      <p>We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+    </div>
+  </article>
+</Layout>

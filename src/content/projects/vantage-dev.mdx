@@ -1,0 +1,52 @@
+---
+title: vantage-dev
+tagline: Ready-made gameplay systems for Unity 6.
+description: Ready-made gameplay systems for Unity 6. Units, combat, AI, items, quests, crafting, building and fog of war for RPGs, strategy, survival and action games.
+category: Unity package
+tags: [unity, game-development]
+status: available
+year: 2026
+version: 0.1.0
+featured: true
+order: 1
+cover:
+  pattern: rings
+  color: '#3730a3'
+  glyph: Vt
+specs:
+  - { label: Engine, value: Unity 6000.3 or newer }
+  - { label: Render pipeline, value: URP }
+  - { label: Released, value: 9 September 2026 }
+  - { label: Includes, value: Demo content and co-op sample }
+links:
+  # TODO: replace with the package's Asset Store URL once it is listed.
+  - { label: Get it on the Unity Asset Store, href: 'https://assetstore.unity.com/packages/TODO-vantage-dev' }
+---
+
+import Features from '@/components/mdx/Features.astro';
+
+vantage-dev is a set of ready-made gameplay systems for Unity 6: units and combat, AI, items and progression, quests, crafting, building and fog of war. It isn't tied to one genre, so the same systems work for RPGs, strategy, survival and action games. Instead of rebuilding them for every project, you create and tune content, and the mechanics come with the package.
+
+## How it works
+
+- **Content, not code.** Units, abilities, items, loot tables, quests and recipes are assets you create and tune in the Unity editor.
+- **Use only what you need.** Every system is opt-in and switched on per unit with a field or a checkbox.
+- **Fits your camera.** Top-down movement and camera are included. Third-person and first-person games bring their own controller and keep everything else.
+- **Single-player first, multiplayer ready.** It runs single-player as-is, and the same code can serve a co-op host or a dedicated server. A Netcode for GameObjects sample is included.
+
+## Features
+
+<Features>
+
+- **Combat** Stats, resource pools, buffs and one damage pipeline, plus abilities with cast bars, cooldowns, projectiles, area effects and floating combat text.
+- **Movement and camera** Click-to-move on Unity's NavMesh, right-click to attack or interact, and a top-down camera with zoom, edge scrolling and panning.
+- **Items and progression** Equipment and item sets, an inventory, loot tables, currencies, experience and levels.
+- **Enemies and AI** Hostile AI that roams, chases and fights back, with threat, taunts, auras and spawners.
+- **Quests, crafting and building** Quests with objectives and rewards, recipes and crafting stations, resource gathering and building.
+- **Fog of war and saving** Fog of war revealed by your units, and saving and loading of units, quests and buildings.
+
+</Features>
+
+## Documentation
+
+Setup, a guide for every module, and notes on extending and networking are in the [vantage-dev documentation](/projects/vantage-dev/docs). The [getting started guide](/projects/vantage-dev/docs/getting-started) takes you from install to a unit that walks and fights in about ten minutes.

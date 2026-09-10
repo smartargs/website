@@ -1,0 +1,23 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span class={cn('inline-flex items-center gap-2', className)}>
+  <svg viewBox="0 0 32 32" class="size-7" aria-hidden="true">
+    <rect width="32" height="32" rx="8" class="fill-foreground"></rect>
+    <path
+      d="M12.5 9c-2.3 1.8-3.5 4.3-3.5 7s1.2 5.2 3.5 7M19.5 9c2.3 1.8 3.5 4.3 3.5 7s-1.2 5.2-3.5 7"
+      fill="none"
+      stroke-width="2.25"
+      stroke-linecap="round"
+      class="stroke-background"></path>
+    <circle cx="16" cy="16" r="2.25" class="fill-brand"></circle>
+  </svg>
+  <span class="text-[15px] font-semibold tracking-tight">smartargs</span>
+</span>

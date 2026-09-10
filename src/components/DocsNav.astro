@@ -1,0 +1,29 @@
+---
+import type { DocLink } from '@/lib/docs';
+import { cn } from '@/lib/utils';
+
+interface Props {
+  links: DocLink[];
+  currentId: string;
+  nested?: boolean;
+}
+
+const { links, currentId, nested = false } = Astro.props;
+---
+
+<ul class={cn('grid gap-0.5 text-sm', nested && 'mt-0.5 mb-2 ml-3 border-l pl-2')}>
+  {
+    links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          aria-current={link.id === currentId ? 'page' : undefined}
+          class="block rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground aria-[current=page]:bg-muted aria-[current=page]:font-medium aria-[current=page]:text-foreground"
+        >
+          {link.title}
+        </a>
+        {link.children.length > 0 && <Astro.self links={link.children} currentId={currentId} nested />}
+      </li>
+    ))
+  }
+</ul>

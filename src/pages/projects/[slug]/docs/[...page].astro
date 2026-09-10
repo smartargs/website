@@ -1,0 +1,101 @@
+---
+import { ArrowLeft, ArrowRight, ChevronDown } from '@lucide/astro';
+import DocsNav from '@/components/DocsNav.astro';
+import Mermaid from '@/components/Mermaid.astro';
+import MetaBar from '@/components/MetaBar.astro';
+import Layout from '@/layouts/Layout.astro';
+import { docTitle, flattenNav, getDocs, getDocsNav, rewriteDocLinks, summarize, type DocEntry } from '@/lib/docs';
+import { getProjects, type Project } from '@/lib/projects';
+
+export async function getStaticPaths() {
+  const [projects, docs] = await Promise.all([getProjects(), getDocs()]);
+  return docs.flatMap((doc) => {
+    const [slug, ...page] = doc.id.split('/');
+    const project = projects.find((candidate) => candidate.id === slug);
+    // Docs of drafts or unknown projects are not published.
+    if (!project) return [];
+    return [{ params: { slug, page: page.length > 0 ? page.join('/') : undefined }, props: { doc, project } }];
+  });
+}
+
+interface Props {
+  doc: DocEntry;
+  project: Project;
+}
+
+const { doc, project } = Astro.props;
+const html = rewriteDocLinks(doc.rendered?.html ?? '', doc);
+
+const nav = await getDocsNav(project.id);
+const pages = flattenNav(nav);
+const position = pages.findIndex((link) => link.id === doc.id);
+const previous = position > 0 ? pages[position - 1] : undefined;
+const next = position >= 0 ? pages[position + 1] : undefined;
+
+const title = pages[position]?.title ?? docTitle(doc);
+const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
+---
+
+<Layout title={`${title} · ${project.data.title} docs`} description={doc.data.description ?? summarize(doc.body)}>
+  <MetaBar>
+    <a href={`/projects/${project.id}`} class="flex items-center gap-2 transition-colors hover:text-foreground">
+      <ArrowLeft class="size-3.5" />
+      {project.data.title}
+    </a>
+    <span>Documentation</span>
+  </MetaBar>
+
+  <div class="grid lg:grid-cols-12">
+    <aside class="border-b lg:col-span-3 lg:border-r lg:border-b-0">
+      <details class="group px-5 py-3 sm:px-8 lg:hidden">
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between font-mono text-[11px] tracking-wider uppercase [&::-webkit-details-marker]:hidden"
+        >
+          Contents
+          <ChevronDown class="size-4 text-muted-foreground transition-transform group-open:rotate-180" />
+        </summary>
+        <div class="mt-3 pb-2">
+          <DocsNav links={nav} currentId={doc.id} />
+        </div>
+      </details>
+      <nav aria-label="Documentation" class="sticky top-14 hidden max-h-[calc(100dvh-3.5rem)] overflow-y-auto px-5 py-10 lg:block">
+        <p class="mb-3 px-3 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">{project.data.title} docs</p>
+        <DocsNav links={nav} currentId={doc.id} />
+      </nav>
+    </aside>
+
+    <div class="min-w-0 lg:col-span-9">
+      <article class="prose-docs px-5 py-10 sm:px-8 sm:py-14 lg:px-14" set:html={html} />
+
+      {
+        (previous || next) && (
+          <nav aria-label="Previous and next page" class="grid border-t sm:grid-cols-2">
+            {previous ? (
+              <a href={previous.href} class="flex flex-col gap-1.5 px-5 py-6 transition-colors hover:bg-muted/50 sm:border-r sm:px-8">
+                <span class="flex items-center gap-2 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+                  <ArrowLeft class="size-3.5" /> Previous
+                </span>
+                <span class="text-lg font-medium tracking-tight">{previous.title}</span>
+              </a>
+            ) : (
+              <span class="hidden sm:block sm:border-r" />
+            )}
+            {next && (
+              <a
+                href={next.href}
+                class="flex flex-col items-end gap-1.5 border-t px-5 py-6 text-right transition-colors hover:bg-muted/50 sm:border-t-0 sm:px-8"
+              >
+                <span class="flex items-center gap-2 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+                  Next <ArrowRight class="size-3.5" />
+                </span>
+                <span class="text-lg font-medium tracking-tight">{next.title}</span>
+              </a>
+            )}
+          </nav>
+        )
+      }
+    </div>
+  </div>
+
+  {hasDiagrams && <Mermaid />}
+</Layout>

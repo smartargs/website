@@ -1,0 +1,3 @@
+# Local secrets for `npm run dev:api`. Copy this file to .dev.vars.
+# Cloudflare's always-pass Turnstile test secret; use the real one only in production.
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA

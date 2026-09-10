@@ -1,0 +1,61 @@
+- name: Introduction
+  href: index.md
+- name: Getting started
+  href: getting-started.md
+- name: Concepts
+  href: concepts.md
+- name: Modules
+  href: modules/index.md
+  items:
+    - name: Units and stats
+      href: modules/units.md
+    - name: Abilities
+      href: modules/abilities.md
+    - name: Combat text
+      href: modules/combat-text.md
+    - name: Movement and input
+      href: modules/movement.md
+    - name: Camera
+      href: modules/camera.md
+    - name: Tuning
+      href: modules/tuning.md
+    - name: Ticking
+      href: modules/ticking.md
+    - name: Items and equipment
+      href: modules/items.md
+    - name: Inventory
+      href: modules/inventory.md
+    - name: Currency
+      href: modules/currency.md
+    - name: Leveling
+      href: modules/leveling.md
+    - name: Crafting
+      href: modules/crafting.md
+    - name: Quests
+      href: modules/quests.md
+    - name: Building
+      href: modules/building.md
+    - name: Saving and loading
+      href: modules/saving.md
+    - name: Loot
+      href: modules/loot.md
+    - name: Threat
+      href: modules/threat.md
+    - name: Auras
+      href: modules/auras.md
+    - name: AI roaming
+      href: modules/ai-roaming.md
+    - name: Spawning
+      href: modules/spawning.md
+    - name: Resource nodes
+      href: modules/resource-nodes.md
+    - name: Fog of war
+      href: modules/fog-of-war.md
+    - name: Terrain cliffs
+      href: modules/terrain-cliffs.md
+- name: Extending
+  href: extending.md
+- name: Multiplayer
+  href: multiplayer.md
+- name: Testing
+  href: testing.md

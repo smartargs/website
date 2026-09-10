@@ -1,0 +1,152 @@
+---
+import EnquiryStrip from '@/components/EnquiryStrip.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import { site } from '@/config/site';
+import Layout from '@/layouts/Layout.astro';
+import { catalogNumber, getProjects, slugify } from '@/lib/projects';
+
+const projects = await getProjects();
+const latest = projects[0];
+
+const categories = [
+  { id: 'all', label: 'All', count: projects.length },
+  ...[...new Set(projects.map((project) => project.data.category))].map((label) => ({
+    id: slugify(label),
+    label,
+    count: projects.filter((project) => project.data.category === label).length,
+  })),
+];
+
+// Filtering is CSS only: a checked radio hides every card of another category.
+const filterCss = [
+  ...categories
+    .filter(({ id }) => id !== 'all')
+    .map(({ id }) => `#catalog:has(#filter-${id}:checked) [data-category]:not([data-category="${id}"]){display:none}`),
+  '#catalog:has([name="filter"]:not(#filter-all):checked) [data-placeholder]{display:none}',
+].join('');
+
+// Fill the last row of the three-column grid with "more soon" slots.
+const usedCells = projects.reduce((cells, project) => cells + (project.data.featured ? 2 : 1), 0);
+const placeholders = (3 - (usedCells % 3)) % 3;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      logo: `${site.url}/apple-touch-icon.png`,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      name: site.name,
+      url: site.url,
+      publisher: { '@id': `${site.url}/#organization` },
+    },
+    {
+      '@type': 'ItemList',
+      name: `${site.name} catalog`,
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: project.data.title,
+        url: `${site.url}/projects/${project.id}`,
+      })),
+    },
+  ],
+};
+---
+
+<Layout jsonLd={jsonLd}>
+  <style is:inline set:html={filterCss}></style>
+
+  <section class="grid border-b lg:grid-cols-12">
+    <div class="px-5 pt-14 pb-12 sm:px-8 sm:pt-20 sm:pb-16 lg:col-span-8 lg:border-r lg:pb-20">
+      <!-- Two label blocks; the second is positioned so it paints over the bottom edge of the first. -->
+      <h1 class="text-[length:clamp(3.25rem,8vw,7.5rem)] leading-[1.02] font-semibold tracking-[-0.055em]">
+        <span class="block w-fit bg-foreground px-[0.08em] pb-[0.04em] text-background">Useful software,</span>
+        <span class="relative -mt-[0.1em] block w-fit bg-highlight px-[0.08em] text-highlight-foreground">built to last.</span>
+      </h1>
+    </div>
+    <div class="flex flex-col justify-end gap-10 border-t px-5 py-10 sm:px-8 lg:col-span-4 lg:border-t-0 lg:py-20">
+      <p class="max-w-sm text-pretty text-muted-foreground">
+        smartargs is an IT solutions company. This is where we publish the products and tools we build. Browse the
+        catalog, or get in touch to build something new.
+      </p>
+      <dl class="font-mono text-xs tracking-wider uppercase">
+        <div class="flex items-center justify-between gap-4 border-t py-3 last:border-b">
+          <dt class="text-muted-foreground">Entries</dt>
+          <dd>{String(projects.length).padStart(2, '0')}</dd>
+        </div>
+        {
+          latest && (
+            <div class="flex items-center justify-between gap-4 border-t py-3 last:border-b">
+              <dt class="text-muted-foreground">Latest</dt>
+              <dd>
+                <a href={`/projects/${latest.id}`} class="hover:underline">
+                  {latest.data.title}
+                  {latest.data.version && ` v${latest.data.version}`}
+                </a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section id="catalog" aria-labelledby="catalog-title">
+    <div
+      class="sticky top-14 z-30 flex flex-wrap items-center gap-x-6 gap-y-3 border-b bg-background/85 px-5 py-3 backdrop-blur-md sm:px-8"
+    >
+      <h2 id="catalog-title" class="font-mono text-[11px] tracking-wider uppercase">
+        Catalog <span class="text-muted-foreground">({String(projects.length).padStart(2, '0')})</span>
+      </h2>
+      <fieldset class="flex flex-wrap gap-1.5">
+        <legend class="sr-only">Filter by category</legend>
+        {
+          categories.map((category) => (
+            <label class="inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full border px-3 text-xs font-medium transition-colors select-none hover:bg-muted has-checked:border-foreground has-checked:bg-foreground has-checked:text-background has-focus-visible:ring-3 has-focus-visible:ring-ring/50">
+              <input
+                type="radio"
+                name="filter"
+                id={`filter-${category.id}`}
+                checked={category.id === 'all'}
+                class="sr-only"
+              />
+              {category.label}
+              <span class="font-mono text-[10px] opacity-60">{category.count}</span>
+            </label>
+          ))
+        }
+      </fieldset>
+    </div>
+
+    <div class="overflow-hidden">
+      <ul class="-mr-px -mb-px grid sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+        {
+          Array.from({ length: placeholders }, (_, i) => (
+            <li data-placeholder class="cell-lines hidden lg:block">
+              <div class="flex h-full flex-col p-6">
+                <div class="flex items-center justify-between font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+                  <span>{catalogNumber(projects.length + i)}</span>
+                  <span>Reserved</span>
+                </div>
+                <div class="mt-4 flex aspect-4/3 items-center justify-center rounded-md border border-dashed">
+                  <span class="font-mono text-xs tracking-wider text-muted-foreground uppercase">More soon</span>
+                </div>
+                <p class="mt-5 text-sm text-muted-foreground">New entries land here as they ship.</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <EnquiryStrip />
+</Layout>

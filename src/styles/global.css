@@ -1,0 +1,468 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    /* --font-geist-* are defined by <Font> in BaseHead.astro (Astro fonts API). */
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --color-brand: var(--brand);
+    /* Hero label accent. Same in both themes; black text on orange. */
+    --color-highlight: oklch(0.705 0.213 47.604);
+    --color-highlight-foreground: oklch(0.145 0 0);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    color-scheme: light;
+    --brand: oklch(0.511 0.262 276.966);
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+    color-scheme: dark;
+    --brand: oklch(0.585 0.233 277.117);
+    --background: oklch(0.15 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.185 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.24 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.22 0 0);
+    --muted-foreground: oklch(0.7 0 0);
+    --accent: oklch(0.24 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 11%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    background-color: color-mix(in oklch, var(--brand) 25%, transparent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Hairlines on the right and bottom of a grid cell. Wrap the grid in `overflow-hidden`
+     and give it `-mr-px -mb-px` so the outer edges disappear under the frame. */
+  .cell-lines {
+    box-shadow:
+      1px 0 0 0 var(--border),
+      0 1px 0 0 var(--border);
+  }
+
+  /* Shiki code blocks follow the site theme instead of their own background. */
+  .astro-code {
+    background-color: transparent !important;
+  }
+  .dark .astro-code,
+  .dark .astro-code span {
+    color: var(--shiki-dark) !important;
+  }
+
+  /* Long-form Markdown: project pages (.prose-project) and product docs (.prose-docs). */
+  :is(.prose-project, .prose-docs) {
+    color: var(--muted-foreground);
+    line-height: 1.7;
+  }
+  :is(.prose-project, .prose-docs) > * + * {
+    margin-top: 1.25rem;
+  }
+  :is(.prose-project, .prose-docs) h2 {
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    color: var(--foreground);
+    font-size: clamp(1.625rem, 2.8vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+  :is(.prose-project, .prose-docs) h3 {
+    margin-top: 2.5rem;
+    color: var(--foreground);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  :is(.prose-project, .prose-docs) :is(h2, h3) + * {
+    margin-top: 0.875rem;
+  }
+  :is(.prose-project, .prose-docs) a {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklch, var(--foreground) 30%, transparent);
+    text-underline-offset: 4px;
+  }
+  :is(.prose-project, .prose-docs) a:hover {
+    text-decoration-color: currentColor;
+  }
+  :is(.prose-project, .prose-docs) strong {
+    color: var(--foreground);
+    font-weight: 500;
+  }
+  :is(.prose-project, .prose-docs) :not(pre) > code {
+    padding: 0.1em 0.35em;
+    border-radius: 0.3rem;
+    background: var(--muted);
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+  :is(.prose-project, .prose-docs) pre {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+  :is(.prose-project, .prose-docs) table {
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  :is(.prose-project, .prose-docs) th {
+    padding: 0.6rem 1rem 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  :is(.prose-project, .prose-docs) td {
+    padding: 0.8rem 1rem 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  :is(.prose-project, .prose-docs) td:first-child {
+    color: var(--foreground);
+    font-weight: 500;
+  }
+  :is(.prose-project, .prose-docs) details {
+    border-bottom: 1px solid var(--border);
+  }
+  :is(.prose-project, .prose-docs) :not(details) + details {
+    border-top: 1px solid var(--border);
+  }
+  :is(.prose-project, .prose-docs) details + details {
+    margin-top: 0;
+  }
+  :is(.prose-project, .prose-docs) summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    color: var(--foreground);
+    font-weight: 500;
+    list-style: none;
+    cursor: pointer;
+  }
+  :is(.prose-project, .prose-docs) summary::-webkit-details-marker {
+    display: none;
+  }
+  :is(.prose-project, .prose-docs) summary::after {
+    content: "+";
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    transition: transform 0.2s;
+  }
+  :is(.prose-project, .prose-docs) details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  :is(.prose-project, .prose-docs) details > :not(summary) {
+    padding-bottom: 1.25rem;
+  }
+
+  /* Project pages: numbered sections, a lead paragraph and dash lists. */
+  .prose-project {
+    counter-reset: section;
+  }
+  .prose-project > :where(p, ul, ol, table, pre, details) {
+    max-width: 46rem;
+  }
+  .prose-project > p:first-child {
+    max-width: 40rem;
+    color: var(--foreground);
+    font-size: 1.25rem;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+  .prose-project h2 {
+    counter-increment: section;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .prose-project h2::before {
+    content: counter(section, decimal-leading-zero);
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .prose-project table {
+    width: 100%;
+  }
+  .prose-project td:first-child {
+    white-space: nowrap;
+  }
+  .prose-project > ul {
+    padding: 0;
+    list-style: none;
+  }
+  .prose-project > ul > li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .prose-project > ul > li + li {
+    margin-top: 0.35rem;
+  }
+  .prose-project > ul > li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+  }
+
+  /* <Features> and <Steps>: lists laid out as hairline grids. */
+  .prose-project :where(.features, .steps) :where(ul, ol) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    padding: 0;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    list-style: none;
+  }
+  .prose-project :where(.features, .steps) li {
+    padding: 1.1rem 1.25rem 1.25rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .prose-project :where(.features, .steps) li strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.9375rem;
+  }
+  .prose-project .steps ol {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    counter-reset: step;
+  }
+  .prose-project .steps li {
+    counter-increment: step;
+  }
+  .prose-project .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    display: block;
+    margin-bottom: 2rem;
+    color: var(--brand);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  /* Product docs: plain Markdown copied from the product repositories. */
+  .prose-docs > :where(p, ul, ol, pre, blockquote, details, h2, h3, figure, hr) {
+    max-width: 48rem;
+  }
+  .prose-docs h1 {
+    color: var(--foreground);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  .prose-docs h1 + p {
+    max-width: 44rem;
+    margin-top: 1.5rem;
+    color: var(--foreground);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  .prose-docs :is(ul, ol) {
+    padding-left: 1.25rem;
+  }
+  .prose-docs ul {
+    list-style: disc;
+  }
+  .prose-docs ol {
+    list-style: decimal;
+  }
+  .prose-docs li + li {
+    margin-top: 0.35rem;
+  }
+  .prose-docs li::marker {
+    color: var(--muted-foreground);
+  }
+  .prose-docs table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .prose-docs blockquote {
+    padding-left: 1rem;
+    border-left: 2px solid var(--border);
+  }
+  .prose-docs hr {
+    border-color: var(--border);
+  }
+  .prose-docs .mermaid-diagram {
+    display: flex;
+    justify-content: center;
+    min-height: 6rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow-x: auto;
+  }
+  .prose-docs .mermaid-diagram svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Long-form text on the legal pages. */
+  .prose-legal {
+    color: var(--muted-foreground);
+    line-height: 1.75;
+  }
+  .prose-legal :where(h2) {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .prose-legal :where(p, ul, address) {
+    margin-bottom: 1rem;
+  }
+  .prose-legal :where(ul) {
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+  .prose-legal :where(li) {
+    margin-bottom: 0.25rem;
+  }
+  .prose-legal :where(address) {
+    font-style: normal;
+  }
+  .prose-legal :where(a) {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklch, var(--foreground) 30%, transparent);
+    text-underline-offset: 4px;
+  }
+  .prose-legal :where(a:hover) {
+    text-decoration-color: currentColor;
+  }
+  .prose-legal > :first-child {
+    margin-top: 0;
+  }
+}

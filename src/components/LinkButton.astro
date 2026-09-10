@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { VariantProps } from 'class-variance-authority';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+/** A link styled as a shadcn/ui button. Renders plain HTML, no React at runtime. */
+type Props = HTMLAttributes<'a'> & VariantProps<typeof buttonVariants>;
+
+const { variant, size, class: className, ...attrs } = Astro.props;
+---
+
+<a class={cn(buttonVariants({ variant, size }), className)} {...attrs}><slot /></a>
