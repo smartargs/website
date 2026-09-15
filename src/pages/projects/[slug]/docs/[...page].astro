@@ -5,7 +5,7 @@ import Mermaid from '@/components/Mermaid.astro';
 import MetaBar from '@/components/MetaBar.astro';
 import Layout from '@/layouts/Layout.astro';
 import { docTitle, flattenNav, getDocs, getDocsNav, rewriteDocLinks, summarize, type DocEntry } from '@/lib/docs';
-import { getProjects, type Project } from '@/lib/projects';
+import { getProjects, mentionsUnity, type Project } from '@/lib/projects';
 
 export async function getStaticPaths() {
   const [projects, docs] = await Promise.all([getProjects(), getDocs()]);
@@ -36,7 +36,11 @@ const title = pages[position]?.title ?? docTitle(doc);
 const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
 ---
 
-<Layout title={`${title} · ${project.data.title} docs`} description={doc.data.description ?? summarize(doc.body)}>
+<Layout
+  title={`${title} · ${project.data.title} docs`}
+  description={doc.data.description ?? summarize(doc.body)}
+  unityNotice={mentionsUnity(project)}
+>
   <MetaBar>
     <a href={`/projects/${project.id}`} class="flex items-center gap-2 transition-colors hover:text-foreground">
       <ArrowLeft class="size-3.5" />

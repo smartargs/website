@@ -3,6 +3,12 @@ import Logo from '@/components/Logo.astro';
 import { legal, site } from '@/config/site';
 import { getProjects } from '@/lib/projects';
 
+interface Props {
+  /** Unity's trademark notice, for pages that name Unity. */
+  unityNotice?: boolean;
+}
+
+const { unityNotice = false } = Astro.props;
 const year = new Date().getFullYear();
 const latest = (await getProjects()).slice(0, 4);
 
@@ -25,7 +31,7 @@ const columns = [
       <a href="/" aria-label={`${site.name} home`} class="inline-flex rounded-md">
         <Logo />
       </a>
-      <p class="mt-4 max-w-xs text-sm text-muted-foreground">IT solutions and software products.</p>
+      <p class="mt-4 max-w-xs text-sm text-muted-foreground">Game development and software products.</p>
       <a href={`mailto:${site.email}`} class="mt-1 inline-block text-sm underline-offset-4 hover:underline">
         {site.email}
       </a>
@@ -50,12 +56,12 @@ const columns = [
     </div>
   </div>
 
-  <!-- Oversized wordmark, cropped at the bottom edge. -->
+  <!-- Oversized wordmark. The viewBox fits Geist's glyphs: 140 above the baseline, 35 below for the g. -->
   <div class="overflow-hidden border-t px-5 pt-8 sm:px-8" aria-hidden="true">
-    <svg viewBox="0 0 1000 168" class="block w-full">
+    <svg viewBox="0 0 1000 184" class="block w-full">
       <text
         x="0"
-        y="160"
+        y="144"
         textLength="1000"
         lengthAdjust="spacing"
         font-size="212"
@@ -65,9 +71,16 @@ const columns = [
   </div>
 
   <div
-    class="flex flex-col gap-2 border-t px-5 py-4 font-mono text-[11px] tracking-wider text-muted-foreground uppercase sm:flex-row sm:justify-between sm:px-8"
+    class="flex flex-col gap-2 border-t px-5 py-4 font-mono text-[11px] tracking-wider text-muted-foreground uppercase sm:flex-row sm:justify-between sm:gap-8 sm:px-8"
   >
-    <p>© {year} {legal.businessName ?? legal.name}</p>
-    <p>Unity is a trademark of Unity Technologies</p>
+    <p class="shrink-0">© {year} {legal.businessName ?? legal.name}</p>
+    {
+      unityNotice && (
+        <p class="max-w-2xl font-sans text-xs tracking-normal text-pretty normal-case sm:text-right">
+          {site.name} is not sponsored by or affiliated with Unity Technologies or its affiliates. Unity is a trademark or
+          registered trademark of Unity Technologies or its affiliates in the U.S. and elsewhere.
+        </p>
+      )
+    }
   </div>
 </footer>
