@@ -2,6 +2,8 @@
 
 Currencies are assets; wallets are per-unit balances. Gold, honor, tokens and premium currency all fit.
 
+See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Setup
 
 1. **Create → Vantage → Currency → Currency** for each currency: id, display name, colour, sort weight, optional icon.

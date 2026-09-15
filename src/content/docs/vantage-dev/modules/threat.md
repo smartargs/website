@@ -2,6 +2,8 @@
 
 Threat gives monsters a memory of who hurt them, so tanks can hold aggro and healers can pull it. Without it a unit simply attacks whatever it was told to.
 
+See it running: the [07 · AI and Threat](../demos/07-ai-threat.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Enabling it on a monster
 
 Check **Use Threat Table** on the unit definition. The unit gets a `VtThreatTable` and automatically writes threat for every hit it takes. Its combat engagement then follows the top entry: when someone overtakes the current target's threat, the monster switches.

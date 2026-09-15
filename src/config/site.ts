@@ -12,7 +12,7 @@ export const site = {
   description:
     'smartargs is an IT solutions company. Browse the catalog of software products and tools we build, including vantage-dev for Unity 6, or get in touch about a project.',
   /** Public contact address, shown on the contact page, in the footer and in the Impressum. */
-  email: 'TODO@smartargs.com',
+  email: 'contact@smartargs.com',
   nav: [
     { label: 'Catalog', href: '/#catalog' },
     { label: 'Contact', href: '/contact' },

@@ -1,7 +1,7 @@
 ---
 import ContactForm from '@/components/ContactForm.astro';
 import MetaBar from '@/components/MetaBar.astro';
-import { legal, site } from '@/config/site';
+import { site } from '@/config/site';
 import Layout from '@/layouts/Layout.astro';
 import { getProjects } from '@/lib/projects';
 
@@ -24,17 +24,9 @@ const topics = (await getProjects()).map((project) => ({ value: project.id, labe
         straight to our inbox.
       </p>
       <dl class="mt-12 font-mono text-xs tracking-wider uppercase">
-        <div class="flex items-center justify-between gap-4 border-t py-3">
+        <div class="flex items-center justify-between gap-4 border-y py-3">
           <dt class="text-muted-foreground">Email</dt>
           <dd class="truncate normal-case"><a href={`mailto:${site.email}`} class="hover:underline">{site.email}</a></dd>
-        </div>
-        <div class="flex items-center justify-between gap-4 border-t py-3">
-          <dt class="text-muted-foreground">Based in</dt>
-          <dd>{legal.country}</dd>
-        </div>
-        <div class="flex items-center justify-between gap-4 border-y py-3">
-          <dt class="text-muted-foreground">Legal</dt>
-          <dd><a href="/impressum" class="hover:underline">Impressum</a></dd>
         </div>
       </dl>
     </div>

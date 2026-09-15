@@ -3,10 +3,9 @@ import EnquiryStrip from '@/components/EnquiryStrip.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 import { site } from '@/config/site';
 import Layout from '@/layouts/Layout.astro';
-import { catalogNumber, getProjects, slugify } from '@/lib/projects';
+import { getProjects, slugify } from '@/lib/projects';
 
 const projects = await getProjects();
-const latest = projects[0];
 
 const categories = [
   { id: 'all', label: 'All', count: projects.length },
@@ -18,16 +17,10 @@ const categories = [
 ];
 
 // Filtering is CSS only: a checked radio hides every card of another category.
-const filterCss = [
-  ...categories
-    .filter(({ id }) => id !== 'all')
-    .map(({ id }) => `#catalog:has(#filter-${id}:checked) [data-category]:not([data-category="${id}"]){display:none}`),
-  '#catalog:has([name="filter"]:not(#filter-all):checked) [data-placeholder]{display:none}',
-].join('');
-
-// Fill the last row of the three-column grid with "more soon" slots.
-const usedCells = projects.reduce((cells, project) => cells + (project.data.featured ? 2 : 1), 0);
-const placeholders = (3 - (usedCells % 3)) % 3;
+const filterCss = categories
+  .filter(({ id }) => id !== 'all')
+  .map(({ id }) => `#catalog:has(#filter-${id}:checked) [data-category]:not([data-category="${id}"]){display:none}`)
+  .join('');
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -71,30 +64,11 @@ const jsonLd = {
         <span class="relative -mt-[0.1em] block w-fit bg-highlight px-[0.08em] text-highlight-foreground">built to last.</span>
       </h1>
     </div>
-    <div class="flex flex-col justify-end gap-10 border-t px-5 py-10 sm:px-8 lg:col-span-4 lg:border-t-0 lg:py-20">
+    <div class="flex flex-col justify-end border-t px-5 py-10 sm:px-8 lg:col-span-4 lg:border-t-0 lg:py-20">
       <p class="max-w-sm text-pretty text-muted-foreground">
         smartargs is an IT solutions company. This is where we publish the products and tools we build. Browse the
         catalog, or get in touch to build something new.
       </p>
-      <dl class="font-mono text-xs tracking-wider uppercase">
-        <div class="flex items-center justify-between gap-4 border-t py-3 last:border-b">
-          <dt class="text-muted-foreground">Entries</dt>
-          <dd>{String(projects.length).padStart(2, '0')}</dd>
-        </div>
-        {
-          latest && (
-            <div class="flex items-center justify-between gap-4 border-t py-3 last:border-b">
-              <dt class="text-muted-foreground">Latest</dt>
-              <dd>
-                <a href={`/projects/${latest.id}`} class="hover:underline">
-                  {latest.data.title}
-                  {latest.data.version && ` v${latest.data.version}`}
-                </a>
-              </dd>
-            </div>
-          )
-        }
-      </dl>
     </div>
   </section>
 
@@ -128,22 +102,6 @@ const jsonLd = {
     <div class="overflow-hidden">
       <ul class="-mr-px -mb-px grid sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
-        {
-          Array.from({ length: placeholders }, (_, i) => (
-            <li data-placeholder class="cell-lines hidden lg:block">
-              <div class="flex h-full flex-col p-6">
-                <div class="flex items-center justify-between font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
-                  <span>{catalogNumber(projects.length + i)}</span>
-                  <span>Reserved</span>
-                </div>
-                <div class="mt-4 flex aspect-4/3 items-center justify-center rounded-md border border-dashed">
-                  <span class="font-mono text-xs tracking-wider text-muted-foreground uppercase">More soon</span>
-                </div>
-                <p class="mt-5 text-sm text-muted-foreground">New entries land here as they ship.</p>
-              </div>
-            </li>
-          ))
-        }
       </ul>
     </div>
   </section>

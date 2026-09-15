@@ -1,7 +1,7 @@
 import { EmailMessage } from 'cloudflare:email';
 import { createMimeMessage, Mailbox } from 'mimetext/browser';
 
-/** Topics are "project", "other", or a catalog entry's id such as "vantage". */
+/** Topics are "other" or a catalog entry's id such as "vantage-dev". */
 const TOPIC_PATTERN = /^[a-z0-9-]{1,60}$/;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

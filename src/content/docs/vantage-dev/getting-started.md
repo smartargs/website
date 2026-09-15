@@ -2,6 +2,8 @@
 
 By the end of this page you have a player that walks where you click and fights an enemy that fights back.
 
+See it running: the [01 · Hello Unit](demos/01-hello-unit.md) demo scene. See [Demos](demos/index.md) to import the scenes.
+
 ## Install
 
 Copy the `com.smartargs.vantage` folder into your project's `Packages/` folder, or add it through **Window → Package Manager → + → Add package from disk** and pick its `package.json`.
@@ -56,7 +58,7 @@ The basic attack is an ordinary ability that reads its damage from whoever casts
 
 1. Create an empty GameObject (or use your character model) and add **Vantage → Units → VtUnit**. Unity adds the rest of the unit's components for you.
 2. Drag `PlayerUnit` into the **Definition** field.
-3. Add **Vantage → Movement → VtTopDownClickToMove**, **VtNavMeshPathProvider** and **VtTopDownClickInput**. The first one also adds a `CharacterController`.
+3. Add a **Character Controller** and set its **Center** Y to half its **Height**, for example 1 for a height of 2, so the capsule stands on the prefab's pivot. Then add **Vantage → Movement → VtTopDownClickToMove**, **VtNavMeshPathProvider** and **VtTopDownClickInput**.
 4. Save it as a prefab.
 
 ## 4. Make an enemy
@@ -85,4 +87,3 @@ Press Play. Right-click the ground and the player walks there. Walk near the ske
 | Right-click does nothing | Is there a camera tagged `MainCamera` and an EventSystem? Do the input component's layer masks include your ground and unit layers? |
 | The player walks through walls | Bake a NavMesh over the level and make sure the walls are included in the bake, see [Movement](modules/movement.md). |
 | A cast never lands | The target must be inside the ability's range, measured on the ground plane, and the caster must not be silenced or stunned. |
-| "No VtStatDefinition registered" warnings | Only your own custom stats use the registry. Add them to a Stat Registry Bootstrap asset, see [Units and stats](modules/units.md). |

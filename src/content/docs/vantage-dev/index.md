@@ -32,11 +32,12 @@ co-op host or an authoritative server later. It comes with top-down movement, in
 ## Where to start
 
 1. [Getting started](getting-started.md) takes you from install to a unit that walks and fights in about ten minutes.
-2. [Concepts](concepts.md) explains the handful of ideas everything is built on.
-3. [Modules](modules/index.md) has one short page per system with the authoring steps and the runtime calls.
-4. [Extending](extending.md) shows how to add your own effects, damage types, resources and more.
-5. [Multiplayer](multiplayer.md) covers the co-op sample, how casts travel to the server, and what you still replicate yourself.
-6. [Testing](testing.md) explains how to run the package's tests and write your own against it.
+2. [Demos](demos/index.md) are small playable scenes, one per part of Vantage, each documented down to the field values.
+3. [Concepts](concepts.md) explains the handful of ideas everything is built on.
+4. [Modules](modules/index.md) has one short page per system with the authoring steps and the runtime calls.
+5. [Extending](extending.md) shows how to add your own effects, damage types, resources and more.
+6. [Multiplayer](multiplayer.md) covers the co-op sample, how casts travel to the server, and what you still replicate yourself.
+7. [Testing](testing.md) explains how to run the package's tests and write your own against it.
 
 ## Requirements
 

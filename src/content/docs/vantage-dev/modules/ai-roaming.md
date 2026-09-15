@@ -2,6 +2,8 @@
 
 Monsters that wander or patrol, attack on sight, fight back, chase, and run home invulnerable when pulled too far. Two components do this, and both come from checkboxes on the unit definition.
 
+See it running: the [07 · AI and Threat](../demos/07-ai-threat.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Setup
 
 On the monster's unit definition:
@@ -9,6 +11,7 @@ On the monster's unit definition:
 | Field | Meaning |
 |---|---|
 | Use Hostile AI | Attack hostile units that come inside **Aggro Range**, and fight back when something targets this unit through threat or a taunt. Attaches `VtHostileAi`. |
+| Takes Orders | Players command the unit with group orders, and it attacks hostile units inside **Aggro Range** while idle. Attaches `VtUnitOrders`; see [Orders and control groups](orders.md). Use it instead of Use Hostile AI. |
 | Aggro Range | Notice radius in world units. 0 never engages on sight. |
 | Roam Radius | Wander this far from home between idle pauses. 0 stands still. Attaches `VtRoaming`. |
 | Leash Radius | Distance from home at which the unit drops the fight and runs home. 0 disables the leash. |
@@ -64,6 +67,10 @@ ai.FindNearestHostile();
 ```
 
 Hostile AI scans only while it has no target. An engaged unit costs nothing per frame beyond keeping its basic attack armed.
+
+## Abilities and boss fights
+
+Hostile AI keeps the basic attack going. For monsters that cast, fill **Ability Rotation** on the definition; for scripted fights with phases, adds and resets, place an encounter. Both are on the [Encounters](encounters.md) page.
 
 ## Your own AI
 

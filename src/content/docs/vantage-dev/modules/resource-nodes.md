@@ -2,6 +2,8 @@
 
 Trees, ore veins and fishing spots. A node is a unit that yields items on every hit, demands the right tool and skill, and grows back after it is depleted.
 
+See it running: the [10 · Gathering and Crafting](../demos/10-gathering-crafting.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 Use a plain unit with a [loot table](loot.md) for "thing dies, drops items". Use a resource node for "chop, chop, chop".
 
 ## Authoring
@@ -21,7 +23,7 @@ Use a plain unit with a [loot table](loot.md) for "thing dies, drops items". Use
 
 4. Assign it to **Resource Node** on a unit definition. Give the unit enough HP for the number of hits you want, faction Neutral and aggro range 0.
 
-Drops go straight into the attacker's backpack, not onto the ground.
+Drops go straight into the attacker's backpack, not onto the ground. Nodes are Neutral, so nothing attacks them on sight, but they accept deliberate attacks: a player with `VtTopDownClickInput` harvests by right-clicking the node, and selected units with orders harvest on a right-click or an attack-move click. Anything else that should take deliberate attacks without being hostile, such as a practice dummy or a door, gets a component that implements `IVtCommandAttackable`.
 
 ## Feedback
 

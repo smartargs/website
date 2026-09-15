@@ -17,6 +17,7 @@ Place structures by paying items and currency. The builder shows a ghost that fo
 | Grid Cell Size, Footprint Cells | How many cells the piece covers. Cell size 0 uses the scene's `VtWorldGrid`, which cliffs share; set a value to override it for this piece. A 1×1 piece sits on a cell centre, a 2×1 wall on the edge between two cells. |
 | Rotation Step Degrees | How far one rotate press turns the ghost. 0 disables rotation. |
 | Socket Family, Socket Snap Distance | Which sockets this piece connects to and from how far. |
+| Placement Range | How far from the builder the piece may go, on the ground plane. 0 = anywhere. The preview reports `OutOfRange` beyond it. |
 | Footprint Half Extents / Forbidden Overlap Mask | Box overlap check that blocks placement. |
 | Allow Overlap With Units | For banners and ground markers. |
 | Build Seconds | 0 spawns finished. More attaches a `VtBuildSite` that needs progress. |
@@ -69,3 +70,7 @@ The site swaps **Site Visual** for **Complete Visual** when done. Demolishing an
 ## Custom snapping and footprints
 
 Subscribe to `OnPlacementMoved`, compute your own position or validity, and feed it back through your UI. Hex grids and circular footprints fit this way without touching the package.
+
+## Multiplayer
+
+Placing and demolishing run on the server. Placed pieces are created and removed through `VtSpawning`. With the co-op sample's spawn hooks, give buildable prefabs a `NetworkObject` and the sample's buildable sync, and every client receives the piece, its buildable, its builder and its construction progress.

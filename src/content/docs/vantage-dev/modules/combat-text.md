@@ -2,6 +2,8 @@
 
 Floating damage, heal, crit, dodge, absorb and immune numbers above units. It works with no setup: every unit publishes its combat events, and a default presenter appears in the scene on first play if you have not placed one.
 
+See it running: the [02 · Damage Lab](../demos/02-damage-lab.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Styling
 
 **Create → Vantage → UI → Combat Text Style.** One entry per kind of text: colour, prefix, suffix, font scale, rise distance, lifetime and an optional sound. Kinds not listed fall back to the style's defaults.

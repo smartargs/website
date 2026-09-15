@@ -2,6 +2,8 @@
 
 `VtMobSpawner` keeps a number of monsters alive around a point and respawns them after they die.
 
+See it running: the [08 · Spawners and Loot](../demos/08-spawners-loot.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Setup
 
 1. Create an empty GameObject where the monsters should appear.
@@ -41,4 +43,4 @@ spawner.OnRespawnTimerStarted += seconds => { };
 - **Night-only**: call `SpawnAll` at dusk and `Despawn` at dawn.
 - **Deterministic rolls** in tests or replays: `SetRandom` with your own `IVtRandom`.
 
-For networked games override `InstantiatePrefab` in a subclass and register the instance with your networking layer.
+Spawned units are created and removed through `VtSpawning`, the same hooks loot, buildings, projectiles and summons use. A networked game points `VtSpawning.InstantiateFn` and `VtSpawning.DespawnFn` at its spawn calls once, as the co-op sample's spawn hooks do. Override `InstantiatePrefab` in a subclass only when one spawner should spawn differently.

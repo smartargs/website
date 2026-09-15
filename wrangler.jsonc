@@ -16,8 +16,8 @@
 	// on smartargs.com, with CONTACT_TO added and verified as a destination address.
 	"send_email": [{ "name": "CONTACT_EMAIL" }],
 	"vars": {
-		"CONTACT_FROM": "website@smartargs.com",
-		"CONTACT_TO": "TODO-your-inbox@example.com"
+		"CONTACT_FROM": "contact@smartargs.com",
+		"CONTACT_TO": "y.koitzsch@gmx.at"
 	},
 	// Secret, set with `npx wrangler secret put TURNSTILE_SECRET_KEY` or in the dashboard:
 	//   TURNSTILE_SECRET_KEY

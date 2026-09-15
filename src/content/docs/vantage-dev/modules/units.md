@@ -2,6 +2,8 @@
 
 The unit is the one building block. This page covers the unit definition, resource pools, stats and attributes, buffs, and death.
 
+See it running: the [02 · Damage Lab](../demos/02-damage-lab.md) and [04 · Stats, Buffs and Auras](../demos/04-stats-buffs-auras.md) demo scenes. See [Demos](../demos/index.md) to import the scenes.
+
 ## Authoring a unit
 
 **Create → Vantage → Units → Unit Definition.** The important sections:
@@ -62,6 +64,8 @@ buffs.OnBuffAdded += instance => { };
 
 Buffs are usually applied from an ability with the **Apply Buff** effect. A unit whose definition lists the buff's crowd-control category under immunities refuses it and shows an Immune popup.
 
+Each live instance carries `Def`, `Remaining`, `Applier` and `FromAura` — the last one is true while an [aura](auras.md) keeps the buff up, which is the signal a buff bar uses to show it as lasting rather than counting down the aura's refresh interval.
+
 ## Damage and healing
 
 ```csharp
@@ -96,7 +100,7 @@ A unit with 0 HP is dead. It ignores further damage and every kind of healing, i
 if (stats.IsDead) stats.Revive(Mathf.CeilToInt(stats.MaxHP * 0.3f));
 ```
 
-Respawning a unit by assigning its definition again also restores it, without firing `OnRevived`.
+Respawning a unit by assigning its definition again also restores it, without firing `OnRevived`. For a player's death wait, respawn points and penalties see [Respawn](respawn.md); for the hit, death and revive animation and sound see [Presentation](presentation.md).
 
 ## Level
 
@@ -113,4 +117,4 @@ if (!traits.GetBool(VtTraitKey.CanCast, true)) return;
 
 ## Custom stats
 
-Stats the package does not ship, such as `magic_find`, are just more Stat Definition assets. Reference them from items and effects by dragging them in. If your code looks them up by id at runtime, list them in a **Stat Registry Bootstrap** asset placed at `Assets/Resources/VtStatRegistryBootstrap`.
+Stats the package does not ship, such as `magic_find`, are just more Stat Definition assets. Reference them from items, effects and your own components by dragging them in.

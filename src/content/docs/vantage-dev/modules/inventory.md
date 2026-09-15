@@ -2,6 +2,8 @@
 
 `VtUnitInventory` is an optional backpack: a flat list of item stacks. Add it to units that carry things, usually the player. Items in the bag grant nothing; equip them to get their bonuses.
 
+See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Setup
 
 Add **Vantage → Items → VtUnitInventory** to the prefab and set **Base Capacity** (0 means unlimited). Assign a stat to **Capacity Stat** if bags should be able to add slots; a bag item then grants "+6" on that stat like any other modifier.

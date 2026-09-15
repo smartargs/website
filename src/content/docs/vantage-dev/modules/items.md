@@ -2,6 +2,8 @@
 
 Every unit has a `VtUnitEquipment` with twelve slots: head, chest, legs, feet, hands, main hand, off hand, neck, two rings and two trinkets. The backpack is a separate opt-in, see [Inventory](inventory.md).
 
+See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Authoring an item
 
 **Create → Vantage → Items → Item Definition.**
@@ -19,6 +21,7 @@ Every unit has a `VtUnitEquipment` with twelve slots: head, chest, legs, feet, h
 | Set | Membership in an item set. |
 | Stackable / Max Stack Size | For the backpack. |
 | Use Ability / Consume On Use | Makes the item a consumable, see [Inventory](inventory.md). |
+| Value | Currency and amount vendors price from, see [Vendors](vendors.md). No currency means no vendor trades it. |
 
 Items listed under **Starting Equipment** on a unit definition are equipped at spawn, in order.
 

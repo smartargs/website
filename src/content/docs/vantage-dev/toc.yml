@@ -2,6 +2,33 @@
   href: index.md
 - name: Getting started
   href: getting-started.md
+- name: Demos
+  href: demos/index.md
+  items:
+    - name: 01 · Hello Unit
+      href: demos/01-hello-unit.md
+    - name: 02 · Damage Lab
+      href: demos/02-damage-lab.md
+    - name: 03 · Abilities
+      href: demos/03-abilities.md
+    - name: 04 · Stats, Buffs and Auras
+      href: demos/04-stats-buffs-auras.md
+    - name: 05 · Items and Inventory
+      href: demos/05-items-inventory.md
+    - name: 06 · Leveling and Talents
+      href: demos/06-leveling-talents.md
+    - name: 07 · AI and Threat
+      href: demos/07-ai-threat.md
+    - name: 08 · Spawners and Loot
+      href: demos/08-spawners-loot.md
+    - name: 09 · Quests and Dialogue
+      href: demos/09-quests-dialogue.md
+    - name: 10 · Gathering and Crafting
+      href: demos/10-gathering-crafting.md
+    - name: 23 · Selection and Orders
+      href: demos/23-selection-orders.md
+    - name: 24 · UI Gallery
+      href: demos/24-ui-gallery.md
 - name: Concepts
   href: concepts.md
 - name: Modules
@@ -15,6 +42,14 @@
       href: modules/combat-text.md
     - name: Movement and input
       href: modules/movement.md
+    - name: Input
+      href: modules/input.md
+    - name: UI
+      href: modules/ui.md
+    - name: Selection
+      href: modules/selection.md
+    - name: Orders and control groups
+      href: modules/orders.md
     - name: Camera
       href: modules/camera.md
     - name: Tuning
@@ -33,6 +68,32 @@
       href: modules/crafting.md
     - name: Quests
       href: modules/quests.md
+    - name: Dialogue
+      href: modules/dialogue.md
+    - name: Vendors
+      href: modules/vendors.md
+    - name: Respawn
+      href: modules/respawn.md
+    - name: Presentation
+      href: modules/presentation.md
+    - name: Localization
+      href: modules/localization.md
+    - name: Progression
+      href: modules/progression.md
+    - name: Party
+      href: modules/party.md
+    - name: Summons
+      href: modules/summons.md
+    - name: Encounters
+      href: modules/encounters.md
+    - name: Chat
+      href: modules/chat.md
+    - name: Guilds
+      href: modules/guilds.md
+    - name: Friends
+      href: modules/friends.md
+    - name: Mail
+      href: modules/mail.md
     - name: Building
       href: modules/building.md
     - name: Saving and loading

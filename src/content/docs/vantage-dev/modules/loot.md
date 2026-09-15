@@ -2,6 +2,8 @@
 
 A loot table decides what drops when a unit dies. Drops appear as pickable world items at the corpse; currency goes straight to the killer's wallet.
 
+See it running: the [08 · Spawners and Loot](../demos/08-spawners-loot.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Authoring a table
 
 **Create → Vantage → Loot → Loot Table.**
@@ -29,3 +31,7 @@ dropper.OnRolled += drops => { if (!questActive) drops.Clear(); };
 ```
 
 For deterministic drops in tests or replays, call `dropper.SetRandom(yourRandom)` with your own `IVtRandom`.
+
+## Multiplayer
+
+Loot rolls on the server. Dropped items are created through `VtSpawning`, so with the co-op sample's spawn hooks a world item prefab that has a `NetworkObject` and the sample's world item sync reaches every client with its item, count and party reservation. Picking up runs on the server.

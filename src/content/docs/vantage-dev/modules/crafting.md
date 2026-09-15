@@ -2,6 +2,8 @@
 
 Recipes turn items into items. Optional layers: a recipe book for recipes that must be learned, crafting skills that level up, stations you must stand at, and craft timers.
 
+See it running: the [10 · Gathering and Crafting](../demos/10-gathering-crafting.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
+
 ## Authoring
 
 1. **Create → Vantage → Crafting → Recipe Category** (Weapons, Food, …), **Recipe Station** (Anvil, Cookpot, …) and **Crafting Skill** (Smithing, …, each with an XP curve) as needed.
@@ -41,7 +43,7 @@ crafter.OnCraftCancelled += r => { };
 crafter.OnCraftFailed    += (r, why) => { };
 ```
 
-Pass `null` as the station for recipes that craft anywhere. Cancelling a timed craft consumes nothing.
+Pass `null` as the station for recipes that craft anywhere. When you pass a station, the crafter must stand within its **Interact Radius** plus `Interact Range Tolerance` from the tuning asset, or the reason is `TooFarFromStation`. Cancelling a timed craft consumes nothing.
 
 Skills:
 

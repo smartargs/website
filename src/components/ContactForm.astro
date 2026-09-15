@@ -39,7 +39,6 @@ const label = 'font-mono text-[11px] tracking-wider text-muted-foreground upperc
         <label for="topic" class={label}>Regarding</label>
         <div class="relative">
           <select id="topic" name="topic" class={cn(control, 'h-11 appearance-none pr-9')}>
-            <option value="project" selected>A new project</option>
             {
               topics.length > 0 && (
                 <optgroup label="Catalog">
@@ -120,7 +119,7 @@ const label = 'font-mono text-[11px] tracking-wider text-muted-foreground upperc
   const success = document.querySelector<HTMLElement>('[data-success]');
 
   if (form && status && submit && success) {
-    // Links like /contact?topic=vantage preselect the topic.
+    // Links like /contact?topic=vantage-dev preselect the topic.
     const topic = new URLSearchParams(location.search).get('topic');
     const select = form.elements.namedItem('topic');
     if (topic && select instanceof HTMLSelectElement && [...select.options].some((option) => option.value === topic)) {

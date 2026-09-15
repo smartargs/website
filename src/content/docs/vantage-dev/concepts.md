@@ -73,7 +73,7 @@ Buffs are definitions as well: stat rows, trait overrides such as "cannot cast",
 
 Every simulation component exposes `Tick(float deltaTime)` and never reads the Unity clock itself. By default each component ticks from its own `Update`. Add a `VtTickDriver` to the scene and one loop advances everything in a fixed order, which also gives you a pause and slow-motion knob that does not freeze the UI. Tests and servers call `Tick` with whatever step they like.
 
-Every state change first asks `VtAuthority.IsLocal`. In single-player the answer is always yes. In co-op you point it at "am I the owner", on a server at "am I the server", and no gameplay code changes. See [Multiplayer](multiplayer.md).
+Every state change first asks `VtAuthority` whether this process owns the truth for the unit. In single-player the answer is always yes. Networked, the server owns everything and a client only predicts its own movement and casts; anything else a client asks for, from accepting a quest to placing a wall, travels to the server as a command and comes back by replication. No gameplay code changes between the two. See [Multiplayer](multiplayer.md).
 
 ## Two assets the package reads at startup
 
