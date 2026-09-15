@@ -40,6 +40,11 @@ export function catalogNumber(index: number): string {
   return `N°${String(index + 1).padStart(2, '0')}`;
 }
 
+/** Whether a project names Unity on its card or page; such pages carry Unity's trademark notice. */
+export function mentionsUnity(project: Project): boolean {
+  return /\bunity\b/i.test(`${JSON.stringify(project.data)} ${project.body ?? ''}`);
+}
+
 export function slugify(value: string): string {
   return value
     .toLowerCase()

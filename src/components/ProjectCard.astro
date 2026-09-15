@@ -1,7 +1,6 @@
 ---
 import { ArrowUpRight } from '@lucide/astro';
 import Cover from '@/components/Cover.astro';
-import StatusBadge from '@/components/StatusBadge.astro';
 import { catalogNumber, slugify, type Project } from '@/lib/projects';
 import { cn } from '@/lib/utils';
 
@@ -11,24 +10,30 @@ interface Props {
   index: number;
   /** Overrides the entry's own `featured` flag. */
   featured?: boolean;
+  /** Spans the whole row of the catalog grid. */
+  wide?: boolean;
 }
 
-const { project, index } = Astro.props;
+const { project, index, wide } = Astro.props;
 const { data } = project;
 const featured = Astro.props.featured ?? data.featured;
 ---
 
-<li data-category={slugify(data.category)} class={cn('cell-lines group', featured && 'sm:col-span-2')}>
+<li data-category={slugify(data.category)} class={cn('cell-lines group', wide ? 'col-span-full' : featured && 'sm:col-span-2')}>
   <a href={`/projects/${project.id}`} class="flex h-full flex-col p-5 transition-colors duration-300 hover:bg-muted/50 sm:p-6">
     <div class="flex items-center justify-between gap-3 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
       <span>
         {catalogNumber(index)}
         {data.draft && <span class="ml-2 rounded-sm bg-muted px-1 py-0.5 text-foreground">Draft</span>}
       </span>
-      <StatusBadge status={data.status} />
     </div>
 
-    <div class={cn('relative mt-4 overflow-hidden rounded-md', featured ? 'aspect-4/3 sm:aspect-8/3' : 'aspect-4/3')}>
+    <div
+      class={cn(
+        'relative mt-4 overflow-hidden rounded-md',
+        wide ? 'aspect-4/3 sm:aspect-8/3 lg:aspect-3/1' : featured ? 'aspect-4/3 sm:aspect-8/3' : 'aspect-4/3',
+      )}
+    >
       <Cover {...data.cover} class="transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
     </div>
 

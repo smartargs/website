@@ -8,9 +8,9 @@
 export const site = {
   name: 'smartargs',
   url: 'https://smartargs.com',
-  title: 'smartargs · Software products and IT solutions',
+  title: 'smartargs · Game development and software products',
   description:
-    'smartargs is an IT solutions company. Browse the catalog of software products and tools we build, including vantage-dev for Unity 6, or get in touch about a project.',
+    'smartargs is a game development company. Browse the catalog of software products and tools we build, including vantage-dev for Unity 6, or get in touch about a project.',
   /** Public contact address, shown on the contact page, in the footer and in the Impressum. */
   email: 'contact@smartargs.com',
   nav: [

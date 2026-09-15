@@ -2,7 +2,6 @@
 import { render } from 'astro:content';
 import { ArrowLeft, ArrowUpRight, BookOpen } from '@lucide/astro';
 import Cover from '@/components/Cover.astro';
-import EnquiryStrip from '@/components/EnquiryStrip.astro';
 import LinkButton from '@/components/LinkButton.astro';
 import MetaBar from '@/components/MetaBar.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
@@ -10,7 +9,7 @@ import StatusBadge from '@/components/StatusBadge.astro';
 import { site } from '@/config/site';
 import Layout from '@/layouts/Layout.astro';
 import { docHref, getDocs } from '@/lib/docs';
-import { catalogNumber, getProjects, type Project } from '@/lib/projects';
+import { catalogNumber, getProjects, mentionsUnity, type Project } from '@/lib/projects';
 import { cn } from '@/lib/utils';
 
 export async function getStaticPaths() {
@@ -67,7 +66,12 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${data.title}, ${data.category}`} description={data.description} jsonLd={jsonLd}>
+<Layout
+  title={`${data.title}, ${data.category}`}
+  description={data.description}
+  jsonLd={jsonLd}
+  unityNotice={[project, ...others.map((other) => other.project)].some(mentionsUnity)}
+>
   <article>
     <MetaBar>
       <a href="/#catalog" class="flex items-center gap-2 transition-colors hover:text-foreground">
@@ -204,6 +208,4 @@ const jsonLd = {
       )
     }
   </article>
-
-  <EnquiryStrip />
 </Layout>
