@@ -16,11 +16,11 @@ const isCurrent = (href: string) => currentPath === href;
     <a href="/" aria-label={`${site.name} home`} class="flex items-center rounded-md">
       <Logo />
     </a>
-    <span class="hidden font-mono text-[11px] tracking-wider text-muted-foreground uppercase lg:inline">
-      Game development &amp; software
+    <span class="hidden font-pixel text-[11px] tracking-wider text-muted-foreground uppercase lg:inline">
+      Game development + software
     </span>
 
-    <nav aria-label="Main" class="ml-auto hidden items-center gap-7 font-mono text-xs tracking-wider uppercase sm:flex">
+    <nav aria-label="Main" class="ml-auto hidden items-center gap-7 font-pixel text-xs tracking-wider uppercase sm:flex">
       {
         site.nav.map((item, index) => (
           <a
@@ -54,7 +54,7 @@ const isCurrent = (href: string) => currentPath === href;
     class="inset-x-0 top-14 bottom-auto m-0 w-full max-w-none border-0 border-b bg-background p-3 text-foreground shadow-lg sm:hidden"
   >
     <nav aria-label="Mobile">
-      <ul class="grid gap-1 font-mono text-sm tracking-wider uppercase">
+      <ul class="grid gap-1 font-pixel text-sm tracking-wider uppercase">
         {
           site.nav.map((item, index) => (
             <li>

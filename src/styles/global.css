@@ -5,10 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    /* --font-geist-* are defined by <Font> in BaseHead.astro (Astro fonts API). */
+    /* --font-geist-* and --font-silkscreen are defined by <Font> in BaseHead.astro (Astro fonts API). */
     --font-heading: var(--font-sans);
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+    /* Pixel font for labels; code keeps --font-mono. */
+    --font-pixel: var(--font-silkscreen);
     --color-brand: var(--brand);
     /* Brand orange: the full stop in the home headline. Same in both themes. */
     --color-highlight: oklch(0.705 0.213 47.604);
@@ -228,7 +230,7 @@
   :is(.prose-project, .prose-docs) th {
     padding: 0.6rem 1rem 0.6rem 0;
     border-bottom: 1px solid var(--border);
-    font-family: var(--font-mono);
+    font-family: var(--font-pixel);
     font-size: 0.6875rem;
     font-weight: 400;
     letter-spacing: 0.06em;
@@ -269,7 +271,7 @@
   :is(.prose-project, .prose-docs) summary::after {
     content: "+";
     color: var(--muted-foreground);
-    font-family: var(--font-mono);
+    font-family: var(--font-pixel);
     transition: transform 0.2s;
   }
   :is(.prose-project, .prose-docs) details[open] summary::after {
@@ -302,7 +304,7 @@
   .prose-project h2::before {
     content: counter(section, decimal-leading-zero);
     color: var(--muted-foreground);
-    font-family: var(--font-mono);
+    font-family: var(--font-pixel);
     font-size: 0.75rem;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -363,7 +365,7 @@
     display: block;
     margin-bottom: 2rem;
     color: var(--brand);
-    font-family: var(--font-mono);
+    font-family: var(--font-pixel);
     font-size: 0.75rem;
   }
 

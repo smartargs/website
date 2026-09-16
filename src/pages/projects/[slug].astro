@@ -82,7 +82,7 @@ const jsonLd = {
 
     <header class="grid border-b lg:grid-cols-12">
       <div class="px-5 pt-12 pb-10 sm:px-8 sm:pt-16 sm:pb-14 lg:col-span-8 lg:border-r">
-        <p class="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">{data.category}</p>
+        <p class="font-pixel text-[11px] tracking-wider text-muted-foreground uppercase">{data.category}</p>
         <h1 class="mt-5 text-[length:clamp(3.5rem,11vw,9.5rem)] leading-[0.85] font-semibold tracking-[-0.06em] break-words">
           {data.title}
         </h1>
@@ -91,7 +91,7 @@ const jsonLd = {
           data.tags.length > 0 && (
             <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tags">
               {data.tags.map((tag) => (
-                <li class="rounded-full border px-2.5 py-1 font-mono text-xs text-muted-foreground">#{tag}</li>
+                <li class="rounded-full border px-2.5 py-1 font-pixel text-xs text-muted-foreground">#{tag}</li>
               ))}
             </ul>
           )
@@ -99,7 +99,7 @@ const jsonLd = {
       </div>
 
       <aside class="flex flex-col gap-10 border-t px-5 py-8 sm:px-8 lg:col-span-4 lg:border-t-0 lg:py-16">
-        <dl class="font-mono text-xs tracking-wider uppercase">
+        <dl class="font-pixel text-xs tracking-wider uppercase">
           {
             facts.map((fact) => (
               <div class="flex items-center justify-between gap-4 border-t py-3 last:border-b">
@@ -154,7 +154,7 @@ const jsonLd = {
           <dl class="-mr-px -mb-px grid grid-cols-2 md:grid-cols-4">
             {data.specs.map((spec) => (
               <div class="cell-lines min-w-0 px-5 py-4 sm:px-8">
-                <dt class="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">{spec.label}</dt>
+                <dt class="font-pixel text-[11px] tracking-wider text-muted-foreground uppercase">{spec.label}</dt>
                 <dd class="mt-1.5 truncate text-sm font-medium">{spec.value}</dd>
               </div>
             ))}
@@ -167,7 +167,7 @@ const jsonLd = {
       {
         sections.length > 1 && (
           <aside class="hidden border-r lg:col-span-3 lg:block">
-            <nav aria-label="On this page" class="sticky top-14 px-8 py-14 font-mono text-xs tracking-wider uppercase">
+            <nav aria-label="On this page" class="sticky top-14 px-8 py-14 font-pixel text-xs tracking-wider uppercase">
               <p class="text-muted-foreground">On this page</p>
               <ol class="mt-5 grid gap-3">
                 {sections.map((heading, i) => (
