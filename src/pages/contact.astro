@@ -23,7 +23,7 @@ const topics = (await getProjects()).map((project) => ({ value: project.id, labe
         A question about something in the catalog, a project you'd like help with, or anything else. Your message goes
         straight to our inbox.
       </p>
-      <dl class="mt-12 font-mono text-xs tracking-wider uppercase">
+      <dl class="mt-12 font-pixel text-xs tracking-wider uppercase">
         <div class="flex items-center justify-between gap-4 border-y py-3">
           <dt class="text-muted-foreground">Email</dt>
           <dd class="truncate normal-case"><a href={`mailto:${site.email}`} class="hover:underline">{site.email}</a></dd>

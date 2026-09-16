@@ -45,6 +45,16 @@ export default defineConfig({
       subsets: ['latin'],
       fallbacks: ['ui-monospace', 'monospace'],
     },
+    {
+      // Pixel font for small labels. Code keeps Geist Mono.
+      provider: fontProviders.fontsource(),
+      name: 'Silkscreen',
+      cssVariable: '--font-silkscreen',
+      weights: ['400', '700'],
+      styles: ['normal'],
+      subsets: ['latin'],
+      fallbacks: ['ui-monospace', 'monospace'],
+    },
   ],
 
   vite: {

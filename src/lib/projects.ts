@@ -35,9 +35,9 @@ export const statusLabels: Record<ProjectStatus, string> = {
   archived: 'Archived',
 };
 
-/** Catalog number like "N°01" for a zero-based position. */
+/** Catalog number like "No. 01" for a zero-based position. */
 export function catalogNumber(index: number): string {
-  return `N°${String(index + 1).padStart(2, '0')}`;
+  return `No. ${String(index + 1).padStart(2, '0')}`;
 }
 
 /** Whether a project names Unity on its card or page; such pages carry Unity's trademark notice. */

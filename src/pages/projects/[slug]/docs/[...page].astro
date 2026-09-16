@@ -53,7 +53,7 @@ const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
     <aside class="border-b lg:col-span-3 lg:border-r lg:border-b-0">
       <details class="group px-5 py-3 sm:px-8 lg:hidden">
         <summary
-          class="flex cursor-pointer list-none items-center justify-between font-mono text-[11px] tracking-wider uppercase [&::-webkit-details-marker]:hidden"
+          class="flex cursor-pointer list-none items-center justify-between font-pixel text-[11px] tracking-wider uppercase [&::-webkit-details-marker]:hidden"
         >
           Contents
           <ChevronDown class="size-4 text-muted-foreground transition-transform group-open:rotate-180" />
@@ -63,7 +63,7 @@ const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
         </div>
       </details>
       <nav aria-label="Documentation" class="sticky top-14 hidden max-h-[calc(100dvh-3.5rem)] overflow-y-auto px-5 py-10 lg:block">
-        <p class="mb-3 px-3 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">{project.data.title} docs</p>
+        <p class="mb-3 px-3 font-pixel text-[11px] tracking-wider text-muted-foreground uppercase">{project.data.title} docs</p>
         <DocsNav links={nav} currentId={doc.id} />
       </nav>
     </aside>
@@ -76,7 +76,7 @@ const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
           <nav aria-label="Previous and next page" class="grid border-t sm:grid-cols-2">
             {previous ? (
               <a href={previous.href} class="flex flex-col gap-1.5 px-5 py-6 transition-colors hover:bg-muted/50 sm:border-r sm:px-8">
-                <span class="flex items-center gap-2 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+                <span class="flex items-center gap-2 font-pixel text-[11px] tracking-wider text-muted-foreground uppercase">
                   <ArrowLeft class="size-3.5" /> Previous
                 </span>
                 <span class="text-lg font-medium tracking-tight">{previous.title}</span>
@@ -89,7 +89,7 @@ const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
                 href={next.href}
                 class="flex flex-col items-end gap-1.5 border-t px-5 py-6 text-right transition-colors hover:bg-muted/50 sm:border-t-0 sm:px-8"
               >
-                <span class="flex items-center gap-2 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+                <span class="flex items-center gap-2 font-pixel text-[11px] tracking-wider text-muted-foreground uppercase">
                   Next <ArrowRight class="size-3.5" />
                 </span>
                 <span class="text-lg font-medium tracking-tight">{next.title}</span>
