@@ -1,6 +1,6 @@
 # Changelog
 
-What changed in each release of SignArgs Core. Versions follow
+What changed in each release of SignArgs for Unity. Versions follow
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html): a new minor version adds features, a
 patch version fixes things, and a new major version changes something you have to adapt to, which the
 entry spells out. Record formats carry their own schema version; a change within a schema only adds

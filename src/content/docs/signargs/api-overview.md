@@ -1,6 +1,6 @@
 # API overview
 
-Every public type of SignArgs Core and the packages it shares with the server side. Members carry
+Every public type of SignArgs for Unity and the packages it shares with the server side. Members carry
 XML documentation, so the editor shows the same contracts; this page is the map.
 
 ## Unity components, `SignArgs.Unity.*`

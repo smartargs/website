@@ -1,14 +1,16 @@
-# SignArgs Core
+# SignArgs for Unity
 
-SignArgs Core is a Unity 6 package that shows a PDF, captures a handwritten signature and finalizes
+SignArgs for Unity is a Unity 6 package that shows a PDF, captures a handwritten signature and finalizes
 the signed document on the device: the signature stamped where it belongs, an audit page appended,
 the file hashed, and a bundle of records written that anyone can check later. It needs no server, no
 account for the signer and no network.
 
-A signature is only worth something if it is bound to the pages rendered and shown. Core records the exact
+A signature is only worth something if it is bound to the pages rendered and shown. The plugin records the exact
 bytes of the document, a hash of every page as it was drawn on screen, every input event of the
 stroke with the time the device reported for it, and whatever context your application binds to the
 signature, in one chained set of records.
+
+In the Package Manager the plugin is listed as **SignArgs Core**, package `com.signargs.core`.
 
 ## What ships
 

@@ -18,7 +18,7 @@ statuses:
 | iOS arm64 device and simulator | `libpdfium.dylib`, per slice | Preview: **binaries included, unverified**. See [iOS](#ios). |
 | Android armv7, x86, 32-bit anything | none | Not planned: no 32-bit target is built. |
 | Linux player, WebGL, consoles | none | **Not yet**. |
-| Meta Quest and other XR headsets | Android arm64 | Not run on a headset. Controller and hand-tracking input are planned for a separate XR package, not this one. |
+| Meta Quest and other XR headsets | Android arm64 | Not run on a headset. Controller and hand-tracking input are planned for SignArgs Pro, not this plugin. |
 
 ## Unity
 

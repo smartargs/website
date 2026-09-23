@@ -57,7 +57,7 @@ the line before it, and the manifest carries the hash of the last one. Change, d
 and the chain no longer matches that head. Anyone can check it with a SHA-256 tool and the rules on
 [The signed bundle](signed-bundle.md#verify-a-bundle).
 
-Core has no key and no trusted timestamp, so whoever holds a bundle could rewrite the chain and the
+The plugin has no key and no trusted timestamp, so whoever holds a bundle could rewrite the chain and the
 manifest together. The chain is tamper-evident once the head is stored somewhere the holder cannot
 change it, for example sent to the other party or to your own server when signing ends.
 
@@ -83,9 +83,9 @@ required per field:
 | 4 | `ProviderCheck` | An identity provider checked them. Needs a signing provider. |
 
 On the device only levels 0 and 3 can be honestly claimed; the others need a server or a signing
-provider that Core does not have. The session records the level you pass and refuses a signer whose
+provider that the plugin does not have. The session records the level you pass and refuses a signer whose
 level is below what their field requires. At level 3 the identity is recorded as reported by your
-application; Core does not yet record a signed identity claim from it.
+application; the plugin does not yet record a signed identity claim from it.
 
 ## One worker thread for the PDF engine
 

@@ -83,7 +83,7 @@ With any SHA-256 tool and no SignArgs code:
    it as stored; and the SHA-256 of the last line equals `auditHeadSha256` in the manifest.
 4. For each signature record, check that the hashes it names match the files beside it.
 
-Verification shows that the bundle is consistent with its manifest's `auditHeadSha256`. Core has no
+Verification shows that the bundle is consistent with its manifest's `auditHeadSha256`. The plugin has no
 key and no trusted timestamp, so whoever holds a bundle could rewrite the chain and every hash
 together. The chain becomes tamper-evident once that head is stored somewhere the holder cannot
 change it, for example sent to the other party or to your own server when signing ends.
@@ -94,5 +94,5 @@ To check an identity, recompute `IdentityCommitment.Compute(identity)` and compa
 
 ## Keeping bundles
 
-The bundle lives in the application's private storage. SignArgs Core does not upload, back up or
+The bundle lives in the application's private storage. SignArgs for Unity does not upload, back up or
 delete it; that is your application's decision.
