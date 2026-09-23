@@ -1,0 +1,42 @@
+- name: Introduction
+  href: index.md
+- name: Quick start
+  href: quick-start.md
+- name: Samples
+  href: samples/index.md
+  items:
+    - name: Show a PDF
+      href: samples/show-a-pdf.md
+    - name: Sign a document
+      href: samples/sign-a-document.md
+- name: Concepts
+  href: concepts.md
+- name: Guides
+  href: guides/index.md
+  items:
+    - name: Showing documents
+      href: guides/showing-documents.md
+    - name: Capturing signatures
+      href: guides/capturing-signatures.md
+    - name: Templates and form fields
+      href: guides/templates.md
+    - name: Sessions and signers
+      href: guides/sessions.md
+    - name: Evidence
+      href: guides/evidence.md
+    - name: Finalizing
+      href: guides/finalizing.md
+    - name: The audit page and fonts
+      href: guides/audit-page.md
+    - name: Using the PDF engine directly
+      href: guides/pdf-engine.md
+- name: The signed bundle
+  href: signed-bundle.md
+- name: Platforms
+  href: platforms.md
+- name: Limitations
+  href: limitations.md
+- name: API overview
+  href: api-overview.md
+- name: Changelog
+  href: changelog.md

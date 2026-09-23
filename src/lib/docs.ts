@@ -59,27 +59,6 @@ export async function getDocsNav(project: string): Promise<DocLink[]> {
   return toLinks(parse(toc) as TocItem[]);
 }
 
-/**
- * Rewrites relative Markdown links in a rendered docs page, such as `modules/movement.md#setup`,
- * to site URLs like `/projects/vantage-dev/docs/modules/movement#setup`. Docs can then be copied in unchanged.
- */
-export function rewriteDocLinks(html: string, entry: DocEntry): string {
-  const file = entry.filePath?.replaceAll('\\', '/').split('/content/docs/').at(-1) ?? `${entry.id}.md`;
-  const directory = file.split('/').slice(0, -1);
-
-  return html.replace(/href="([^":?#]+\.md)(#[^"]*)?"/g, (match, target: string, hash = '') => {
-    const parts = [...directory];
-    for (const segment of target.split('/')) {
-      if (segment === '..') parts.pop();
-      else if (segment && segment !== '.') parts.push(segment);
-    }
-    // Links that leave the project's docs folder are left alone.
-    if (parts.length < 2 || parts[0] !== directory[0]) return match;
-    const id = parts.join('/').replace(/\.md$/, '').replace(/\/index$/, '');
-    return `href="${docHref(id)}${hash}"`;
-  });
-}
-
 /** Depth-first list of every page in the sidebar, for previous/next links. */
 export function flattenNav(links: DocLink[]): DocLink[] {
   return links.flatMap((link) => [link, ...flattenNav(link.children)]);

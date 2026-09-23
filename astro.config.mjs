@@ -6,6 +6,10 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+import { satteri } from '@astrojs/markdown-satteri';
+
+import { docLinksPlugin } from './src/lib/doc-links-plugin.mjs';
+
 // Fully static build. The only server code is the contact form Worker in ./worker,
 // which `wrangler deploy` ships together with dist/ (see wrangler.jsonc).
 export default defineConfig({
@@ -18,6 +22,8 @@ export default defineConfig({
   integrations: [mdx(), react(), sitemap()],
 
   markdown: {
+    // Relative .md links in the copied product docs become site URLs; see src/lib/doc-links-plugin.mjs.
+    processor: satteri({ hastPlugins: [docLinksPlugin] }),
     shikiConfig: {
       themes: { light: 'github-light', dark: 'github-dark' },
     },

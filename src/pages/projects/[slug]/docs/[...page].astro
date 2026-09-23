@@ -1,10 +1,11 @@
 ---
+import { render } from 'astro:content';
 import { ArrowLeft, ArrowRight, ChevronDown } from '@lucide/astro';
 import DocsNav from '@/components/DocsNav.astro';
 import Mermaid from '@/components/Mermaid.astro';
 import MetaBar from '@/components/MetaBar.astro';
 import Layout from '@/layouts/Layout.astro';
-import { docTitle, flattenNav, getDocs, getDocsNav, rewriteDocLinks, summarize, type DocEntry } from '@/lib/docs';
+import { docTitle, flattenNav, getDocs, getDocsNav, summarize, type DocEntry } from '@/lib/docs';
 import { getProjects, mentionsUnity, type Project } from '@/lib/projects';
 
 export async function getStaticPaths() {
@@ -24,7 +25,8 @@ interface Props {
 }
 
 const { doc, project } = Astro.props;
-const html = rewriteDocLinks(doc.rendered?.html ?? '', doc);
+// <Content /> rather than the stored HTML, so images in the docs are processed and get a src.
+const { Content } = await render(doc);
 
 const nav = await getDocsNav(project.id);
 const pages = flattenNav(nav);
@@ -69,7 +71,9 @@ const hasDiagrams = doc.body?.includes('```mermaid') ?? false;
     </aside>
 
     <div class="min-w-0 lg:col-span-9">
-      <article class="prose-docs px-5 py-10 sm:px-8 sm:py-14 lg:px-14" set:html={html} />
+      <article class="prose-docs px-5 py-10 sm:px-8 sm:py-14 lg:px-14">
+        <Content />
+      </article>
 
       {
         (previous || next) && (

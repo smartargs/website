@@ -10,7 +10,7 @@ export const site = {
   url: 'https://smartargs.com',
   title: 'smartargs · Game development and software products',
   description:
-    'smartargs is a game development company. Browse the catalog of software products and tools we build, including vantage-dev for Unity 6, or get in touch about a project.',
+    'Useful software, built to last. Browse the smartargs catalog: vantage-dev, ready-made gameplay systems for Unity 6, and SignArgs, PDF signing on the device.',
   /** Public contact address, shown on the contact page, in the footer and in the Impressum. */
   email: 'contact@smartargs.com',
   nav: [

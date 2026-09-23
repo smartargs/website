@@ -3,5 +3,10 @@
     "repo": "git@github.com:ykoitzsch/vantage-dev.git",
     "ref": "main",
     "path": "Packages/com.smartargs.vantage/Documentation~"
+  },
+  "signargs": {
+    "repo": "git@github.com:ykoitzsch/signargs.git",
+    "ref": "main",
+    "path": "unity/Packages/com.signargs.core/Documentation~"
   }
 }

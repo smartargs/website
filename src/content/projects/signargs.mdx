@@ -1,0 +1,54 @@
+---
+title: SignArgs
+tagline: Show a PDF, take a signature and finalize the signed document, all on the device.
+description: A Unity 6 package that shows PDFs, captures handwritten signatures and finalizes signed documents on the device, with no server, no account and no network.
+category: Unity package
+tags: [unity, pdf, signatures, offline]
+status: coming-soon
+year: 2026
+version: 0.1.0
+featured: false
+order: 2
+cover:
+  pattern: stripes
+  color: '#0f766e'
+  glyph: Sg
+specs:
+  - { label: Engine, value: Unity 6000.0 or newer }
+  - { label: Platforms, value: 'Android, Windows, macOS, iOS preview' }
+  - { label: PDF engine, value: 'PDFium, included' }
+  - { label: Network, value: 'None: it runs on the device' }
+links: []
+---
+
+import Features from '@/components/mdx/Features.astro';
+
+SignArgs lets your Unity application show a PDF, take a handwritten signature and finalize the signed document where the signer stands: the signature stamped in place, an audit page appended, the file hashed, and a set of records written that anyone can check later. It needs no server, no account for the signer and no network, so it works on a site, in a van or in a basement.
+
+## How it works
+
+- **The signature is bound to what was shown.** Every signature record ties together the exact bytes of the document, a hash of every page as it was drawn on screen, every input event of the stroke with the device's timestamp, and the sentence the signer agreed to.
+- **Confirm, then finalize.** Confirming records one signature and grows the audit chain. Finalizing then does everything that changes the document once, for all signatures together.
+- **A bundle anyone can verify.** Each finished session leaves the signed PDF, the original, the signature records, the strokes, a hash-linked audit chain and a manifest of SHA-256 hashes. Checking one needs a SHA-256 tool, not SignArgs.
+- **Evidence, honestly labelled.** What can be proven is recorded as fact; what cannot, such as the device's clock or what your application reports, is labelled as reported. Nothing is presented as more certain than it is.
+
+## Features
+
+<Features>
+
+- **Showing documents** Pages drawn on a `RawImage` with form field values filled in, rendered off the main thread so the frame keeps its budget.
+- **Signature capture** Touch, pen or mouse recorded at event rate with the device's timestamps and pen pressure, drawn as ink.
+- **Templates** One record that says where each signature goes, what each signer agrees to, how sure you must be of them and in which order they sign.
+- **Several signers** One document, several fields, several people signing in turn on one device, each with their own consent sentence.
+- **Audit page and bundle** An appended page that explains the document to whoever reads it, plus the records that back it up.
+- **Pseudonymous records** Names and contact details stay out of the records, in one deletable file per signer. Deleting one breaks no hash.
+
+</Features>
+
+## What it is not
+
+SignArgs produces evidence, not a qualified electronic signature: there is no certificate, no cryptographic signature over the PDF and no trusted timestamp. Times are device times, and the audit page says so. [Limitations](/projects/signargs/docs/limitations) lists the rest before you build on it.
+
+## Documentation
+
+Guides for every feature, the bundle format and what has been run on which platform are in the [SignArgs documentation](/projects/signargs/docs). The [quick start](/projects/signargs/docs/quick-start) builds a signed document from an empty scene, and two samples ship with the package.
