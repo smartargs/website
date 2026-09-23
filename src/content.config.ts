@@ -28,7 +28,7 @@ const projects = defineCollection({
     draft: z.boolean().default(false),
     /** Generated cover art: a line pattern on a solid color, with a short glyph. */
     cover: z.object({
-      pattern: z.enum(['rings', 'grid', 'stripes', 'dots', 'waves', 'blocks']),
+      pattern: z.enum(['rings', 'grid', 'stripes', 'dots', 'waves', 'blocks', 'signature']),
       color: z.string(),
       glyph: z.string().max(4),
     }),

@@ -40,6 +40,75 @@ const waves = range(14).map((i) => {
 });
 
 const blocks = range(10).map((i) => ({ x: 22 + i * 37, height: 50 + ((i * 53) % 9) * 24 }));
+
+// A signature written across the ruled lines of a document. The hand is built from three
+// cursive moves, written upright and then sheared so the whole name leans forward.
+const baseline = 168;
+const pen: string[] = [];
+let penX = 0;
+
+/** Every point leans forward by its height above the baseline, the slant of a hand. */
+const lean = ([x, y]: [number, number]) => `${(x + (baseline - y) * 0.16).toFixed(1)} ${y.toFixed(1)}`;
+const curve = (...points: [number, number][]) => pen.push(`C${points.map(lean).join(' ')}`);
+/** Start a stroke, after the pen has left the page. */
+const lift = (x: number) => {
+  penX = x;
+  pen.push(`M${lean([x, baseline])}`);
+};
+/** The arch of an n or m: steep up, round over, steep down. */
+const arch = (to: number, height: number) => {
+  const w = to - penX;
+  curve([penX + w * 0.12, baseline - height * 1.14], [to - w * 0.12, baseline - height * 1.14], [to, baseline]);
+  penX = to;
+};
+/** A tall ascender that loops back through itself, as in l, b or a capital. */
+const ascender = (to: number, height: number) => {
+  const w = to - penX;
+  curve([penX + w * 0.05, baseline - height * 0.55], [penX + w * 0.1, baseline - height], [penX + w * 0.45, baseline - height]);
+  curve([penX + w * 0.78, baseline - height], [penX + w * 0.62, baseline - height * 0.42], [penX + w * 0.42, baseline - height * 0.1]);
+  curve([penX + w * 0.3, baseline + 2], [penX + w * 0.72, baseline + 2], [to, baseline]);
+  penX = to;
+};
+/** A tail below the line that loops back up, as in g or y. */
+const descender = (to: number, depth: number) => {
+  const w = to - penX;
+  curve([penX + w * 0.35, baseline + depth * 0.55], [penX + w * 0.05, baseline + depth], [penX + w * 0.4, baseline + depth]);
+  curve([penX + w * 0.78, baseline + depth], [penX + w * 0.9, baseline + depth * 0.35], [to, baseline]);
+  penX = to;
+};
+
+// A first name, a second name, and a flourish that sweeps back under them.
+lift(68);
+ascender(99, 60);
+arch(112, 23);
+arch(125, 22);
+ascender(140, 46);
+arch(153, 24);
+descender(169, 24);
+arch(182, 22);
+
+lift(197);
+ascender(229, 58);
+arch(242, 23);
+arch(255, 25);
+ascender(270, 44);
+arch(283, 22);
+arch(296, 24);
+
+curve([310, baseline - 6], [327, baseline - 16], [334, baseline - 25]);
+curve([340, baseline - 32], [343, baseline - 13], [329, baseline - 2]);
+curve([313, baseline + 8], [286, baseline + 11], [252, baseline + 8]);
+curve([245, baseline + 7], [240, baseline + 5], [238, baseline + 1]);
+
+const signature = pen.join(' ');
+const signatureLine = baseline + 18;
+
+// The document's text, in lines of uneven length, leaving the signature room to breathe.
+const ruledWidths = [336, 292, 330, 248, 340, 306, 322, 264, 318, 288];
+const ruled = range(24)
+  .map((i) => 6 + i * 13)
+  .filter((y) => y < baseline - 66 || y > baseline + 32)
+  .map((y, i) => ({ y, width: ruledWidths[i % ruledWidths.length] }));
 ---
 
 <div class={cn('absolute inset-0 overflow-hidden', className)} style={`background-color: ${color}`} aria-hidden="true">
@@ -97,6 +166,18 @@ const blocks = range(10).map((i) => ({ x: 22 + i * 37, height: 50 + ((i * 53) % 
         blocks.map(({ x, height }) => (
           <rect x={x} y={300 - height} width="26" height={height} fill="white" fill-opacity="0.12" />
         ))
+    }
+    {
+      pattern === 'signature' && (
+        <>
+          {ruled.map(({ y, width }) => (
+            <line x1="30" y1={y} x2={30 + width} y2={y} />
+          ))}
+          <line x1="58" y1={signatureLine} x2="342" y2={signatureLine} stroke-opacity="0.55" />
+          <path d={`M60 ${signatureLine - 6} l7 11 M67 ${signatureLine - 6} l-7 11`} stroke-opacity="0.6" />
+          <path d={signature} stroke-opacity="0.95" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+        </>
+      )
     }
   </svg>
   <span
