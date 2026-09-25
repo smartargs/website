@@ -2,6 +2,8 @@
 
 A row of slots that hold anything the player can press: abilities, potions, weapons and tools, buildables, or content of your own. Each slot has a key. Your view draws the slots and lets the player drag content onto them.
 
+Every field, its default and every member you can call: [Hotbar reference](../reference/hotbar.md).
+
 ## Setup
 
 1. Add **Vantage → Hotbar → VtHotbar** to the player.

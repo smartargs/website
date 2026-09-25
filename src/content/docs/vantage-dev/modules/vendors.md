@@ -2,6 +2,8 @@
 
 Shops on NPCs. A vendor sells from a stock list, buys the player's items, prices everything from item values, and restocks on a timer. The library runs the trade; you draw the window.
 
+Every field, its default and every member you can call: [Vendors reference](../reference/vendors.md).
+
 ## Authoring
 
 1. Give each tradeable item a **Value**: a currency and an amount, on the item definition. Items without a value currency cannot be bought or sold.

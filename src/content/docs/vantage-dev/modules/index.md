@@ -1,6 +1,6 @@
 # Modules
 
-One page per system. Each page has the authoring steps first and the runtime calls second.
+One page per system. Each page has the authoring steps first and the runtime calls second, and links to its [reference](../reference/index.md) page, which lists every field with its default and every member you can call or override.
 
 ## Core
 

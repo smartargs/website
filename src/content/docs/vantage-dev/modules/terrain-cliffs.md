@@ -2,6 +2,8 @@
 
 Grid-based cliffs painted in the Scene view, the way tile-based map editors do it. Every cell holds a whole level, cliffs appear where neighbouring levels differ, and flagged cells become ramps. On a Unity Terrain the map shapes the heightmap and paints a cliff layer along every drop, or stands wall meshes on the edges if you prefer. Without a terrain it builds its own ground and walls through a style. Building snaps to the same grid, and a footprint that would straddle a cliff edge is refused.
 
+Every field, its default and every member you can call: [Terrain cliffs reference](../reference/terrain-cliffs.md).
+
 ## Setup
 
 1. Add **Vantage → World → VtWorldGrid** to an empty object. Its position is the corner of cell (0, 0) and **Cell Size** is the cell edge in world units. One per scene; building reads it too. To keep large cliff cells but let pieces snap finer, raise **Build Subdivisions**: 2 on 2-unit cells gives 1-unit building.

@@ -4,6 +4,8 @@
 
 See it running: the [01 · Hello Unit](../demos/01-hello-unit.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Camera reference](../reference/camera.md).
+
 ## Setup
 
 1. Add **Vantage → Camera → VtTopDownCamera** to the main camera.

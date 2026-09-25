@@ -4,6 +4,8 @@ Conversations with NPCs: lines, answers, conditions on answers, effects when an 
 
 See it running: the [09 · Quests and Dialogue](../demos/09-quests-dialogue.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Dialogue reference](../reference/dialogue.md).
+
 ## Authoring
 
 1. **Create → Vantage → Dialogue → Dialogue Definition.** Add nodes. Each node has an id, the speaker's text, and answers. The first node is where the conversation starts.

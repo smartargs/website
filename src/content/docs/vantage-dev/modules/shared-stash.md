@@ -2,6 +2,8 @@
 
 Building, crafting and unlocks take their costs from a *cost source*. By default that is the acting unit's own bag and wallet. Place a **VtSharedStash** in the scene and every unit it serves pays from the stash instead: the team's stone and wood in a co-op survival game, or one side's resources in a strategy game.
 
+Every field, its default and every member you can call: [Shared stash and costs reference](../reference/shared-stash.md).
+
 ## Setup
 
 1. Add an empty object to the scene and give it **Vantage → Economy → VtSharedStash**. A `VtPersistentId` is added with it.

@@ -4,6 +4,8 @@ Units move by intent: something calls `MoveTo(destination)`, the unit asks a pat
 
 See it running: the [01 · Hello Unit](../demos/01-hello-unit.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Movement and input reference](../reference/movement.md).
+
 ```mermaid
 flowchart LR
     In[Right-click input] -->|MoveTo| M[VtTopDownClickToMove]

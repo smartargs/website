@@ -4,6 +4,8 @@ An ability is a definition asset that says when and at what it can be cast, plus
 
 See it running: the [03 · Abilities](../demos/03-abilities.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Abilities reference](../reference/abilities.md).
+
 ## Authoring
 
 **Create → Vantage → Abilities → Ability Definition.**

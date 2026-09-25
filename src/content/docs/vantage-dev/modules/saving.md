@@ -2,6 +2,8 @@
 
 Every unit that carries a `VtPersistentId` can be captured into a save and restored: position, pools, level, equipment with durability, backpack, wallet, active buffs, quest log, crafting skills, learned recipes and hotkey slots. Saves are plain JSON.
 
+Every field, its default and every member you can call: [Saving and loading reference](../reference/saving.md).
+
 ## Setup
 
 1. Create a **Definition Catalog** (**Create → Vantage → Setup → Definition Catalog**), drag in every item, buff, quest, currency, recipe, crafting skill and buildable that can appear in a save, and store it as `Assets/Resources/VtDefinitionCatalog.asset`. Saves refer to definitions by id; the catalog turns ids back into assets.

@@ -2,6 +2,8 @@
 
 In-game friends with requests and presence, merged with the player's platform friends such as Steam into one list.
 
+Every field, its default and every member you can call: [Friends reference](../reference/friends.md).
+
 ## Setup
 
 1. Give player prefabs a **VtPlayerIdentity** and check **Use Friends** on their unit definition. A `VtUnitFriends` component attaches on spawn.

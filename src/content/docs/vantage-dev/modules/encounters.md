@@ -2,6 +2,8 @@
 
 Monsters that use abilities, and boss fights with phases, adds, resets and rewards. Two parts: an ability rotation on any unit definition, and an encounter component in the scene.
 
+Every field, its default and every member you can call: [Encounters reference](../reference/encounters.md).
+
 ## Ability rotations
 
 Fill **Ability Rotation** on a unit definition and the unit casts on its own, alongside its basic attack. Entries are in priority order; each decision the first entry that is allowed is cast.

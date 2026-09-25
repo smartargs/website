@@ -2,6 +2,8 @@
 
 Player-to-player mail with item and currency attachments, delivered to online or offline players, plus system mail for rewards and notices.
 
+Every field, its default and every member you can call: [Mail reference](../reference/mail.md).
+
 ## Setup
 
 1. Give player prefabs a **VtPlayerIdentity**, an inventory and a wallet, and check **Use Mail** on their unit definition. A `VtUnitMail` component attaches on spawn.

@@ -4,6 +4,8 @@ Quests are assets with objectives and rewards. A quest log on the player tracks 
 
 See it running: the [09 · Quests and Dialogue](../demos/09-quests-dialogue.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Quests reference](../reference/quests.md).
+
 ## Authoring
 
 1. **Create → Vantage → Quests → Quest Category** once per category: Main, Side, Daily. Sort weight and colour are for your UI.

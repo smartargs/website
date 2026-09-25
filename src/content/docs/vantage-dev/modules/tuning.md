@@ -8,7 +8,7 @@ To keep the asset somewhere else, reference it from a boot scene and hand it ove
 VtTuning.OverrideInstance(myTuning);
 ```
 
-The values are grouped into combat clamps, abilities, projectiles, threat, multiplayer, party, dropped items, chat, guilds, friends, mail, movement feel and server-authoritative movement. The [Tuning reference](../reference/tuning.md) lists every field with its default, allowed range and what it changes.
+The values are grouped into combat clamps, abilities, projectiles, threat, multiplayer, party, dropped items, chat, guilds, friends, mail, movement feel and server-authoritative movement. Every field, its default, allowed range and what it changes: [Tuning reference](../reference/tuning.md).
 
 ## The armor formula
 

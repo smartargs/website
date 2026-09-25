@@ -4,6 +4,8 @@ Players select units with the mouse: click one, Shift-click to add or remove, dr
 
 See it running: every [demo scene](../demos/index.md); [01 · Hello Unit](../demos/01-hello-unit.md) walks through it, and [23 · Selection and Orders](../demos/23-selection-orders.md) uses it for an army.
 
+Every field, its default and every member you can call: [Selection reference](../reference/selection.md).
+
 ## Setup
 
 Add these to the player prefab:

@@ -35,9 +35,10 @@ co-op host or an authoritative server later. It comes with top-down movement, in
 2. [Demos](demos/index.md) are small playable scenes, one per part of Vantage, each documented down to the field values.
 3. [Concepts](concepts.md) explains the handful of ideas everything is built on.
 4. [Modules](modules/index.md) has one short page per system with the authoring steps and the runtime calls.
-5. [Extending](extending.md) shows how to add your own effects, damage types, resources and more.
-6. [Multiplayer](multiplayer.md) covers the co-op sample, how casts travel to the server, and what you still replicate yourself.
-7. [Testing](testing.md) explains how to run the package's tests and write your own against it.
+5. [Reference](reference/index.md) lists every component and asset with each Inspector field, its default and what it changes, and the members you can call or override.
+6. [Extending](extending.md) shows how to add your own effects, damage types, resources and more.
+7. [Multiplayer](multiplayer.md) covers the co-op sample, how casts travel to the server, and what you still replicate yourself.
+8. [Testing](testing.md) explains how to run the package's tests and write your own against it.
 
 ## Requirements
 

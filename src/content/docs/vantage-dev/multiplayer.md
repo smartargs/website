@@ -1,6 +1,6 @@
 # Multiplayer
 
-Vantage runs single-player out of the box. The same code runs networked with a small amount of wiring, and a sample for Netcode for GameObjects ships with the package. This page is honest about what is ready and what you still write.
+Vantage runs single-player out of the box. The same code runs networked with a small amount of wiring, and a sample for Netcode for GameObjects ships with the package. This page is honest about what is ready and what you still write. The [Multiplayer reference](reference/multiplayer.md) lists the authority, command and executor types with every member.
 
 | Topology | Status |
 |---|---|

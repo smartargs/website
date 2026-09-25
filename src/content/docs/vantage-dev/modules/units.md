@@ -4,6 +4,8 @@ The unit is the one building block. This page covers the unit definition, resour
 
 See it running: the [02 · Damage Lab](../demos/02-damage-lab.md) and [04 · Stats, Buffs and Auras](../demos/04-stats-buffs-auras.md) demo scenes. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Units and stats reference](../reference/units.md).
+
 ## Authoring a unit
 
 **Create → Vantage → Units → Unit Definition.** The important sections:

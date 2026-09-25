@@ -2,6 +2,8 @@
 
 Pets, minions and temporary allies. A summon ability spawns units that fight for the caster: they take the caster's faction, follow it, attack by stance, earn its kills, and count as its party.
 
+Every field, its default and every member you can call: [Summons reference](../reference/summons.md).
+
 ## Authoring
 
 1. Make a unit prefab for the summon with a unit definition, a basic attack that can auto-cast, and a mover if it should follow.

@@ -2,6 +2,8 @@
 
 Player organizations that outlive sessions: founding, invites, ranks with permissions, a message of the day and guild chat. Guilds belong to player ids, not to units, so members stay members while offline or on another character.
 
+Every field, its default and every member you can call: [Guilds reference](../reference/guilds.md).
+
 ## Setup
 
 1. Give player prefabs a **VtPlayerIdentity** and check **Use Guild** on their unit definition. A `VtUnitGuild` component attaches on spawn.

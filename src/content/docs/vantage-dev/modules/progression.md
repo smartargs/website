@@ -4,6 +4,8 @@ Talent trees and attribute points. A tree is a class or specialization: the tale
 
 See it running: the [06 · Leveling and Talents](../demos/06-leveling-talents.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Progression reference](../reference/progression.md).
+
 ## Authoring
 
 1. **Create → Vantage → Progression → Talent** for each node. Set the level, prerequisites, ranks, cost and what each rank grants.

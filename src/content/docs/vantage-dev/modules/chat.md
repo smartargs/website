@@ -2,6 +2,8 @@
 
 Say, yell, party, guild and whisper chat for players, plus system announcements and NPC lines. The server routes every line; you draw the chat window.
 
+Every field, its default and every member you can call: [Chat reference](../reference/chat.md).
+
 ## Setup
 
 1. Check **Use Chat** on the player's unit definition. A `VtUnitChat` component attaches on spawn.

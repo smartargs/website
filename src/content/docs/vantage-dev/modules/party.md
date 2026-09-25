@@ -2,6 +2,8 @@
 
 Players group up to share kills, loot and party-only effects. The library runs invites, membership and sharing; you draw the party frame.
 
+Every field, its default and every member you can call: [Party reference](../reference/party.md).
+
 ## Setup
 
 Check **Use Party** on the player's unit definition. A `VtUnitParty` component attaches on spawn.

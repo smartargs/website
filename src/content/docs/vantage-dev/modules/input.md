@@ -2,6 +2,8 @@
 
 Player input reads Input System actions, so keys can be rebound, gamepad buttons work, and key labels always show the current binding.
 
+Every field, its default and every member you can call: [Input reference](../reference/input.md).
+
 ## Default actions
 
 The package ships **VtInputActions** in `Runtime/Resources`. Its **Gameplay** map has these actions:

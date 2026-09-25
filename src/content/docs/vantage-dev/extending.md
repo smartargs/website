@@ -2,6 +2,8 @@
 
 Most additions are new assets. Some are one small class. A few are an enum value inside the package.
 
+The [Reference](reference/index.md) lists every base class and interface you can build on, with the shipped subclasses and the members to override.
+
 ## No code needed
 
 | You want | Do this |

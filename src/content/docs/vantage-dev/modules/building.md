@@ -2,6 +2,8 @@
 
 Place structures by paying items and currency. The builder shows a ghost that follows the cursor, snaps and rotates it, validates the footprint every frame, and spawns the prefab on confirm. The placed object is a unit, so it has HP, can hold an inventory, be a crafting station or a resource node, drop loot when destroyed, and be demolished for a refund.
 
+Every field, its default and every member you can call: [Building reference](../reference/building.md).
+
 ## Authoring
 
 1. **Create → Vantage → Building → Buildable Category** (Walls, Furniture, …).

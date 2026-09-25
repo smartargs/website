@@ -4,6 +4,8 @@ Every unit has a `VtUnitEquipment` with thirteen slots: head, chest, legs, feet,
 
 See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Items and equipment reference](../reference/items.md).
+
 ## Authoring an item
 
 **Create → Vantage → Items → Item Definition.**

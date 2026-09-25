@@ -4,6 +4,8 @@ Monsters that wander or patrol, attack on sight, fight back, chase, and run home
 
 See it running: the [07 · AI and Threat](../demos/07-ai-threat.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [AI roaming reference](../reference/ai-roaming.md).
+
 ## Setup
 
 On the monster's unit definition:

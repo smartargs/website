@@ -2,6 +2,8 @@
 
 An unlock is bought once and kept: a research step, a blueprint, a tier of a tech tree. A buildable or recipe that requires one is refused with `Locked` until it is owned.
 
+Every field, its default and every member you can call: [Unlocks reference](../reference/unlocks.md).
+
 ## Authoring
 
 1. **Create → Vantage → Progression → Unlock.**

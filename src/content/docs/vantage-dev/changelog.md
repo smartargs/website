@@ -6,5 +6,6 @@ What changed in each release of Vantage. Versions follow [Semantic Versioning](h
 
 Initial release.
 
-- Reference pages list every field of a component or asset with its default, allowed range and effect, plus the members you can call from code. The first page covers `VtTuning`.
+- Fixed: with a `VtTickDriver` in the scene, `VtPredictedMovementExecutor` never ticked, so other clients' units stopped following the server and the owner's corrections were never applied. It now ticks in the new Movement tick group, between Threat and Engagement.
+- Reference pages for every module list each component and asset with every field's default, allowed range and effect, plus the members you can call or override from code. Each module page links to its reference page.
 - Items can last a number of uses that add up: with **Durability Mode** set to Uses, moving a copy onto another copy of the same item combines them into one with the durability of both, in the bag and on worn gear. Hotbar slots report the durability left and the full durability as numbers.

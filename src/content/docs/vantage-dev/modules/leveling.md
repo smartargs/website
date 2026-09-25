@@ -4,6 +4,8 @@ XP curves are assets, levels live on a component, and monsters award XP on death
 
 See it running: the [06 · Leveling and Talents](../demos/06-leveling-talents.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Leveling reference](../reference/leveling.md).
+
 ## Setup
 
 1. **Create → Vantage → Leveling → XP Curve.** Fill **XP To Next Level** with one value per level (index 0 is level 1 → 2). Set **Max Level**. Levels past the array extrapolate from the last value.

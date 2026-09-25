@@ -2,6 +2,8 @@
 
 What happens after a player dies. Rules say how long the wait is, where the unit comes back, with how much health, and what it loses. The library runs the flow and raises events for your death screen.
 
+Every field, its default and every member you can call: [Respawn reference](../reference/respawn.md).
+
 ## Authoring
 
 1. **Create → Vantage → Respawn → Respawn Rules.** One asset usually serves every player.

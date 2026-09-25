@@ -4,6 +4,8 @@ Command many units at once, RTS style: select them, right-click to move in forma
 
 See it running: the [23 · Selection and Orders](../demos/23-selection-orders.md) demo scene.
 
+Every field, its default and every member you can call: [Orders and control groups reference](../reference/orders.md).
+
 ## Setup
 
 **On each unit you command,** turn on **Takes Orders** in its unit definition. That attaches `VtUnitOrders`. Leave **Use Hostile AI** off on these units; they fight on their own while idle. **Aggro Range** decides how far an idle or attack-moving unit notices enemies.

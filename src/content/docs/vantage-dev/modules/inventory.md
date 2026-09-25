@@ -4,6 +4,8 @@
 
 See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Inventory reference](../reference/inventory.md).
+
 ## Setup
 
 Add **Vantage → Items → VtUnitInventory** to the prefab and set **Base Capacity** (0 means unlimited). Assign a stat to **Capacity Stat** if bags should be able to add slots; a bag item then grants "+6" on that stat like any other modifier. Wear it in the **Back** slot; it cannot be taken off while the bag would overflow without it (see [Items](items.md#backpacks-and-other-gear-that-adds-bag-space)). Capacity from worn gear adds to Base Capacity, so Base Capacity must be above 0.

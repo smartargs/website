@@ -4,6 +4,8 @@ Recipes turn items into items. Optional layers: a recipe book for recipes that m
 
 See it running: the [10 · Gathering and Crafting](../demos/10-gathering-crafting.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Crafting reference](../reference/crafting.md).
+
 ## Authoring
 
 1. **Create → Vantage → Crafting → Recipe Category** (Weapons, Food, …), **Recipe Station** (Anvil, Cookpot, …) and **Crafting Skill** (Smithing, …, each with an XP curve) as needed.

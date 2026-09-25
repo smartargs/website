@@ -2,6 +2,8 @@
 
 Cues bind animation, sound and effects to gameplay moments without code. A cue is an animator trigger, a sound and an effect prefab, each optional, authored on the ability, buff or unit definition. One component on the unit plays them.
 
+Every field, its default and every member you can call: [Presentation reference](../reference/presentation.md).
+
 ## Authoring
 
 | Where | Cues |

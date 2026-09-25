@@ -2,6 +2,8 @@
 
 Every display string in the package goes through one resolver before it reaches the screen. With nothing installed, strings show as authored. Install a table per language and the same strings become keys.
 
+Every field, its default and every member you can call: [Localization reference](../reference/localization.md).
+
 ## How it works
 
 Author a definition's **Display Name**, **Description**, dialogue lines and answers either as final text or as keys such as `item.sword.name`. `VtLocalization.Resolve(text)` returns the table's translation when the current table has that key, otherwise the string itself. A project that never localizes needs no keys and no tables.

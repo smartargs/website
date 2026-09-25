@@ -4,6 +4,8 @@ An aura applies a buff to every eligible unit within a radius of its owner, for 
 
 See it running: the [04 · Stats, Buffs and Auras](../demos/04-stats-buffs-auras.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Auras reference](../reference/auras.md).
+
 ## Authoring
 
 1. Create the buff (**Create → Vantage → Units → Buff Definition**) and set its stacking policy to **Refresh**. Two emitters of the same aura then share one instance on each target instead of stacking.

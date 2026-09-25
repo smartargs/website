@@ -2,6 +2,8 @@
 
 Three states per patch of ground: unexplored (black), explored (dim) and visible. Vision sources reveal the area around them; a URP renderer feature draws the result over the scene, and an optional culler hides objects in the dark.
 
+Every field, its default and every member you can call: [Fog of war reference](../reference/fog-of-war.md).
+
 ## Setup
 
 1. Add **Vantage → Fog Of War → VtFogOfWar** to a scene object. Set **Pixels Per Unit** for resolution and the three alphas for the look. **Updates Per Second** (default 20) sets how often the fog is recomputed; fades keep their speed at any rate, and 0 updates every frame. Each update only touches the ground around vision sources and what is still fading, so the cost follows how much the units see, not the map size.

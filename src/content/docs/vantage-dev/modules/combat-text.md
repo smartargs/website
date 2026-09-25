@@ -4,6 +4,8 @@ Floating damage, heal, crit, dodge, absorb and immune numbers above units. It wo
 
 See it running: the [02 · Damage Lab](../demos/02-damage-lab.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Combat text reference](../reference/combat-text.md).
+
 ## Styling
 
 **Create → Vantage → UI → Combat Text Style.** One entry per kind of text: colour, prefix, suffix, font scale, rise distance, lifetime and an optional sound. Kinds not listed fall back to the style's defaults.

@@ -4,6 +4,8 @@ A loot table decides what drops when a unit dies. Drops appear as pickable world
 
 See it running: the [08 · Spawners and Loot](../demos/08-spawners-loot.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Loot reference](../reference/loot.md).
+
 ## Authoring a table
 
 **Create → Vantage → Loot → Loot Table.**

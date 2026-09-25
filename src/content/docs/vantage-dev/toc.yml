@@ -131,8 +131,96 @@
 - name: Reference
   href: reference/index.md
   items:
+    - name: Units and stats
+      href: reference/units.md
+    - name: Abilities
+      href: reference/abilities.md
+    - name: Combat text
+      href: reference/combat-text.md
+    - name: Movement and input
+      href: reference/movement.md
+    - name: Input
+      href: reference/input.md
+    - name: UI
+      href: reference/ui.md
+    - name: Selection
+      href: reference/selection.md
+    - name: Orders and control groups
+      href: reference/orders.md
+    - name: Camera
+      href: reference/camera.md
     - name: Tuning
       href: reference/tuning.md
+    - name: Ticking
+      href: reference/ticking.md
+    - name: Items and equipment
+      href: reference/items.md
+    - name: Inventory
+      href: reference/inventory.md
+    - name: Currency
+      href: reference/currency.md
+    - name: Leveling
+      href: reference/leveling.md
+    - name: Crafting
+      href: reference/crafting.md
+    - name: Quests
+      href: reference/quests.md
+    - name: Dialogue
+      href: reference/dialogue.md
+    - name: Vendors
+      href: reference/vendors.md
+    - name: Respawn
+      href: reference/respawn.md
+    - name: Presentation
+      href: reference/presentation.md
+    - name: Localization
+      href: reference/localization.md
+    - name: Progression
+      href: reference/progression.md
+    - name: Party
+      href: reference/party.md
+    - name: Summons
+      href: reference/summons.md
+    - name: Encounters
+      href: reference/encounters.md
+    - name: Chat
+      href: reference/chat.md
+    - name: Guilds
+      href: reference/guilds.md
+    - name: Friends
+      href: reference/friends.md
+    - name: Mail
+      href: reference/mail.md
+    - name: Building
+      href: reference/building.md
+    - name: Shared stash and costs
+      href: reference/shared-stash.md
+    - name: Unlocks
+      href: reference/unlocks.md
+    - name: Hotbar
+      href: reference/hotbar.md
+    - name: Saving and loading
+      href: reference/saving.md
+    - name: Loot
+      href: reference/loot.md
+    - name: Threat
+      href: reference/threat.md
+    - name: Auras
+      href: reference/auras.md
+    - name: AI roaming
+      href: reference/ai-roaming.md
+    - name: Spawning
+      href: reference/spawning.md
+    - name: Resource nodes
+      href: reference/resource-nodes.md
+    - name: World time
+      href: reference/world-time.md
+    - name: Fog of war
+      href: reference/fog-of-war.md
+    - name: Terrain cliffs
+      href: reference/terrain-cliffs.md
+    - name: Multiplayer
+      href: reference/multiplayer.md
 - name: Extending
   href: extending.md
 - name: Multiplayer

@@ -4,6 +4,8 @@ Trees, ore veins and fishing spots. A node is a unit that yields items on every 
 
 See it running: the [10 · Gathering and Crafting](../demos/10-gathering-crafting.md) demo scene. See [Demos](../demos/index.md) to import the scenes.
 
+Every field, its default and every member you can call: [Resource nodes reference](../reference/resource-nodes.md).
+
 Use a plain unit with a [loot table](loot.md) for "thing dies, drops items". Use a resource node for "chop, chop, chop".
 
 ## Authoring

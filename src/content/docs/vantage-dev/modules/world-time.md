@@ -2,6 +2,8 @@
 
 `VtWorldClock` runs day and night. A day is split into phases such as Dawn, Day, Dusk and Night. A phase can change stats, turn spawners on and off, and gate quests and dialogue. `VtDayNightLighting` moves the sun and tints the scene to match.
 
+Every field, its default and every member you can call: [World time reference](../reference/world-time.md).
+
 ## Setup
 
 1. **Create → Vantage → World Time → Day Phase** once per phase. Set **Start Time**: 0 is midnight, 0.25 is 6:00, 0.5 is noon, 0.75 is 18:00. A phase lasts until the next one starts; the last phase of the day runs through midnight.
