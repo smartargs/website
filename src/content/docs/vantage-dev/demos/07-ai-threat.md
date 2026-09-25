@@ -2,7 +2,7 @@
 
 Monsters that wander, patrol, chase and give up, and a threat table that decides whom they attack.
 
-![A fight in progress with the threat panel ranking three units just after a taunt.](../images/demos/09-ai-threat.png)
+![A fight in progress with the threat list ranking three units just after a taunt.](../images/demos/09-ai-threat.png)
 
 Scene `Scenes/07_AiThreat`. Assets `Content/07_AiThreat` and `Content/Shared`.
 
@@ -19,9 +19,9 @@ Unit definitions use the demo defaults unless listed: one HP pool without regene
 
 | Ability | Settings |
 |---|---|
-| Taunt | Id `ability.taunt`, Targeting Mode Single Target, Range 10, Cooldown 6, Triggers GCD off. Effect **TauntEffect**, a Taunt effect at its defaults. |
-| Mend | Id `ability.mend`, Targeting Mode Self, Cooldown 3. Effect **MendHeal**, a Heal effect of 70. |
-| Vanish | Id `ability.vanish`, Targeting Mode Self, Cooldown 15, Triggers GCD off. Effect **VanishEffect**, a Threat Shed effect with Radius 30. |
+| Taunt | Id `ability.taunt`, Icon Id `siren`, Targeting Mode Single Target, Range 10, Cooldown 6, Triggers GCD off. Effect **TauntEffect**, a Taunt effect at its defaults. |
+| Mend | Id `ability.mend`, Icon Id `bandage`, Targeting Mode Self, Cooldown 3. Effect **MendHeal**, a Heal effect of 70. |
+| Vanish | Id `ability.vanish`, Icon Id `ghost`, Targeting Mode Self, Cooldown 15, Triggers GCD off. Effect **VanishEffect**, a Threat Shed effect with Radius 30. |
 
 | Unit Definition | Settings |
 |---|---|
@@ -45,7 +45,7 @@ Ground 40 × 40.
 | Patrol Route | Empty object with **VtPatrolRoute**, Loop on, and four children Waypoint 1 to 4 at (6, 0, 2), (14, 0, 2), (14, 0, 10) and (6, 0, 10). |
 | Bandit Patrol | Empty object at (6, 0, 2) with **VtMobSpawner**: Prefab BanditUnit, Count 1, Spawn Radius 0, Reuse Instances off, Corpse Linger Seconds 0, Patrol Route set to Patrol Route. |
 | Ogre | Unit prefab with Ogre at (0, 0, 15), scaled 1.4. VtNameplateInfo with Subtitle "leash 9 m: pull it away". VtDemoReviveAfterDeath 10 seconds. |
-| Demo UI | Lesson card. Two VtDemoUnitFrame at the top left. **VtDemoThreatPanel** with Unit set to the player. **VtDemoHotbar** with the player's VtAbilityHotkeys. |
+| Demo UI | Lesson card. Two **VtUnitFrame** with Unit set to the player and Region Top Left, one with Source Unit and one with Source Target Of Unit. **VtBuffBar** with Unit set to the player and Region Top Left. **VtResourceBar** with Unit set to the player, Bar Source Cast and Region Top Left. **VtThreatList** with Unit set to the player and Region Bottom Right. **VtActionBar** with the player's VtAbilityHotkeys, Region Bottom Center and Slot Size Large. |
 
 Every VtDemoReviveAfterDeath here has Return To Start on.
 
@@ -63,7 +63,7 @@ Every VtDemoReviveAfterDeath here has Return To Start on.
 
 - Watch the wolves wander and the bandit walk its route.
 - Hit one wolf and the rest of the pack comes to help.
-- Let the Squire attack the Ogre, then press 1 to Taunt it: the threat panel puts you on top.
+- Let the Squire attack the Ogre, then press 1 to Taunt it: the threat list puts you on top.
 - Press 2 to heal while monsters fight you: healing adds threat.
 - Pull the Ogre away from its spot: past its leash it runs home, invulnerable.
 - Press 3 to Vanish: every monster nearby forgets you.

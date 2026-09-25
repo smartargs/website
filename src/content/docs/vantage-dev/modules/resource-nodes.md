@@ -23,7 +23,9 @@ Use a plain unit with a [loot table](loot.md) for "thing dies, drops items". Use
 
 4. Assign it to **Resource Node** on a unit definition. Give the unit enough HP for the number of hits you want, faction Neutral and aggro range 0.
 
-Drops go straight into the attacker's backpack, not onto the ground. Nodes are Neutral, so nothing attacks them on sight, but they accept deliberate attacks: a player with `VtTopDownClickInput` harvests by right-clicking the node, and selected units with orders harvest on a right-click or an attack-move click. Anything else that should take deliberate attacks without being hostile, such as a practice dummy or a door, gets a component that implements `IVtCommandAttackable`.
+The **Gathering Speed** stat makes a unit swing faster at resource nodes only: 0.25 is 25% faster, added to its attack speed for abilities that scale with attack speed, such as the basic attack. Put it on tools, buffs or talents.
+
+Drops go straight into the attacker's backpack, not onto the ground. When the backpack has no room for even one of anything the node yields, the hit is refused with `InventoryFull` ("Cannot carry more") and the node keeps its HP. A roll bigger than the room left, such as 5 wood into room for 2, places what fits, and `OnHarvested` reports what was placed. Nodes are Neutral, so nothing attacks them on sight, but they accept deliberate attacks: a player with `VtTopDownClickInput` harvests by right-clicking the node, and selected units with orders harvest on a right-click or an attack-move click. Anything else that should take deliberate attacks without being hostile, such as a practice dummy or a door, gets a component that implements `IVtCommandAttackable`.
 
 ## Feedback
 

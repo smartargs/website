@@ -5,6 +5,9 @@ arrive, each signs the fields assigned to them in the order the template sets, a
 is recorded the moment it is given. The reviewer later reads, in the audit chain, who joined when,
 which field each person signed, and in what order.
 
+A session that ends partially can be continued by a new session, on this device or another, which carries
+its signatures; see [Finalizing](finalizing.md#continue-on-another-device).
+
 See it running: [Sign a document](../samples/sign-a-document.md).
 
 ## Setup

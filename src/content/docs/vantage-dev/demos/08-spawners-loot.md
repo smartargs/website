@@ -24,7 +24,7 @@ Unit definitions use the demo defaults unless listed: one HP pool without regene
 | Bandit Blade | Id `item.bandit_blade`, Slot Main Hand, Modifiers Physical Power +15%. |
 | Leather Cap | Id `item.leather_cap`, Slot Head, Modifiers Armor +8. |
 
-**Drink Minor Potion**, an ability: Id `ability.drink_minor_potion`, Targeting Mode Self, Cooldown 2, Triggers GCD off. Effect **MinorPotionHeal**, a Heal effect of 40.
+**Drink Minor Potion**, an ability: Id `ability.drink_minor_potion`, Icon Id `flask-round`, Targeting Mode Self, Cooldown 2, Triggers GCD off. Effect **MinorPotionHeal**, a Heal effect of 40.
 
 | Loot Table | Settings |
 |---|---|
@@ -49,7 +49,7 @@ Ground 40 × 40.
 | Player | Player prefab at (0, 0, -8). Definition Hunter. **VtUnitInventory** with Base Capacity 20, and **VtUnitWallet**. VtDemoReviveAfterDeath 4 seconds, Return To Start on. |
 | Wolf Den | Empty object at (-8, 0, 9) with **VtMobSpawner**: Prefab WolfUnit, Variants WolfUnit weight 3 and DireWolfUnit weight 1, Count 3, Spawn Radius 3, Reuse Instances off, Corpse Linger Seconds 3. A Label at (0, 2.4, 0) reads "Wolf Den" with "keeps 3 wolves, 1 in 4 is dire". |
 | Bandit Camp | Empty object at (9, 0, 10) with **VtMobSpawner**: Prefab BanditUnit, Count 2, Spawn Radius 2, Reuse Instances on. A Label reads "Bandit Camp" with "the fallen rise where they fell". |
-| Demo UI | Lesson card. Two VtDemoUnitFrame at the top left. **VtDemoInventoryPanel** with Unit set to the player. **VtDemoSpawnerPanel** with Spawners Wolf Den and Bandit Camp. |
+| Demo UI | Lesson card. Two **VtUnitFrame** with Unit set to the player and Region Top Left, one with Source Unit and one with Source Target Of Unit. **VtBuffBar** with Unit set to the player and Region Top Left. **VtResourceBar** with Unit set to the player, Bar Source Cast and Region Top Left. **VtInventoryWindow** with Unit set to the player, **VtCurrencyReadout** with Unit set to the player and Region Bottom Right, **VtDemoWindowKey** with Window the inventory window, Panel Name inventory and Toggle Key F4. **VtDemoSpawnerPanel** with Spawners Wolf Den and Bandit Camp. |
 
 ## Build it yourself
 
@@ -66,7 +66,7 @@ Ground 40 × 40.
 - Watch the spawner panel count down the respawn.
 - Keep hunting: about one wolf in four comes back as a Dire Wolf.
 - Bandits roll their table twice and rise again where they fell.
-- Right-click drops to pick them up, and equip the Bandit Blade from the backpack.
+- Right-click drops to pick them up, press F4 and equip the Bandit Blade from the bag.
 
 ## In your own game
 

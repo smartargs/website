@@ -12,16 +12,19 @@ yet: nothing marked planned is available today, and plans can change.
 
 ## Signing
 
-- Everything runs on one device. There is no server, so a session cannot be handed to a signer who
-  is somewhere else. Several people sign one document by passing the same device around.
+- There is no server. Several people sign one document by passing the same device around, or by
+  finalizing partially and handing the version to another device as a `.signargs` file, one device
+  after the other. Nobody can sign remotely while a session is open, and nothing sends the file.
   Planned: remote signers, delivery of the signed document and hosted storage, in SignArgs Cloud.
   Finishing a signature on a phone or in a browser through a companion page is planned as well; its
   product is not settled yet.
-- A partial version cannot yet be continued: the fields left open are named on the audit page, but
-  signing them later in a version that continues the chain is not in this release. Planned:
-  continuing a partial version on another device, without a server, as a free update to this plugin.
-  Two devices continuing the same version would each produce a valid bundle; telling the two apart
-  needs both bundles, and preventing it is planned for SignArgs Cloud.
+- A partial version can be continued on another device, but nothing stops two devices from continuing
+  the same one. Each produces a valid bundle, and a single bundle cannot show that another device also
+  continued one of its versions: only both bundles, verified together, show the fork. The plugin
+  refuses a second continuation on one device only. Preventing a fork needs a server that owns the
+  session, planned for SignArgs Cloud.
+- Moving a `.signargs` file between devices is your application's work: the plugin writes and reads the
+  file, and does not send it.
 - Nothing turns a form field the PDF declares into a template field automatically; you write that
   step, see [Templates and form fields](guides/templates.md#take-the-boxes-from-the-pdf).
 - Only assurance levels 0 (presence) and 3 (your application authenticated the signer) can be

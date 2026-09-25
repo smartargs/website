@@ -27,6 +27,8 @@ The scenes need the Universal Render Pipeline and the Input System set as the ac
 | [10 · Gathering and Crafting](10-gathering-crafting.md) | Trees and ore with tool and skill requirements and respawn, stations with recipes, skill levels, and learning a recipe. |
 | [23 · Selection and Orders](23-selection-orders.md) | Box selection, group orders in formation, attack-move, hold position and control groups for a small army. |
 | [24 · UI Gallery](24-ui-gallery.md) | The UI components with a theme card for dark and light mode, accent colours, corner radius and typefaces. |
+| [25 · HUD](25-hud.md) | Every HUD panel and window under a caption: frames, bars, lists, the prompt, and the inventory, quest, dialogue, crafting and talent windows. |
+| [26 · RPG HUD](26-rpg-hud.md) | The resource bar, unit frame, buff bar and action bar in an action RPG arrangement over an empty screen: target on top, cast bar, buffs, action bar with ability icons and tooltips, health, mana and experience stacked at the bottom, with a layout file of the demo's own. |
 
 ## Controls
 
@@ -41,20 +43,17 @@ Every panel on screen can be hidden:
 | Key | Panel |
 |---|---|
 | F1 | Folds the lesson card. Clicking its title does the same. |
-| F2 | Unit frames: your unit and your selected unit, or your current target. |
-| F3 | Stats. |
-| F4 | Inventory. |
+| F4 | The inventory window, in 05, 08, 09 and 10. |
 | F5 | Damage Lab attack settings. |
-| F6 | Hotbar. |
-| F7 | Selection: the selected units and the control groups, in 23 · Selection and Orders. |
-| F8 | The scene panel: progression in 06, threat in 07, spawners in 08, the quest log in 09, crafting in 10, the gallery in 24. |
-| F9 | The conversation window, in 09. |
-| F10 | Hides every panel at once. |
+| F8 | The scene window or panel: talents in 06, spawners in 08, the quest log in 09, crafting in 10, the gallery in 24 and 25. |
+| F10 | Hides the HUD at once. |
 | R | Loads the scene again, putting every unit, item and panel back to its start. |
+
+The unit frames, the action bar, the stat list, the resource bars, the buff bars and cast bars, the currency readout, the quest tracker, the threat list, the selection panel and the interaction prompt are the sample's [HUD panels](panels.md) and hide with F10. The inventory, talent, quest log, crafting and dialogue windows are the sample's windows: a key opens one through **VtDemoWindowKey**, Esc closes the topmost, and the conversation window opens by itself when someone speaks. Messages such as a refused cast or a level gained are toasts from the sample's notifications.
 
 The lesson card is split into pages: Overview, Look at, Try, and Panels with the keys of the panels in the current scene. The name of the page shown sits under the title. Look at lists each asset or object as a small tag above its explanation, Try numbers the steps, and Panels shows each key as a key cap. Back, a bar per page and Next sit under a divider at the bottom of the card; click a bar to jump to its page.
 
-Every unit with health has a nameplate over its head: its name, level and a health bar, red for enemies, green for allies and amber for neutral units, with the unit's hint and its active buffs underneath. A unit's hint is the Subtitle of its **VtNameplateInfo**. Resource nodes and crafting stations have **VtNameplateInfo** with Hidden on and keep their world labels. See [UI](../modules/ui.md#nameplates). When the Game view is too short for a page, the page scrolls with the mouse wheel and the panels below it stay in view.
+Every unit with health has a nameplate over its head: its name, level and a health bar, red for enemies, green for allies and amber for neutral units, with the unit's hint and its active buffs underneath. A unit's hint is the Subtitle of its **VtNameplateInfo**. Resource nodes and crafting stations have **VtNameplateInfo** with Hidden on and keep their world labels. See [UI](panels.md#nameplates). When the Game view is too short for a page, the page scrolls with the mouse wheel and the panels below it stay in view.
 
 ## What the sample contains
 
@@ -76,7 +75,7 @@ Every scene has these root objects. The scene pages only list what differs.
 | Level | A **Ground** cube scaled to the scene's size, 1 high, at y -0.5, and four **Wall** cubes 1.5 high around the edge. A **NavMesh Surface** on Level with Collect Objects set to Current Object Hierarchy and Use Geometry set to Render Meshes, baked. |
 | Main Camera | Tag MainCamera, a Camera with a solid dark background, an Audio Listener, and **VtTopDownCamera** with Enable Edge Scroll off and Initial Target set to the player. Each scene sets its own **Default Height** so every unit it teaches, and its nameplate, is on screen at the start; the page of the scene names the value. |
 | EventSystem | Event System and Input System UI Input Module. |
-| Demo UI | UI Document using `Kit/UI/VtDemoPanelSettings`, **VtDemoCanvas**, **VtNameplates** with Viewer set to the player and Filter Neutral on, **VtDemoNameplateText**, **VtDemoLessonCard** and the scene's panels. |
+| Demo UI | UI Document using `Kit/UI/VtDemoPanelSettings`, **VtUiRoot**, **VtDemoCanvas**, **VtUiNavigation**, **VtTooltipHost**, **VtToasts** with Position Bottom Center so the toasts stay clear of the lesson card, **VtUiNotifications** with Player and Toasts set, **VtNameplates** with Viewer set to the player and Filter Neutral on, **VtDemoNameplateText**, **VtDemoLessonCard** and the scene's panels. The unit frames, action bar, stat list and resource bars on the pages are the package's HUD panels, see [UI](panels.md#hud-panels). |
 
 Units and items are instances of the kit prefabs. Each instance sets its own **Definition**, or item, and every unit gets **VtDemoReviveAfterDeath** so the scene stays playable. On the player instance, the label's **Show Health** is off.
 
@@ -183,9 +182,14 @@ These exist to make the scenes readable. A game does not need them.
 
 | Component | What it does | In your game |
 |---|---|---|
-| VtDemoCanvas | The overlay every panel draws into. F10 hides it, R loads the scene again. | Your HUD. |
+| VtDemoCanvas | Puts the demo panels into the regions of the package's VtUiRoot. F10 hides the HUD, R loads the scene again. | VtUiRoot on its own. |
 | VtDemoLessonCard | The card explaining the scene. | Not needed. |
-| VtDemoUnitFrame, VtDemoHotbar, VtDemoStatSheet, VtDemoInventoryPanel | Plain readouts built on the public API. | Your HUD. |
+| VtDemoWindowKey | Opens one of the sample's windows with a function key and lists it on the lesson card. | An input action bound to the window. |
+| VtDemoSpawnerPanel | Counts down each spawner's respawn. | Not needed. |
+| VtDemoPresetSelection | Selects a unit at start so the target frame in 25 · HUD and 26 · RPG HUD has something to show. | Not needed. |
+| VtDemoRpgHudLoop | Makes the hero of 26 · RPG HUD take hits, cast and gain experience every few seconds, so the bars move without a world to play in. | Not needed. |
+| VtDemoHudGallery | Places every HUD panel and window under a caption in 25 · HUD. | Not needed. |
+| VtDemoHudSeed | Accepts quests, adds threat, levels a skill, puts buffs on the hero and starts a conversation at start, so the panels in 25 · HUD and 26 · RPG HUD have something to show. | Not needed. |
 | VtDemoDamageLabController | The Damage Lab keys. | Not needed. |
 | VtDemoBillboardLabel | World labels over items, gold, spawners, quest locations, resource nodes and stations. | Your own world labels. |
 | VtDemoNameplateText | Adds each unit's hit readout and active buffs to its nameplate subtitle. A buff an aura keeps up reads "· aura" instead of a countdown. | A `VtNameplates.SubtitleProvider` of your own. |

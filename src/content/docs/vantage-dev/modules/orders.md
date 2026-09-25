@@ -14,10 +14,10 @@ See it running: the [23 · Selection and Orders](../demos/23-selection-orders.md
 |---|---|
 | `VtUnitSelection` | Picking units, see [Selection](selection.md). Set **Viewer Faction** to the side you command. |
 | `VtSelectionIndicator` | Markers under selected units. |
-| `VtOrderInput` | Right-click orders and the order keys. |
+| `VtOrderInput` | Command-click orders and the order keys. **Screen Point To Ray** replaces the main camera for its raycasts. |
 | `VtControlGroups` | Groups on the number keys. |
 
-Do not put `VtOrderInput` on a hero that has `VtTopDownClickInput`; both would answer the right-click. Let the camera roam with **Enable Edge Scroll** on the `VtTopDownCamera`, and give it an **Initial Target** such as an empty object at your base, which Space returns to.
+Do not put `VtOrderInput` on a hero that has `VtTopDownClickInput`; both would answer the command click. Let the camera roam with **Enable Edge Scroll** on the `VtTopDownCamera`, and give it an **Initial Target** such as an empty object at your base, which Space returns to.
 
 ## Orders
 

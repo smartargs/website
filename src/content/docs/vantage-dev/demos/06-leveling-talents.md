@@ -2,7 +2,7 @@
 
 Kills give experience, levels come from an XP curve, and every level brings talent and attribute points to spend in a talent tree.
 
-![The progression panel open after a level up, with a talent point spent on Cleave.](../images/demos/08-talents.png)
+![The talent window open after a level up, with a talent point spent on Cleave.](../images/demos/08-talents.png)
 
 Scene `Scenes/06_LevelingTalents`. Assets `Content/06_LevelingTalents` and `Content/Shared`.
 
@@ -21,8 +21,8 @@ Unit definitions use the demo defaults unless listed: one HP pool without regene
 
 | Ability | Settings |
 |---|---|
-| Cleave | Id `ability.recruit_cleave`, Targeting Mode Single Target, Range 3, Cooldown 4, no cost. Effect **CleaveDamage**, a Damage effect: 14 to 18 Physical, Channel Melee, Splash Radius 3. |
-| Second Wind | Id `ability.second_wind`, Targeting Mode Self, Cooldown 20, Triggers GCD off. Effect **SecondWindHeal**, a Heal effect of 60. |
+| Cleave | Id `ability.recruit_cleave`, Icon Id `swords`, Targeting Mode Single Target, Range 3, Cooldown 4, no cost. Effect **CleaveDamage**, a Damage effect: 14 to 18 Physical, Channel Melee, Splash Radius 3. |
+| Second Wind | Id `ability.second_wind`, Icon Id `wind`, Targeting Mode Self, Cooldown 20, Triggers GCD off. Effect **SecondWindHeal**, a Heal effect of 60. |
 
 Talents, each with Point Cost 1:
 
@@ -53,7 +53,7 @@ Ground 36 × 36.
 | Player | Player prefab at (0, 0, -6). Definition Recruit. **VtAttributeDerivedStatsBinding** with Formula AttributeFormula. VtAbilityHotkeys slots: key 1 Cleave, key 2 Second Wind. VtDemoReviveAfterDeath 4 seconds, Return To Start on. |
 | Training Skeletons | Four Unit prefabs with Training Skeleton at (-6, 0, 5), (-2, 0, 7), (2, 0, 7) and (6, 0, 5). **VtNameplateInfo** with Subtitle "35 XP". VtDemoReviveAfterDeath 4 seconds, Return To Start on. |
 | Veteran | Unit prefab with Veteran at (0, 0, 13). VtNameplateInfo with Subtitle "150 XP". VtDemoReviveAfterDeath 8 seconds, Return To Start on. |
-| Demo UI | Lesson card. Two VtDemoUnitFrame at the top left for the player and the player's selection or target. **VtDemoStatSheet** titled Recruit with Strength, Agility, Physical power, Attack speed and Crit chance. **VtDemoProgressionPanel** with Unit set to the player. **VtDemoHotbar** with the player's VtAbilityHotkeys. |
+| Demo UI | Lesson card. Two **VtUnitFrame** with Unit set to the player and Region Top Left, one with Source Unit and one with Source Target Of Unit. **VtBuffBar** with Unit set to the player and Region Top Left. **VtResourceBar** with Unit set to the player, Bar Source Cast and Region Top Left. **VtResourceBar** with Unit set to the player, Bar Source Experience and Region Top Left. **VtStatList** titled Recruit with Region Bottom Left and rows Strength, Agility, Physical power, Attack speed and Crit chance. **VtTalentWindow** with Unit set to the player and **VtDemoWindowKey** with Window the talent window, Panel Name talents and Toggle Key F8. **VtActionBar** with the player's VtAbilityHotkeys, Region Bottom Center and Slot Size Large. |
 
 ## Build it yourself
 
@@ -69,10 +69,10 @@ Ground 36 × 36.
 ## Try
 
 - Kill skeletons for experience. The Veteran is worth far more.
-- Spend talent points in the progression panel. Toughness has three ranks; Battle Rhythm needs Heavy Blows at rank 2.
+- Press F8 and spend talent points in the talent window. Toughness has three ranks; Battle Rhythm needs Heavy Blows at rank 2.
 - Learn Cleave and press 1. Second Wind learns itself at level 4; press 2.
 - Place attribute points in Strength or Agility and watch the stat sheet.
-- Reset points gives every point back. The XP button skips ahead.
+- Reset points gives every point back.
 
 ## In your own game
 

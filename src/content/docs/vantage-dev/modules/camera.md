@@ -23,10 +23,13 @@ Edge scrolling and panning detach the camera into free mode. `IsInFreeCameraMode
 
 ## Sharing the scroll wheel
 
-If another system needs the wheel for a moment, for example rotating a build ghost, block the camera:
+If another system needs the wheel for a moment, hold it. `VtBuildInput` does this while it rotates a build ghost.
 
 ```csharp
-VtTopDownCamera.IsScrollBlocked = () => builder.IsPlacing;
+VtTopDownCamera.HoldScroll(this);     // the wheel no longer zooms
+VtTopDownCamera.ReleaseScroll(this);  // zoom returns when the last holder lets go
 ```
+
+`VtTopDownCamera.IsScrollBlocked` still takes a predicate of your own, and `IsScrollHeld` answers whether anything holds the wheel.
 
 The camera uses the Input System package only.

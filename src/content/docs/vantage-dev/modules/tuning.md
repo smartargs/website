@@ -1,6 +1,12 @@
 # Tuning
 
-Every global number lives in one asset, `VtTuning`. The package ships defaults in `Runtime/Resources/VtTuning.asset`. To change them, create your own with **Create → Vantage → Tuning**, save it as `Assets/Resources/VtTuning.asset`, and your copy is used instead. Package updates never touch it.
+Every global number lives in one asset, `VtTuning`. The package ships defaults in `Runtime/Resources/Vantage/VtTuning.asset`. To change them, create your own with **Create → Vantage → Tuning**, save it as `Assets/Resources/VtTuning.asset`, and your copy is used instead. Package updates never touch it.
+
+To keep the asset somewhere else, reference it from a boot scene and hand it over before gameplay starts:
+
+```csharp
+VtTuning.OverrideInstance(myTuning);
+```
 
 | Group | Values |
 |---|---|

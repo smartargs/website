@@ -29,19 +29,47 @@ The scene is guided: the line at the top of the card always says what to do next
 |---|---|---|
 | ![The pad locked until page 3 is on screen](../images/samples/sign-a-document-locked.png) | ![The contractor's box outlined on page 3 and a signature on the pad](../images/samples/sign-a-document-signing.png) | ![All three signatures stamped on page 3 of the signed document](../images/samples/sign-a-document-signed.png) |
 
-**Finish partly** finalizes with the signatures taken so far. The manifest marks the version partial
-and the audit page names the fields left open.
-
 **Start over** begins a new session on the original document.
+
+## Hand it over to another device
+
+**Hand over**, available between two signers, finalizes with the signatures taken so far: the manifest
+marks the version partial and the audit page names the fields left open. It also writes the bundle and
+the identity records of every signer this device knows into one file,
+`Application.persistentDataPath/SignArgs Outbox/<session id>.signargs`.
+
+On the next device, copy that file into `Application.persistentDataPath/SignArgs Inbox/` and press
+**Open received**. The sample receives the newest file there, verifies it, continues it as a new session
+and draws the carried signatures over their boxes; the step line picks up at the next open field. Sign
+the rest, or hand it over again. The last document stamps every signature, and its audit page lists every
+version and says in which one each carried signature was confirmed.
+
+| Received on the second device | The audit page of version 3 |
+|---|---|
+| ![Two signatures carried from the received version, drawn over page 3, and the owner next](../images/samples/handover-received.png) | ![The audit page naming the version each signature was confirmed in](../images/samples/handover-audit-page.png) |
+
+The sample sends names with the file so that every audit page can print them; your application
+decides whether to. On Android, move a file in with:
+
+```
+adb shell mkdir -p "'/sdcard/Android/data/<your.bundle.id>/files/SignArgs Inbox'"
+adb push <session id>.signargs "/sdcard/Android/data/<your.bundle.id>/files/SignArgs Inbox/"
+```
+
+Continuing the same received file on a second device forks that version: both bundles verify, and only
+`BundleVerifier.Compare` on both shows the fork. See [Finalizing](../guides/finalizing.md#continue-on-another-device).
 
 ## Look at the result
 
-In the editor and on desktop players, **Open bundle folder** opens the folder. On Android, pull it:
+In the editor and on desktop players, **Open bundle folder** opens the folder. On Android,
+`Application.persistentDataPath` is the app's folder on shared storage; pull it:
 
 ```
-adb shell run-as <your.bundle.id> ls files/SignArgs
-adb exec-out run-as <your.bundle.id> tar c -C files SignArgs > signargs.tar
+adb shell ls /sdcard/Android/data/<your.bundle.id>/files/SignArgs
+adb pull /sdcard/Android/data/<your.bundle.id>/files/SignArgs
 ```
+
+`run-as` does not work here: it needs a debuggable build.
 
 Each session is one folder named after its session id, and each signer has one identity file in
 `identities/` beside those folders. The files are listed on [The signed bundle](../signed-bundle.md).
@@ -89,7 +117,8 @@ Areas are in thousandths of a PDF point from the bottom-left corner: the contrac
 
 ## How the script drives it
 
-`SignDocumentSample` is split in two files: `SignDocumentSample.cs` is the signing flow, and
+`SignDocumentSample` is split in three files: `SignDocumentSample.cs` is the signing flow,
+`SignDocumentSample.Handover.cs` hands a version over and continues a received one, and
 `SignDocumentSample.Interface.cs` updates the card's texts and buttons, draws the taken signatures
 over the page and opens the bundle folder. The flow is the
 [quick start](../quick-start.md) with three signers:
@@ -98,16 +127,29 @@ over the page and opens the bundle folder. The flow is the
 _session = await finalizer.StartAsync(document.bytes, title, template.bytes);
 _session.AddEvidence("checklist", "text/plain", Encoding.UTF8.GetBytes("Checks 1 to 5 on page 2 carried out."));
 
-var signer = new SignerDetails("signer-" + ++_signers, signerName.text, string.Empty,
+var signer = new SignerDetails("signer-" + _field.Id, signerName.text, string.Empty,
     AssuranceLevel.Presence, new[] { _field.Id });
 await finalizer.AddSignerAsync(_session, signer);
 
 // once the field's page is on screen and the signer has pressed Confirm
 await finalizer.ConfirmAsync(_session, _field.Id, pad, view);
 
-// after the last field, or when Finish partly is pressed
+// after the last field, or when Hand over is pressed
 var result = partial ? await finalizer.FinalizePartialAsync(_session) : await finalizer.FinalizeAsync(_session);
 await view.OpenAsync(File.ReadAllBytes(result.DocumentPath));
+```
+
+The reference is taken from the field, not counted, so that a device continuing a received version
+never reuses a reference an earlier version gave to someone else; the chain would refuse it without that
+person's identity record. Handing over and continuing:
+
+```csharp
+var verification = await finalizer.VerifyAsync(result.Folder);
+await finalizer.ExportAsync(verification.Bundle, _known, Path.Combine(Outbox, sessionId + ".signargs"));
+
+// on the next device
+var received = await finalizer.ReceiveAsync(newest);
+_session = await finalizer.ContinueAsync(received.Verification.Bundle, title, received.Identities);
 ```
 
 The pad stays disabled until `PageShown` reports the field's page; confirming would refuse a capture

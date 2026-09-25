@@ -10,6 +10,8 @@ See it running: the [03 · Abilities](../demos/03-abilities.md) demo scene. See 
 
 | Field | Meaning |
 |---|---|
+| Display Name / Description | The name on the action bar and cast bar, and the text at the bottom of the ability's tooltip. |
+| Icon / Icon Id | The sprite the action bar draws. Until you have one, Icon Id names an icon from the package's icon set, such as `flame`, `sword` or `heart-pulse`. |
 | Targeting Mode | `Self`, `SingleTarget` or `GroundPoint`. |
 | Range | Maximum distance, measured on the ground plane. 0 means no range check. |
 | Resource Kind / Cost | What the cast spends. Charged at cast start, refunded if interrupted. |

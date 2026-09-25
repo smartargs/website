@@ -69,6 +69,7 @@ Quest positions are stored in the quest assets; **Auto Layout** arranges the sho
 | Faction | The holder's faction is one of the listed ones. |
 | Quest State | Another quest is in the given state on the holder's log: available, active, complete, turned in or failed. |
 | Dialogue Flag | A flag set by a dialogue is present, or absent with **Must Be Absent**. |
+| Time Of Day | The scene clock is in one of the listed day phases and has reached the minimum day. Never passes without a clock. See [World time](world-time.md). |
 
 A holder without the component a requirement reads from, for example no wallet for a currency requirement, does not pass. Requirements are re-evaluated on every `IsAvailable` call, so a quest becomes available the moment the condition holds.
 

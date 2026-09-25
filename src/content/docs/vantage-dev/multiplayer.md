@@ -49,7 +49,7 @@ sequenceDiagram
     C->>C: OnQuestAccepted fires
 ```
 
-The commands that exist: walk to a point, attack a target, stop, interact, use item, equip, unequip, accept, abandon and turn in a quest, dialogue choose, continue and end, craft, cancel craft, build, demolish, buy, sell, respawn, learn talent, spend attribute point, reset progression, the party calls: invite, accept, decline, leave, kick, promote and loot rule, the summon calls: dismiss, dismiss all and stance, the chat calls: send, ignore and unignore, and the guild calls: create, invite, accept, decline, leave, kick, promote, demote, transfer, message of the day and disband, the friend calls: request, accept, decline, cancel and remove, and the mail calls: send, take attachments, mark read, delete and return. Anything that is not a player intent, such as adding loot to a bag or granting XP, has no command and simply refuses on a client.
+The commands that exist: walk to a point, attack a target, stop, interact, use item, equip, unequip, accept, abandon and turn in a quest, dialogue choose, continue and end, craft, cancel craft, build, demolish, buy, sell, respawn, learn talent, spend attribute point, reset progression, the party calls: invite, accept, decline, leave, kick, promote and loot rule, the summon calls: dismiss, dismiss all and stance, the chat calls: send, ignore and unignore, and the guild calls: create, invite, accept, decline, leave, kick, promote, demote, transfer, message of the day and disband, the friend calls: request, accept, decline, cancel and remove, the mail calls: send, take attachments, mark read, delete and return, wear from the bag and put back into the bag, buy an unlock, and deposit items, currency or everything into a shared stash. Anything that is not a player intent, such as adding loot to a bag or granting XP, has no command and simply refuses on a client.
 
 ## How movement travels
 
@@ -93,7 +93,7 @@ Import **Co-op (Netcode for GameObjects)** from the package's Samples tab after 
 |---|---|
 | `VtNetcodeAuthority` | Installs the rule above. Put it on the NetworkManager object. |
 | `VtNetcodeUnitSync` | Replicates pools, hits, heals, deaths, revives, casts, buffs and resource node state from the server to everyone. On every networked unit prefab. |
-| `VtNetcodeStateSync` | Replicates inventory, wallet, equipment, level, quests, skills, recipes and dialogue flags from the server to the owning client. On player prefabs. |
+| `VtNetcodeStateSync` | Replicates inventory, wallet, equipment, level, quests, skills, recipes, unlocks and dialogue flags from the server to the owning client. On player prefabs. |
 | `VtNetcodeCommandRelay` | Sends a client's commands to the server and applies them there. On player prefabs. |
 | `VtNetcodeMovementSync` | Server-authoritative position for units with `VtPredictedMovementExecutor`. Replaces `NetworkTransform`. |
 | `VtNetcodeInterestManager` | Sends each client only the units its vision covers. On the NetworkManager object. |
@@ -111,6 +111,8 @@ Import **Co-op (Netcode for GameObjects)** from the package's Samples tab after 
 | `VtNetcodeWorldItemSync` | Sends a world item's item, count and reservation to everyone. On world item prefabs. |
 | `VtNetcodeBuildableSync` | Sends a placed building's buildable, builder and construction progress to everyone. On buildable prefabs. |
 | `VtNetcodeEncounterSync` | Mirrors a boss fight on every client: state, phase, events and boss lines. Next to a `VtEncounter` with a `NetworkObject`. |
+| `VtNetcodeWorldClockSync` | Keeps every client's day and time on the host's. Next to the scene's `VtWorldClock` with a `NetworkObject`. |
+| `VtNetcodeStashSync` | Keeps every client's copy of a shared stash (items, currency, unlocks) on the host's. Next to the `VtSharedStash` with a `NetworkObject`. |
 
 The sample's README walks through the prefab setup.
 

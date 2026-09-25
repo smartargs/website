@@ -36,7 +36,7 @@ Ground 56 × 56.
 | Army | Six Unit prefabs with Footman at x -5, -3, -1, 1, 3 and 5 on z -12, and four with Archer at x -3, -1, 1 and 3 on z -16. VtDemoReviveAfterDeath 10 seconds, Return To Start on. |
 | West camp | Five Unit prefabs with Raider at (-16, 0, 10), (-13.8, 0, 10), (-11.6, 0, 10), (-16, 0, 12.2) and (-13.8, 0, 12.2). |
 | East camp | Three Unit prefabs with Raider at (12, 0, 14), (14.2, 0, 14) and (16.4, 0, 14), and two with Brute at (13, 0, 17) and (15.2, 0, 17), scaled 1.35. |
-| Demo UI | Lesson card and **VtDemoSelectionPanel** with Selection and Groups set to the Commander components. |
+| Demo UI | Lesson card and **VtSelectionPanel** with Selection and Control Groups set to the Commander components and Region Bottom Center. |
 
 Every camp unit has VtDemoReviveAfterDeath 20 seconds, Return To Start on.
 

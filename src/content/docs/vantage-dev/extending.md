@@ -40,7 +40,7 @@ Subclass `VtQuestObjective` or `VtQuestReward`. See [Quests](modules/quests.md#c
 
 ### Path provider, cursor provider, combat text presenter
 
-Each is an interface with one or two members. See [Movement](modules/movement.md#pathfinding), [Building](modules/building.md#driving-it-from-ui) and [Combat text](modules/combat-text.md#replacing-the-renderer).
+Each is an interface with one or two members. See [Movement](modules/movement.md#pathfinding), [Building](modules/building.md#driving-it-from-code) and [Combat text](modules/combat-text.md#replacing-the-renderer).
 
 ### Spawner and roaming variants
 

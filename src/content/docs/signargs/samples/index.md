@@ -6,7 +6,7 @@ object named after what it does.
 | Sample | What it shows |
 |---|---|
 | [Show a PDF](show-a-pdf.md) | The viewer alone: a three-page PDF with filled form fields, paged with two buttons, and the form fields each page declares read back. |
-| [Sign a document](sign-a-document.md) | The product: three people sign a handover protocol in turn on one device, and the signed PDF, its audit page and the bundle are written to the device's storage. |
+| [Sign a document](sign-a-document.md) | The product: three people sign a handover protocol in turn on one device, or hand it over to another device part-way, and the signed PDF, its audit page and the bundle are written to the device's storage. |
 
 ## Import
 

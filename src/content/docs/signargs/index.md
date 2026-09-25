@@ -20,9 +20,9 @@ In the Package Manager the plugin is listed as **SignArgs Core**, package `com.s
 | Form fields | Reads the fields a PDF declares on a page, signature boxes among them, so you place signatures where the document says. |
 | Signature capture | `SignaturePad` records touch, pen or mouse at event rate, with the device's timestamp and pen pressure, and draws the ink as a mesh. |
 | Templates | A small record that says where each signature goes, what each signer agrees to, how sure you must be of them, and in which order they sign. |
-| Several signers | One document, several fields, several people signing in turn on one device, each with their own consent sentence. |
+| Several signers | One document, several fields, several people signing in turn, each with their own consent sentence: on one device, or handed over part-way to another device without a server. |
 | Evidence | Bind your application's context (a checklist, a screenshot, a model version) to one signature or to all of them. |
-| Finalizing | Stamps every signature, appends an audit page, saves, hashes and writes the bundle. A partial finalize keeps signatures already given when someone cannot sign. |
+| Finalizing | Stamps every signature, appends an audit page, saves, hashes and writes the bundle. A partial finalize keeps signatures already given when someone cannot sign, and another device can continue it. |
 | Signed bundle | The signed PDF, the original, one record per signature, the strokes, the audit chain and a manifest of SHA-256 hashes. Verifiable without SignArgs. |
 | Pseudonymous records | Names and contact details are kept out of the records, in one deletable file per signer. Deleting one breaks no hash. The signed PDF's audit page still prints the names. |
 | PDF engine | PDFium, pinned, with our own bindings, safe under IL2CPP and managed stripping "High". Usable directly for documents outside a session. |

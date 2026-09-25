@@ -20,6 +20,8 @@ See it running: the [08 · Spawners and Loot](../demos/08-spawners-loot.md) demo
 | Reuse Instances | Revive the corpse in place on respawn instead of instantiating. Use it for dense areas. |
 | Corpse Linger Seconds | Remove corpses after this long. 0 leaves them. Ignored with Reuse Instances. |
 | Patrol Route | A `VtPatrolRoute` the spawned monsters walk, see [AI roaming](ai-roaming.md). |
+| Active Phases | Day phases the point spawns in, read from the scene's `VtWorldClock`. Empty, or no clock in the scene, means always. With Spawn On Awake the point fills when one of these phases begins. See [World time](world-time.md). |
+| Despawn Outside Phases | Remove the live monsters and corpses when the clock leaves the Active Phases. Off keeps them; they just do not respawn until the phase comes back. |
 
 ## Runtime
 
@@ -40,7 +42,7 @@ spawner.OnRespawnTimerStarted += seconds => { };
 ## Common setups
 
 - **Boss after minions**: Spawn On Awake off, call `TrySpawn` from your encounter script.
-- **Night-only**: call `SpawnAll` at dusk and `Despawn` at dawn.
+- **Night-only**: put your Night phase in **Active Phases**. The pack appears at nightfall and leaves at dawn.
 - **Deterministic rolls** in tests or replays: `SetRandom` with your own `IVtRandom`.
 
 Spawned units are created and removed through `VtSpawning`, the same hooks loot, buildings, projectiles and summons use. A networked game points `VtSpawning.InstantiateFn` and `VtSpawning.DespawnFn` at its spawn calls once, as the co-op sample's spawn hooks do. Override `InstantiatePrefab` in a subclass only when one spawner should spawn differently.

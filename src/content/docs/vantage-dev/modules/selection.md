@@ -10,7 +10,7 @@ Add these to the player prefab:
 
 | Component | Role |
 |---|---|
-| `VtUnitSelection` | Left-click, Shift-click, box and double-click selection, hover, and the clear key. Right-clicks stay with `VtTopDownClickInput`. |
+| `VtUnitSelection` | Click, Shift-click, box and double-click selection, hover, and the clear key. Clicks come from the Select action, the left button by default; see [Input](input.md#mouse-buttons). Command clicks stay with `VtTopDownClickInput` and `VtOrderInput`. |
 | `VtSelectionIndicator` | Draws a marker under every selected unit and the hovered one, coloured by relation and sized to the unit. |
 
 On an object without a unit, such as an RTS commander, set **Viewer Faction** to the side the player commands; relations and box filters are measured from it. To give the selected units orders, see [Orders and control groups](orders.md).
@@ -31,7 +31,7 @@ Set **Unit Mask** to the layers your unit colliders are on. A unit needs a colli
 
 Esc is the Cancel action and Shift the Additive Modifier action; set **Clear Action** and **Additive Action** to use others, see [Input](input.md).
 
-The first selected unit is the primary selection. Single-target hotkeys cast at the unit under the cursor, otherwise at the primary selection, otherwise at the current combat target. While a ground ability is being aimed, left-clicks and Esc belong to the aim.
+The first selected unit is the primary selection. Single-target hotkeys cast at the unit under the cursor, otherwise at the primary selection, otherwise at the current combat target. While a ground ability is being aimed, clicks and Esc belong to the aim. The table lists the default buttons.
 
 **Box Filter** decides what a box keeps when it covers several sides:
 

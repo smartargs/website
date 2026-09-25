@@ -1,6 +1,6 @@
 # Saving and loading
 
-Every unit that carries a `VtPersistentId` can be captured into a save and restored: position, pools, level, equipment with durability, backpack, wallet, active buffs, quest log, crafting skills and learned recipes. Saves are plain JSON.
+Every unit that carries a `VtPersistentId` can be captured into a save and restored: position, pools, level, equipment with durability, backpack, wallet, active buffs, quest log, crafting skills, learned recipes and hotkey slots. Saves are plain JSON.
 
 ## Setup
 
@@ -31,6 +31,10 @@ VtSaveSystem.Restore(loaded, spawnMissing: data =>
 
 Return null to skip a unit.
 
+When the scene has a `VtWorldClock`, the save also holds the day, time of day, speed and pause state, and `Restore` puts them back. See [World time](world-time.md).
+
+Every enabled [shared stash](shared-stash.md) is saved too, with its items, currency and unlocks, under its persistent id. A unit's own unlocks and its [hotbar](hotbar.md) slots are part of the unit's data.
+
 ## One unit at a time
 
 ```csharp
@@ -46,4 +50,4 @@ Ability cooldowns, resource node respawn timers, build site progress, threat tab
 
 ## Format
 
-`VtSaveGame` is a `JsonUtility` object: a version number, the scene name, the time, and a list of units. Add your own fields by wrapping it in your own class or writing a second file next to it. Ids the catalog cannot resolve are skipped with a warning, so a save survives content you removed.
+`VtSaveGame` is a `JsonUtility` object: a version number, the scene name, the time, the world clock, the shared stashes, and a list of units. Add your own fields by wrapping it in your own class or writing a second file next to it. Ids the catalog cannot resolve are skipped with a warning, so a save survives content you removed.

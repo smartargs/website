@@ -46,7 +46,7 @@ Node positions are stored in the asset. A dialogue that was never opened in the 
 |---|---|
 | Text | Button label. |
 | Next Node Id | Node to jump to when picked. Empty ends the conversation. |
-| Requirements | All must pass on the listener. Any requirement asset works, including item, currency, stat, tag, faction, quest state and dialogue flag. |
+| Requirements | All must pass on the listener. Any requirement asset works, including item, currency, stat, tag, faction, quest state, dialogue flag and time of day. |
 | Show When Locked | List the answer greyed out when requirements fail instead of hiding it. |
 | Effects | Applied in order when picked, before the jump. |
 

@@ -29,7 +29,7 @@ statuses:
 | Scripting backend | IL2CPP verified on Android; Mono in the editor. |
 | Managed stripping | "High" verified on Android. The package's `link.xml` is fed to the linker by the package itself, because Unity does not read `link.xml` inside packages. |
 | Input | Input System 1.18 or newer. Touch verified on Android with injected touch events; mouse verified on the Windows player with queued Input System events; pen not yet run. |
-| Render pipeline | The components are uGUI and use no pipeline-specific features. |
+| Render pipeline | Built-in, URP 17.3 and HDRP 17.3: the **Sign a document** sample run through by three signers on a Windows player in each, 23 Sep 2026. HDRP needs Linear colour space, which is HDRP's own requirement. The components are uGUI and ship no shaders or materials. |
 
 ## PDF engine
 

@@ -30,14 +30,14 @@ Scene `Scenes/04_StatsBuffsAuras`. Assets `Content/04_StatsBuffsAuras` and `Cont
 
 The abilities, all with Resource Kind MP:
 
-| Key | Ability | Targeting Mode | Range | Resource Cost | Cooldown | Triggers GCD | Effects |
-|---|---|---|---|---|---|---|---|
-| 1 | Battle Shout | Self | 0 | 20 | 10 | on | Apply Buff: Battle Shout |
-| 2 | Poison Dart | Single Target | 15 | 5 | 0.5 | off | Apply Buff: Poison |
-| 3 | Rejuvenate | Self | 0 | 25 | 3 | on | Apply Buff: Rejuvenation |
-| 4 | Stun Bolt | Single Target | 15 | 20 | 5 | on | StunBoltDamage, a Damage effect of 8 to 12 Arcane with Channel Magic, then Apply Buff: Stunned |
-| 5 | Frenzy | Self | 0 | 0 | 1 | off | Apply Buff: Frenzy |
-| 6 | Sunder | Single Target | 3 | 15 | 2 | on | Apply Buff: Sundered |
+| Key | Ability | Icon Id | Targeting Mode | Range | Resource Cost | Cooldown | Triggers GCD | Effects |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Battle Shout | `megaphone` | Self | 0 | 20 | 10 | on | Apply Buff: Battle Shout |
+| 2 | Poison Dart | `flask-conical` | Single Target | 15 | 5 | 0.5 | off | Apply Buff: Poison |
+| 3 | Rejuvenate | `sprout` | Self | 0 | 25 | 3 | on | Apply Buff: Rejuvenation |
+| 4 | Stun Bolt | `zap` | Single Target | 15 | 20 | 5 | on | StunBoltDamage, a Damage effect of 8 to 12 Arcane with Channel Magic, then Apply Buff: Stunned |
+| 5 | Frenzy | `trending-up` | Self | 0 | 0 | 1 | off | Apply Buff: Frenzy |
+| 6 | Sunder | `shield-off` | Single Target | 3 | 15 | 2 | on | Apply Buff: Sundered |
 
 None has a cast time. Their ids are `ability.battle_shout`, `ability.poison_dart`, `ability.rejuvenate`, `ability.stun_bolt`, `ability.frenzy` and `ability.sunder`.
 
@@ -86,7 +86,7 @@ Ground 40 × 40.
 | Two allies | Unit prefabs with Ally at (-9, 0, -2) and (-11, 0, 0), just outside the Devotion aura's radius of 8. VtDemoFactionTint Override Color on, green. Revive after 3 seconds at their start. |
 | Hexer | Unit prefab at (10, 0, -4), outside the Hex aura's radius of 7. **VtDemoInvulnerable**. VtDemoFactionTint Override Color on, purple. Revives after 2 seconds where it stands. |
 | Main Camera | VtTopDownCamera, Default Height 16, so the dummies, the brawler, both allies and the Hexer are all on screen with their nameplates at the start. |
-| Demo UI | Lesson card, two VtDemoUnitFrame at the top left, VtDemoHotbar, and **VtDemoStatSheet** titled Warden at the bottom left with rows Strength, Intelligence, Agility, Physical power, Spell power, Crit chance, Attack speed, Armor and Move speed. |
+| Demo UI | Lesson card, two **VtUnitFrame** with Unit Player and Region Top Left, one with Source Unit and one with Source Target Of Unit. **VtBuffBar** with Unit Player and Region Top Left. **VtResourceBar** with Unit Player, Bar Source Cast and Region Top Left. **VtActionBar** with the player's VtAbilityHotkeys, Region Bottom Center and Slot Size Large, and **VtStatList** titled Warden with Region Bottom Left and rows Strength, Intelligence, Agility, Physical power, Spell power, Crit chance, Attack speed, Armor and Move speed. |
 
 ## Build it yourself
 
@@ -108,7 +108,7 @@ Ground 40 × 40.
 - **5** Frenzy again and again: the duration grows up to 20 seconds.
 - **6** Sunder the armored dummy and compare your hits before and after.
 - Walk to the allies: Devotion shows on them. Walk past the Hexer and you slow down.
-- A buff an aura keeps up reads "Devotion · aura" in the unit frame and on the nameplate, with no countdown, because the aura re-applies it every second.
+- A buff an aura keeps up reads "Devotion · aura" on the buff bar and on the nameplate, with no countdown, because the aura re-applies it every second.
 - F10 hides every panel, R resets the scene.
 
 ## In your own game

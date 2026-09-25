@@ -29,6 +29,12 @@
       href: demos/23-selection-orders.md
     - name: 24 · UI Gallery
       href: demos/24-ui-gallery.md
+    - name: 25 · HUD
+      href: demos/25-hud.md
+    - name: 26 · RPG HUD
+      href: demos/26-rpg-hud.md
+    - name: Sample HUD panels
+      href: demos/panels.md
 - name: Concepts
   href: concepts.md
 - name: Modules
@@ -96,6 +102,12 @@
       href: modules/mail.md
     - name: Building
       href: modules/building.md
+    - name: Shared stash and costs
+      href: modules/shared-stash.md
+    - name: Unlocks
+      href: modules/unlocks.md
+    - name: Hotbar
+      href: modules/hotbar.md
     - name: Saving and loading
       href: modules/saving.md
     - name: Loot
@@ -110,6 +122,8 @@
       href: modules/spawning.md
     - name: Resource nodes
       href: modules/resource-nodes.md
+    - name: World time
+      href: modules/world-time.md
     - name: Fog of war
       href: modules/fog-of-war.md
     - name: Terrain cliffs
@@ -120,3 +134,5 @@
   href: multiplayer.md
 - name: Testing
   href: testing.md
+- name: Changelog
+  href: changelog.md

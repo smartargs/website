@@ -2,7 +2,7 @@
 
 Trees and ore veins that need the right tool and skill and grow back, stations with recipes, skills that level up, and a recipe learned from plans.
 
-![The crafting panel open at a station with a recipe in progress and resource nodes standing nearby.](../images/demos/11-crafting.png)
+![The crafting window open at a station with a recipe in progress and resource nodes standing nearby.](../images/demos/11-crafting.png)
 
 Scene `Scenes/10_GatheringCrafting`. Assets `Content/10_GatheringCrafting` and `Content/Shared`.
 
@@ -34,7 +34,7 @@ Unit definitions use the demo defaults unless listed: one HP pool without regene
 | Iron Sword | Id `item.iron_sword`, Slot Main Hand, Modifiers Physical Power +20%. |
 | Plans: Iron Sword | Id `item.iron_sword_plans`, Use Ability Study Plans, Consume On Use on. |
 
-**Study Plans**, an ability: Id `ability.study_iron_sword_plans`, Targeting Mode Self, Cooldown 0.5, Triggers GCD off. Effect **LearnIronSword**, a Learn Recipe effect with Recipe IronSwordRecipe.
+**Study Plans**, an ability: Id `ability.study_iron_sword_plans`, Icon Id `scroll-text`, Targeting Mode Self, Cooldown 0.5, Triggers GCD off. Effect **LearnIronSword**, a Learn Recipe effect with Recipe IronSwordRecipe.
 
 | Recipe | Settings |
 |---|---|
@@ -76,7 +76,7 @@ Ground 44 × 44.
 | Workbench | A station at (-4, 0, 9) with the `Wood` top, caption "Workbench" with "makes weapons", VtNameplateInfo with Hidden on. |
 | Plans | A WorldItem with Plans: Iron Sword at (-4, 0, 6). |
 | Forest Spider | Unit prefab with Forest Spider at (0, 0, 18). VtDemoReviveAfterDeath 6 seconds, Return To Start on. |
-| Demo UI | Lesson card. One VtDemoUnitFrame at the top left. **VtDemoInventoryPanel** with Unit set to the player. **VtDemoCraftingPanel** with Unit set to the player, Skills Woodcutting, Mining and Smithing, and Recipes in the order above. |
+| Demo UI | Lesson card. One **VtUnitFrame** with Unit set to the player, Source Unit and Region Top Left. **VtBuffBar** with Unit set to the player and Region Top Left. **VtResourceBar** with Unit set to the player, Bar Source Cast and Region Top Left. **VtInventoryWindow** with Unit set to the player, **VtCurrencyReadout** with Unit set to the player and Region Bottom Right, **VtDemoWindowKey** with Window the inventory window, Panel Name inventory and Toggle Key F4. **VtCraftingWindow** with Unit set to the player, Recipes in the order above and Open At Station on, and **VtDemoWindowKey** with Window the crafting window, Panel Name crafting and Toggle Key F8. **VtInteractionPrompt** with Player set to the player, Region Bottom Center and Key Text RMB. |
 
 A node is an empty object with a **Capsule Collider** (Center (0, 1.2, 0), Height 2.4, Radius 0.7), a **VtUnit** with its definition, and a Label at (0, 3.6, 0) showing health. The visual appears at runtime from the Resource Node definition. A station is an empty object with a **Box Collider** (Center (0, 0.55, 0), Size (1.9, 1.1, 1.2)), a dark Base cube at (0, 0.45, 0) scaled (1.8, 0.9, 1.1), a Top cube at (0, 0.95, 0) scaled (1.9, 0.12, 1.2), a **VtUnit** with its definition, and a Label at (0, 2.2, 0) with health hidden.
 
@@ -95,7 +95,7 @@ A node is an empty object with a **Capsule Collider** (Center (0, 1.2, 0), Heigh
 - Craft a Crude Pickaxe anywhere from five logs, equip it from the backpack and mine copper.
 - Stand at the Forge to smelt Copper Bars. Iron needs Mining 2 to mine and Smithing 2 to smelt.
 - Pick up the plans by the Workbench and use them to learn the Iron Sword.
-- Unequip your tool and hit a tree to see the refusal. Use +1 level in the crafting panel to skip ahead.
+- Unequip your tool and hit a tree to see the refusal. Press F8 for the crafting window anywhere: it opens by itself at a station.
 
 ## In your own game
 

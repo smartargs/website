@@ -77,9 +77,9 @@ Every state change first asks `VtAuthority` whether this process owns the truth 
 
 ## Two assets the package reads at startup
 
-- **VtCoreStats** maps the stats the code needs (armor, crit, resistances, pool max and regen stats) to assets. Ships in `Runtime/Resources`.
-- **VtTuning** holds every global number: armor formula, evade cap, global cooldown, projectile lifetime, movement feel. Ships in `Runtime/Resources`.
+- **VtCoreStats** maps the stats the code needs (armor, crit, resistances, pool max and regen stats) to assets. Ships in `Runtime/Resources/Vantage`.
+- **VtTuning** holds every global number: armor formula, evade cap, global cooldown, projectile lifetime, movement feel. Ships in `Runtime/Resources/Vantage`.
 
-Put a copy of either at `Assets/Resources/` with the same name and your copy wins, so package updates never overwrite your tuning.
+Put a copy of either at `Assets/Resources/` with the same name (`VtCoreStats.asset`, `VtTuning.asset`) and your copy wins, so package updates never overwrite your tuning. Or keep it anywhere and hand it over from a boot scene with `OverrideInstance`.
 
 Vantage never creates managers at runtime. If a scene needs a camera, an event system or a tick driver, you place it.

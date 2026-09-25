@@ -10,7 +10,7 @@ See it running: the [02 · Damage Lab](../demos/02-damage-lab.md) and [04 · Sta
 
 | Section | What it controls |
 |---|---|
-| Identity | `id`, display name, faction, targeting priority, tags. |
+| Identity | `id`, display name, description, portrait sprite and type icon for unit frames, faction, targeting priority, tags. |
 | Pools | One row per resource: kind (HP, MP, Stamina, Rage, …), base max, starting value, regen mode and rate. Every fighting unit needs an HP row. |
 | Basic attack | Damage range, damage type, attack type, range, interval, optional splash and projectile. Read by the shared basic-attack ability. |
 | Defense | Armor type (used by the attack-type × armor-type table). |
@@ -52,7 +52,7 @@ Attributes are your game's primary numbers: Strength, Intelligence, Luck. Create
 
 ## Buffs
 
-**Create → Vantage → Units → Buff Definition.** A buff has stat rows, attribute rows, trait overrides (for example `CanCast = false` for a silence), an optional tick that deals damage or heals every N seconds, a default duration, a crowd-control category, and a stacking policy: unique, refresh, add duration, or independent stacks.
+**Create → Vantage → Units → Buff Definition.** A buff has stat rows, attribute rows, trait overrides (for example `CanCast = false` for a silence), an optional tick that deals damage or heals every N seconds, a default duration, a crowd-control category, and a stacking policy: unique, refresh, add duration, or independent stacks. Turn **Harmful** on for a debuff, such as a burn or a slow; buff bars mark it and its tooltip names it a debuff. **Icon** or **Icon Id** gives it its picture on a buff bar.
 
 ```csharp
 var buffs = unit.GetComponent<VtUnitBuffs>();

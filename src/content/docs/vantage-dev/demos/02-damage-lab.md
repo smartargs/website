@@ -69,7 +69,7 @@ Ground 36 × 32.
 | Back row, z = 7 | Unit prefabs turned 180 degrees at x -10, -4, 2 and 8: Fire immune, Invulnerable, Thorns, Regenerating. |
 | Every dummy | The matching definition, **VtNameplateInfo** with a Subtitle naming its rule such as "Armor 100 · about half damage", **VtDemoHitReadout**, VtDemoReviveAfterDeath 2 seconds with Return To Start off. |
 | Main Camera | VtTopDownCamera, Default Height 16, so both rows and their nameplates fit on screen at the start. |
-| Demo UI | Lesson card, two VtDemoUnitFrame at the top left for Player and Player's target, and **VtDemoDamageLabController** at the bottom left with Player set, Crit Chance 0.5, Lifesteal 0.25 and Armor Penetration 0.5. |
+| Demo UI | Lesson card, two **VtUnitFrame** with Unit Player and Region Top Left, one with Source Unit and one with Source Target Of Unit. **VtBuffBar** with Unit Player and Region Top Left. **VtResourceBar** with Unit Player, Bar Source Cast and Region Top Left. **VtDemoDamageLabController** at the bottom left with Player set, Crit Chance 0.5, Lifesteal 0.25 and Armor Penetration 0.5. |
 
 **VtDemoHitReadout** on a dummy listens to its `VtUnitStats` and keeps the last result, the number of hits that landed and their average. The nameplate shows it under the dummy's rule, as `last 24 · avg 23 over 5`. A hit that was evaded reads `dodged` and one that was blocked reads `immune`; neither changes the average. Reviving clears the line.
 

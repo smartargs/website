@@ -26,10 +26,11 @@ Select the map and press **Edit Cliffs**, or pick **Cliff Editor** from the Scen
 | Shift + click | Lower by one level. |
 | Ctrl + click | Toggle a ramp on the cell. |
 | Level mode | Set cells to the chosen level. |
-| 1 to 4, [ and ] | Switch mode, shrink or grow the brush. |
+| Block mode | Close cells to walking and building. Shift + click opens them again. |
+| 1 to 5, [ and ] | Switch mode, shrink or grow the brush. |
 | Esc, Stop Editing, or any toolbar tool | Leave the cliff editor. |
 
-A ramp needs a neighbour exactly one level up on one side and the cell's own level on the opposite side. Cells that do not qualify keep their flag and turn into a ramp as soon as the neighbours fit. Ramps show green in the Scene view.
+A ramp needs a neighbour exactly one level up on one side and the cell's own level on the opposite side. Cells that do not qualify keep their flag and turn into a ramp as soon as the neighbours fit. Ramps show green in the Scene view, blocked cells red.
 
 Each stroke is one undo step, including the terrain heights it wrote.
 
@@ -39,7 +40,9 @@ A heightmap cannot stand vertical, so between two levels the terrain always slop
 
 In Painted Slopes mode **Slope Width** sets how wide the blend between two levels is, centred on the cell edge and capped at one cell. Steepness is level height over slope width. The cliff layer is painted over that width plus **Cliff Paint Padding** on each side, so the rock covers the whole face and wraps a little over the lip. Terrain textures are projected straight down, so a steep face stretches its texture; a wider slope stretches less, and a triplanar terrain shader removes the stretch entirely. In Wall Meshes mode the slope is pushed just behind the wall and every wall carries a flat rock rim on top, twice the sample spacing deep, that hides it.
 
-The map owns the ground under every cell that touches a cliff or a ramp, and rewrites those heights on every rebuild. Every other cell keeps what the terrain height tools sculpted, so hills inside a plateau are yours to shape. **Rebuild Cliffs** regenerates geometry, those owned heights and the paint, for after you swap the style or layers or edit the terrain by hand. **Write All Levels To Terrain** flattens the whole map to its levels when you want a clean start.
+The map owns only the ground that makes the cliffs. In Painted Slopes mode that is the slope band along every level change, half the **Slope Width** on each side of the edge but never less than one heightmap sample, plus every ramp and the ground right around it. In Wall Meshes mode it is every cell beside a wall or ramp. Everything else keeps what the terrain height tools sculpted, so a riverbed or relief can run right up to the foot of a cliff. **Rebuild Cliffs** regenerates geometry, the owned heights and the paint, for after you swap the style or layers or edit the terrain by hand. **Write All Levels To Terrain** flattens the whole map to its levels when you want a clean start.
+
+The terrain is written only when you change the cliffs: painting, the inspector's settings, **Rebuild Cliffs**, or `ApplyFromNet` with different levels. Opening the scene or entering Play mode never touches it. If the levels were changed without the terrain following, for example by editing the scene file, the map brings the terrain up to date the next time it loads.
 
 While you paint, only the terrain around the brush is updated and the terrain's detail work waits for the end of the stroke, so strokes stay smooth on large terrains.
 
@@ -82,9 +85,21 @@ public sealed class MyCliffStyle : VtCliffStyle
 ```csharp
 var map = VtCliffMap.Instance;
 map.GetLevelAtWorld(point);     // whole level of the cell under a point
-map.SampleHeight(point);        // world Y the map assigns there, sloped on ramps
+map.SampleGroundHeight(point);  // world Y of the actual ground, sculpting included
+map.SampleHeight(point);        // world Y of the cell's level, sloped on ramps, ignoring sculpting
 map.WorldToCell(point);         // the cell itself
 map.Grid.GetShape(cell);        // Flat, Edge or Ramp
+map.IsBlockedAtWorld(point);    // true on a blocked cell
 ```
 
-`ApplyFromNet(levels, ramps)` mirrors a replicated or loaded map; `Grid.LevelsCopy()` and `Grid.RampsCopy()` give the arrays to send. The generated walls are never saved with the scene and are rebuilt on load.
+Use `SampleGroundHeight` to place props, units or effects on the ground. `SampleHeight` is the level the grid assigns, which is what footprints and cliff rules use.
+
+`ApplyFromNet(levels, ramps, blocked)` mirrors a replicated or loaded map; `Grid.LevelsCopy()`, `Grid.RampsCopy()` and `Grid.BlockedCopy()` give the arrays to send. The generated walls are never saved with the scene and are rebuilt on load.
+
+## Blocked cells
+
+Blocked cells close ground without a cliff: river exits, deep water, fenced-off land. Paint them in Block mode or call `Grid.SetBlocked(cell, true)` and then `RebuildGeometry()`.
+
+- Building refuses a footprint over a blocked cell with `VtBuildFailureReason.BlockedGround`, in every snap mode.
+- The map puts a **Not Walkable** `NavMeshModifierVolume` over each run of blocked cells, under the generated root. Rebake the NavMesh after changing them, as after changing cliffs, and leave the `NavMeshSurface`'s **Collect Objects** on a mode that includes the map.
+- Blocking a cell does not change its level or the terrain.

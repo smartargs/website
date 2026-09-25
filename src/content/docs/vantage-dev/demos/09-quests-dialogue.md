@@ -12,6 +12,7 @@ Scene `Scenes/09_QuestsDialogue`. Assets `Content/09_QuestsDialogue` and `Conten
 - A dialogue asset adds lines and answers; answers can need requirements, apply effects and jump to other lines, and quest answers are appended automatically.
 - Quests are built from objective, reward and requirement assets: level, earlier quests, items and dialogue flags gate them.
 - A quest can have a time limit or repeat after a cooldown.
+- A minimap over a captured picture of the ground marks quest givers with something to offer or to take back, and points to the places and people active quests send you to.
 
 ## Assets
 
@@ -82,7 +83,8 @@ Ground 40 × 40.
 | Stream | A flat Cube at (14.5, 0.01, 8), Scale (2.5, 0.02, 22), with the `Water` material. |
 | Silverleaf | Six WorldItem prefabs with Silverleaf, count 1, at (12.5, 0, 2), (16.5, 0, 5), (12.5, 0, 8), (16.5, 0, 10), (12.5, 0, 13) and (16.5, 0, 15). |
 | The Ridge | Empty object at (-14, 0, -14) with **VtQuestLocationMarker**, Location Id `ridge`, Gizmo Radius 3; a dark Cylinder pole, a small gold Cube flag, and a Label "The Ridge" with "quest location". |
-| Demo UI | Lesson card. One VtDemoUnitFrame at the top left for the player. **VtDemoQuestLog** with Unit set to the player and Repeatables Boar Cull. **VtDemoInventoryPanel** with Unit set to the player. **VtDemoDialogueWindow** with Unit set to the player. |
+| Map Area | Empty object at (0, 0, 0) with **VtMapArea**, Size (40, 40), Display Name Millbrook, Image `MillbrookMap.png`, captured with **Capture Image** at the default Capture Resolution 1024 and Capture Without Units on. |
+| Demo UI | Lesson card. One **VtUnitFrame** with Unit set to the player, Source Unit and Region Top Left. **VtBuffBar** with Unit set to the player and Region Top Left. **VtResourceBar** with Unit set to the player, Bar Source Cast and Region Top Left. **VtQuestLogWindow** with Unit set to the player and **VtDemoWindowKey** with Window the quest log, Panel Name quest log and Toggle Key F8. **VtQuestTracker** with Unit set to the player and Region Top Left. **VtInventoryWindow** with Unit set to the player, **VtCurrencyReadout** with Unit set to the player and Region Bottom Right, **VtDemoWindowKey** with Window the inventory window, Panel Name inventory and Toggle Key F4. **VtDialogueWindow** with Unit set to the player. **VtInteractionPrompt** with Player set to the player, Region Bottom Center and Key Text RMB. **VtMinimap** with Unit set to the player and Region Bottom Right, the other fields at their defaults. |
 
 ## Build it yourself
 
@@ -93,15 +95,19 @@ Ground 40 × 40.
 5. Build the scene as in [Build the shared layout](index.md#build-the-shared-layout) with a 40 × 40 Level.
 6. Place the player with **VtUnitInventory** and **VtUnitWallet**, the Scout, the Elder, the boars and the Silverleaf.
 7. Create The Ridge with **Vantage → Quests → VtQuestLocationMarker** and Location Id `ridge`.
+8. Create an empty object named Map Area at (0, 0, 0), add **Vantage → UI → VtMapArea** with Size (40, 40) and Display Name Millbrook, save the scene, and press **Capture Image**.
+9. Add **VtMinimap** to the Demo UI with Unit set to the player and Region Bottom Right.
 
 ## Try
 
-- Right-click the Scout, accept A Word with the Elder, then talk to the Elder.
+- Walk up to the Scout: the prompt at the bottom names it. Right-click, accept A Word with the Elder, then talk to the Elder. F8 opens the quest log; the tracker under the unit frame follows your active quests.
 - Ask the Elder what grows nearby to unlock Silverleaf, then pick four by the stream.
 - Boar Trouble needs the first quest turned in. Scout the Ridge needs level 2 and gives you 45 seconds.
 - Boar Cull needs the Elder Token and comes back 30 seconds after you turn it in.
 - Pick answers with the mouse or the number keys. Esc ends a conversation.
+- Watch the minimap in the bottom right: a yellow mark over the Scout while it has a quest for you, a question mark once a quest waits to be handed in, a pin on the Elder while you have to talk to them, and a pin on the rim pointing to the ridge while Scout the Ridge runs. The buttons under it zoom.
 
 ## In your own game
 
 - See [Quests](../modules/quests.md) and [Dialogue](../modules/dialogue.md). The Elder's "The Scout sent me to you." answer is the pattern for turning a quest in to someone other than its giver.
+- See [Minimap](panels.md#minimap) for map areas, markers and the minimap's fields.

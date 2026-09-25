@@ -47,7 +47,7 @@ Ground 30 × 30.
 | Player | Player prefab at (0, 0, -4). Definition PlayerUnit. VtDemoReviveAfterDeath with Delay Seconds 4 and Return To Start on. |
 | Skeleton | Unit prefab at (0, 0, 6). Definition SkeletonUnit. VtDemoReviveAfterDeath with Delay Seconds 4 and Return To Start on. |
 | Main Camera | VtTopDownCamera, Initial Target Player, Default Height 15, so the skeleton's nameplate is fully on screen at the start. |
-| Demo UI | Lesson card. Two VtDemoUnitFrame at the top left: one reads Player, the other has Show Target Of Unit on and reads the unit Player has selected, or else Player's target. |
+| Demo UI | Lesson card. Two **VtUnitFrame** with Unit Player and Region Top Left: one with Source Unit, the other with Source Target Of Unit, which shows the unit Player has selected, or else Player's target. **VtBuffBar** with Unit Player and Region Top Left. **VtResourceBar** with Unit Player, Bar Source Cast and Region Top Left. |
 
 ## Build it yourself
 
@@ -56,7 +56,7 @@ This builds the scene from nothing but the package.
 **The basic attack**
 
 1. **Create → Vantage → Abilities → Effects → Basic Attack Damage**, name it **BasicAttackDamage**.
-2. **Create → Vantage → Abilities → Ability Definition**, name it **BasicAttack**, and set Id `ability.basic_attack`, Targeting Mode Single Target, Triggers GCD off, Ignores GCD on, Can Auto Cast on, Scales With Attack Speed on, Source Cooldown From Unit Attack Interval on, Source Range From Unit Attack Range on. Drag BasicAttackDamage into **Effects**.
+2. **Create → Vantage → Abilities → Ability Definition**, name it **BasicAttack**, and set Id `ability.basic_attack`, Icon Id `sword`, Targeting Mode Single Target, Triggers GCD off, Ignores GCD on, Can Auto Cast on, Scales With Attack Speed on, Source Cooldown From Unit Attack Interval on, Source Range From Unit Attack Range on. Drag BasicAttackDamage into **Effects**.
 
 **The unit definitions**
 

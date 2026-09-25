@@ -156,9 +156,10 @@ private async Task Confirm(string fieldId)
 ```
 
 If somebody cannot sign after all, `finalizer.FinalizePartialAsync(session)` finalizes what is
-signed: the manifest marks the version partial, the audit page names the fields left open, and the
-rest has to be signed in a new session; continuing a partial version is not in this release. Without
-it the signatures already given would be lost.
+signed: the manifest marks the version partial and the audit page names the fields left open. Without
+it the signatures already given would be lost. The open fields can be signed later, on this device or
+another, in a version that continues it; see
+[Finalizing](guides/finalizing.md#continue-on-another-device).
 
 `ConfirmAsync` takes the strokes, draws them into an image the size of that field, and binds them
 together with the pages rendered and shown, the document's hash, the template and the evidence. It

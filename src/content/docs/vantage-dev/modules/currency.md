@@ -6,7 +6,7 @@ See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) 
 
 ## Setup
 
-1. **Create → Vantage → Currency → Currency** for each currency: id, display name, colour, sort weight, optional icon.
+1. **Create → Vantage → Currency → Currency** for each currency: id, display name, colour, sort weight, optional icon or Icon Id (a name from the package's icon set).
 2. Add **Vantage → Currency → VtUnitWallet** to units that hold money, usually the player.
 
 Loot tables with **Currency Drops** credit the killer's wallet on death. Kills without a killer, or by a unit without a wallet, credit nothing.

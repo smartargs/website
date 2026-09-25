@@ -49,6 +49,7 @@ Challengers are living units hostile to the bosses. A reset returns every boss t
 | Spawn Adds | Fills or clears the spawner at an index. |
 | Set Invulnerable | Makes the boss or all bosses invulnerable or vulnerable. |
 | Message | Raises `OnMessage` with a localized line for a yell or banner. |
+| Set Time Of Day | Moves the scene clock to a time of day, running forward so skipped phases fire, or jumping with **Skip Forward** off. See [World time](world-time.md). |
 
 A custom step subclasses `VtEncounterAction` and overrides `Execute(encounter, boss)`. `encounter.ResolveTargets`, `encounter.ApplyTrackedBuff` and `encounter.GetSpawner` are there for it.
 

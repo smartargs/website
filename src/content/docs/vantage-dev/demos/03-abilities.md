@@ -19,16 +19,16 @@ Scene `Scenes/03_Abilities`. Assets `Content/03_Abilities` and `Content/Shared`.
 
 Every ability uses Resource Kind MP, Triggers GCD on and Ignores GCD off. Damage Reaction is Interrupt on every ability except Drain Life. Every splash has Target Mask Everything and Friendly Fire off, so it only hits units of other factions.
 
-| Key | Ability | Targeting Mode | Range | Resource Cost | Cast Time | Cooldown |
-|---|---|---|---|---|---|---|
-| 1 | Firebolt | Single Target | 20 | 20 | 1 | 0 |
-| 2 | Arcane Missile | Single Target | 18 | 15 | 0 | 2 |
-| 3 | Frost Nova | Self | 0 | 40 | 0 | 8 |
-| 4 | Blizzard | Ground Point | 18 | 60 | 1.5 | 12 |
-| 5 | Drain Life | Single Target | 12 | 30 | 0 | 6 |
-| 6 | Cleave | Single Target | 3 | 0 | 0 | 4 |
-| 7 | Heal | Self | 0 | 50 | 1.5 | 6 |
-| 8 | Meteor | Ground Point | 20 | 80 | 2.5 | 15 |
+| Key | Ability | Icon Id | Targeting Mode | Range | Resource Cost | Cast Time | Cooldown |
+|---|---|---|---|---|---|---|---|
+| 1 | Firebolt | `flame` | Single Target | 20 | 20 | 1 | 0 |
+| 2 | Arcane Missile | `sparkles` | Single Target | 18 | 15 | 0 | 2 |
+| 3 | Frost Nova | `snowflake` | Self | 0 | 40 | 0 | 8 |
+| 4 | Blizzard | `wind` | Ground Point | 18 | 60 | 1.5 | 12 |
+| 5 | Drain Life | `droplets` | Single Target | 12 | 30 | 0 | 6 |
+| 6 | Cleave | `swords` | Single Target | 3 | 0 | 0 | 4 |
+| 7 | Heal | `heart-pulse` | Self | 0 | 50 | 1.5 | 6 |
+| 8 | Meteor | `orbit` | Ground Point | 20 | 80 | 2.5 | 15 |
 
 Their ids are `ability.firebolt`, `ability.arcane_missile`, `ability.frost_nova`, `ability.blizzard`, `ability.drain_life`, `ability.cleave`, `ability.heal` and `ability.meteor`.
 
@@ -104,7 +104,7 @@ Ground 40 × 40.
 | Moving target | Unit prefab with DummyMovingDummy at (-6, 0, 10). **VtDemoPatrol** with Offset (12, 0, 0) and Wait Seconds 1. VtDemoReviveAfterDeath 3 seconds, Return To Start on. |
 | Sparring partner | Unit prefab with SparringPartner at (9, 0, 0), outside its own Aggro Range of 5 so it waits for you. VtDemoReviveAfterDeath 3 seconds, Return To Start on. |
 | Main Camera | VtTopDownCamera, Default Height 17, so every target and its nameplate is on screen at the start and none of them sits under the lesson card. |
-| Demo UI | Lesson card, two VtDemoUnitFrame at the top left for Player and Player's target, **VtDemoHotbar** with Hotkeys set to the player's VtAbilityHotkeys. |
+| Demo UI | Lesson card, two **VtUnitFrame** with Unit Player and Region Top Left, one with Source Unit and one with Source Target Of Unit. **VtBuffBar** with Unit Player and Region Top Left. **VtResourceBar** with Unit Player, Bar Source Cast and Region Top Left. **VtActionBar** with Hotkeys set to the player's VtAbilityHotkeys, Region Bottom Center and Slot Size Large. |
 
 ## Build it yourself
 

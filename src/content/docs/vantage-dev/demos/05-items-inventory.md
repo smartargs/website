@@ -2,7 +2,7 @@
 
 An adventurer with a backpack, items and gold on the ground, and a training dummy to wear a weapon down on.
 
-![The inventory panel open with two Warden pieces equipped, the set tier lit and gold in the purse.](../images/demos/04-items.png)
+![The inventory window open with two Warden pieces equipped, the set tier lit and gold in the purse.](../images/demos/04-items.png)
 
 Scene `Scenes/05_ItemsInventory`. Assets `Content/05_ItemsInventory` and `Content/Shared`.
 
@@ -39,10 +39,10 @@ The items, all Item Definitions:
 
 The consumables' abilities are Self-targeted, cost nothing and have Triggers GCD off:
 
-| Ability | Id | Cooldown | Effects |
-|---|---|---|---|
-| Drink Health Potion | `ability.drink_health_potion` | 3 | **HealthPotionHeal**, a Heal effect of exactly 60. |
-| Drink Elixir of Strength | `ability.drink_elixir_of_strength` | 1 | Apply Buff: **Elixir of Strength** (`buff.elixir_of_strength`), Default Duration 60, Refresh, Attribute Grants Strength 20. |
+| Ability | Id | Icon Id | Cooldown | Effects |
+|---|---|---|---|---|
+| Drink Health Potion | `ability.drink_health_potion` | `flask-round` | 3 | **HealthPotionHeal**, a Heal effect of exactly 60. |
+| Drink Elixir of Strength | `ability.drink_elixir_of_strength` | `beaker` | 1 | Apply Buff: **Elixir of Strength** (`buff.elixir_of_strength`), Default Duration 60, Refresh, Attribute Grants Strength 20. |
 
 **Adventurer**, the player's Unit Definition:
 
@@ -76,9 +76,9 @@ Ground 36 × 36.
 | Gold | GoldPile prefabs: 25 at (9, 0, -4), 25 at (11, 0, -2), 40 at (-11, 0, -5). |
 | Training dummy | Unit prefab at (0, 0, 8). Revives after 2 seconds where it stands. |
 | Main Camera | VtTopDownCamera, Default Height 16, so the dummy, its nameplate and every item label are on screen at the start. |
-| Demo UI | Lesson card, a VtDemoUnitFrame for Player at the top left, **VtDemoInventoryPanel** for Player at the bottom right, and VtDemoStatSheet titled Adventurer at the bottom left with rows Strength, Physical power, Attack speed, Armor and Thorns. |
+| Demo UI | Lesson card, a **VtUnitFrame** with Unit Player, Source Unit and Region Top Left. **VtBuffBar** with Unit Player and Region Top Left. **VtResourceBar** with Unit Player, Bar Source Cast and Region Top Left. **VtInventoryWindow** with Unit Player, **VtCurrencyReadout** with Unit Player and Region Bottom Right, **VtDemoWindowKey** with Window the inventory window, Panel Name inventory and Toggle Key F4, and **VtStatList** titled Adventurer with Region Bottom Left and rows Strength, Physical power, Attack speed, Armor and Thorns. |
 
-The inventory panel only calls the public API: `TryEquip` and `TryRemoveItem` to equip from the backpack, `Unequip` and `TryAddItem` to take an item off, and `TryUseItem` for consumables. Whatever an equip displaces, such as the off-hand item when a two-handed weapon goes on, goes back into the backpack.
+The inventory window is one of the sample's panels, see [Inventory and equipment](panels.md#inventory-and-equipment). It only calls the public API: `TryMove` for every drag between bag slots and worn gear, `TryEquipFromSlot` through it to equip from the bag, `TryUnequipToInventory` to take an item off, and `TryUseSlot` for consumables. Whatever an equip displaces, such as the off-hand item when a two-handed weapon goes on, goes back into the bag, and a refusal shows its reason. Hover an item for its tooltip.
 
 ## Build it yourself
 
@@ -93,7 +93,7 @@ The inventory panel only calls the public API: `TryEquip` and `TryRemoveItem` to
 ## Try
 
 - Right-click items and gold on the ground to pick them up.
-- Click backpack items to equip or use them, and equipped items to take them off.
+- Press F4 for the inventory. Click bag items to equip or use them, and equipped items to take them off.
 - Wear two, then three Warden pieces and watch the set bonuses turn on.
 - Try the Greatsword: it refuses below 25 Strength. Drink the Elixir of Strength and try again. It also clears the off hand.
 - Equip the Brittle Dagger and hit the dummy eight times: it breaks and leaves the slot.

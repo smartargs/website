@@ -20,7 +20,7 @@ Add these to the unit prefab:
 |---|---|
 | `VtTopDownClickToMove` | Path following, acceleration, rotation, gravity. Adds a local executor and a `CharacterController` at runtime if none exist. The added controller is centred on the pivot, so a model whose pivot is at its feet floats; add the controller yourself and set its Center Y to half its Height. |
 | `VtNavMeshPathProvider` | Pathfinding on a baked NavMesh. Optional but recommended. |
-| `VtTopDownClickInput` | Player only. Right-click on ground moves, on a hostile attacks, on an item or NPC walks over and interacts. Left-click selection is `VtUnitSelection`, see [Selection](selection.md). |
+| `VtTopDownClickInput` | Player only. The Command action, right-click by default, on ground moves, on a hostile attacks, on an item or NPC walks over and interacts. Selection is `VtUnitSelection`, see [Selection](selection.md); to rebind the buttons see [Input](input.md#mouse-buttons). |
 | `VtAbilityHotkeys` | Player only. Casts abilities from input actions, see below. |
 | `VtTopDownAnimatorBinding` | Optional. Writes the measured speed to an Animator float parameter. |
 
@@ -55,10 +55,13 @@ Add **Vantage → Movement → VtNavMeshPathProvider** next to `VtTopDownClickTo
 | Sample Radius | How far off the mesh a start or destination may be and still snap onto it. |
 | Area Mask | Which NavMesh areas this unit may walk. |
 | Fallback To Straight Line | When the unit is on no mesh at all, walk straight and warn once, so an unbaked scene still plays. |
+| Max Path Queries | Most searches one move may run. Unity's search stops after a fixed amount of work, so on a large map a long path can come back short of a goal that is reachable. The provider then searches on from where it stopped and joins the pieces. 1 turns this off. Default 4. |
+
+A goal that really cannot be reached still ends at the closest point: the provider notices the next search gets no closer and stops there.
 
 Without any provider, units walk in a straight line, which is fine for prototypes and flat arenas.
 
-Other backends plug in through the `IVtPathProvider` interface: one method that calls back exactly once with the waypoints, or with `null` when there is no path. Put the component next to `VtTopDownClickToMove` and it is picked up automatically.
+Other backends plug in through the `IVtPathProvider` interface: one method that calls back exactly once with the waypoints, or with `null` when there is no path. Put the component next to `VtTopDownClickToMove` and it is picked up automatically. If your backend also gives up on long searches, `VtPathStitcher.Stitch` joins its partial results the same way.
 
 ## Executors
 
@@ -128,9 +131,9 @@ Set **Ground Targeting** on `VtAbilityHotkeys` to choose how ground-point abilit
 | Ground Targeting | Behaviour |
 |---|---|
 | Cast At Cursor | The press casts at the ground under the cursor. The default. |
-| Aim And Confirm | The press starts aiming. A left-click or a second press of the key casts where the cursor is; right-click or the Cancel action, Esc or the gamepad East button, stops aiming. Set **Cancel Aim Action** to use another. |
+| Aim And Confirm | The press starts aiming. Confirm Target (left-click or the gamepad South button) or a second press of the key casts where the cursor is; Command (right-click) or Cancel (Esc or the gamepad East button) stops aiming. Set **Confirm Target Action**, **Command Action** or **Cancel Aim Action** to use others. |
 
-Add **Vantage → Visuals → VtGroundTargetIndicator** next to the hotkeys to draw a ring while aiming. The ring has the ability's area radius, or **Reticle Radius** for an ability without an area, and changes colour when the point is out of range. While aiming, right-clicks do not walk.
+Add **Vantage → Visuals → VtGroundTargetIndicator** next to the hotkeys to draw a ring while aiming. The ring has the ability's area radius, or **Reticle Radius** for an ability without an area, and changes colour when the point is out of range. While aiming, command clicks do not walk.
 
 ```csharp
 hotkeys.GroundTargeting = VtGroundTargeting.AimAndConfirm;
