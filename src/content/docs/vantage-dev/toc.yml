@@ -128,6 +128,11 @@
       href: modules/fog-of-war.md
     - name: Terrain cliffs
       href: modules/terrain-cliffs.md
+- name: Reference
+  href: reference/index.md
+  items:
+    - name: Tuning
+      href: reference/tuning.md
 - name: Extending
   href: extending.md
 - name: Multiplayer

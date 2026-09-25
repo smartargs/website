@@ -95,17 +95,19 @@ inv.TryUseSlot(to, VtAbilityTargetData.Self()); // use and consume from that sta
 Toast(VtFailureText.Describe(why));
 ```
 
-A move goes into an empty slot, onto the same item with room (what does not fit stays), or swaps two whole stacks. Part of a stack cannot swap, a full stack refuses more, and a slot rule refuses with its own text. All of these work from clients; the server checks them again.
+A move goes into an empty slot, onto the same item with room (what does not fit stays), or swaps two whole stacks. A copy of an item with **Durability Mode** Uses moved onto another copy combines with it instead, see [Combining copies](items.md#combining-copies). Part of a stack cannot swap, a full stack refuses more, and a slot rule refuses with its own text. All of these work from clients; the server checks them again.
 
-Worn gear has its own address, `VtInventorySlotRef.Worn(VtEquipmentSlot.Head)`. Moving a bag slot there puts the item on, moving from there takes it off into that slot (or swaps with a helm in it), and moving between two worn slots swaps rings or trinkets. `GetSlot` on a worn address reads what is worn. Quick-move puts an item on when its equipment slot is empty, takes worn items off, and moves anything else to the other areas. A refusal from equipment comes as `EquipRefused` with the equipment reason in `EquipReason`.
+Worn gear has its own address, `VtInventorySlotRef.Worn(VtEquipmentSlot.Head)`. Moving a bag slot there puts the item on, moving from there takes it off into that slot (or swaps with a helm in it), and moving between two worn slots swaps rings or trinkets. Moving a Uses copy onto the worn copy, or the worn copy onto a bag copy, combines them. `GetSlot` on a worn address reads what is worn. Quick-move combines a Uses copy into the worn one, puts an item on when its equipment slot is empty, takes worn items off, and moves anything else to the other areas. A refusal from equipment comes as `EquipRefused` with the equipment reason in `EquipReason`.
 
 ## Worn items in the bag
 
-Items with a **Max Durability** keep their wear in the bag. Each entry has a `wear` (durability lost), `Durability` and `DurabilityFraction`; a new item has no wear. Entries with different wear never stack. Gear taken off keeps its wear, and `TryAddItem(item, count, wear)` adds copies that are already worn. `WearOfNext(item)` tells which wear the next copy taken out has. Wear is saved with the bag, and saves from before wear existed load everything as new.
+Items with a **Max Durability** keep their wear in the bag. Each entry has a `wear` (durability lost), `Durability`, `Capacity` and `DurabilityFraction`; a new item has no wear. Entries with different wear never stack. Gear taken off keeps its wear, and `TryAddItem(item, count, wear)` adds copies that are already worn. `WearOfNext(item)` tells which wear the next copy taken out has. Wear is saved with the bag, and saves from before wear existed load everything as new.
 
-`VtInventoryPresenter` reports `Durability` and `MaxDurability` for every entry, so a bag view can draw a wear bar when `MaxDurability` is above 0.
+An entry of a Uses item that copies were combined into also has `extraDurability`, the durability those copies added. `Capacity` is Max Durability plus that, and `Durability` is `Capacity` minus `wear`. `AddAsMuchAsFits(item, count, wear, extraDurability)` adds such an item.
 
-Wear lives on the bag entry only. Depositing an item into a [shared stash](shared-stash.md) or attaching it to mail sends it as a new item.
+`VtInventoryPresenter` reports `Durability` and `MaxDurability` (the entry's `Capacity`) for every entry, so a bag view can draw a wear bar when `MaxDurability` is above 0, or print the uses left of a combined tool.
+
+Wear and combined durability live on the bag entry only. Depositing an item into a [shared stash](shared-stash.md) or attaching it to mail sends it as a new item.
 
 ## Consumables
 
@@ -121,7 +123,7 @@ The result is the same `VtAbilityCastFailReason` an ability cast returns, so "on
 
 ## Picking things up
 
-Loot drops and `VtWorldItem` objects are picked up by right-clicking them. When only part of a pile fits, the unit takes that part and the rest stays on the ground (`OnPartlyPickedUp`). Picked-up items keep the pile's **Wear**. For trigger-based pickups write a few lines:
+Loot drops and `VtWorldItem` objects are picked up by right-clicking them. When only part of a pile fits, the unit takes that part and the rest stays on the ground (`OnPartlyPickedUp`). Picked-up items keep the pile's **Wear** and **Extra Durability**. For trigger-based pickups write a few lines:
 
 ```csharp
 private void OnTriggerEnter(Collider other)
@@ -140,4 +142,4 @@ inv.TryDropSlot(new VtInventorySlotRef("area.main", 4), 0, out var why); // 0 dr
 inv.OnDropped += worldItem => PlayThud(worldItem.transform.position);
 ```
 
-The items land **Drop Distance** (on `VtTuning`, default 1) in front of the unit as a `VtWorldItem` with their count and wear. The prefab is the item's **World Item Prefab**, else **Default World Item Prefab** on `VtTuning`; it must hold a `VtWorldItem`. Items that are not **Droppable**, or have no prefab, are refused with `NotDroppable`. Dropping works from clients; the server takes the items out and spawns the world item. Give the prefab your network object so clients see it.
+The items land **Drop Distance** (on `VtTuning`, default 1) in front of the unit as a `VtWorldItem` with their count, wear and extra durability. The prefab is the item's **World Item Prefab**, else **Default World Item Prefab** on `VtTuning`; it must hold a `VtWorldItem`. Items that are not **Droppable**, or have no prefab, are refused with `NotDroppable`. Dropping works from clients; the server takes the items out and spawns the world item. Give the prefab your network object so clients see it.

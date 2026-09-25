@@ -1,10 +1,10 @@
 # Terrain cliffs
 
-Grid-based cliffs painted in the Scene view, the way tile-based map editors do it. Every cell holds a whole level, cliffs appear where neighbouring levels differ, and flagged cells become ramps. On a Unity Terrain the map shapes the heightmap and paints a cliff layer along every drop, or stands wall meshes on the edges if you prefer. Without a terrain it builds its own ground and walls through a style. Building snaps to the same cells, so a wall footprint can never straddle a cliff edge.
+Grid-based cliffs painted in the Scene view, the way tile-based map editors do it. Every cell holds a whole level, cliffs appear where neighbouring levels differ, and flagged cells become ramps. On a Unity Terrain the map shapes the heightmap and paints a cliff layer along every drop, or stands wall meshes on the edges if you prefer. Without a terrain it builds its own ground and walls through a style. Building snaps to the same grid, and a footprint that would straddle a cliff edge is refused.
 
 ## Setup
 
-1. Add **Vantage → World → VtWorldGrid** to an empty object. Its position is the corner of cell (0, 0) and **Cell Size** is the cell edge in world units. One per scene; building reads it too.
+1. Add **Vantage → World → VtWorldGrid** to an empty object. Its position is the corner of cell (0, 0) and **Cell Size** is the cell edge in world units. One per scene; building reads it too. To keep large cliff cells but let pieces snap finer, raise **Build Subdivisions**: 2 on 2-unit cells gives 1-unit building.
 2. Add **Vantage → Terrain → VtCliffMap** to the same object. Set **Width** and **Height** in cells and press **Resize**. Set **Level Height** for how tall one step is.
 3. Assign your **Terrain** if you have one, then press **Fit To Terrain** to move the origin to its corner and size the grid to cover it. Without a terrain the map generates a walkable ground mesh at each cell's level.
 4. With a terrain, pick how cliffs show under **Cliffs On Terrain**:

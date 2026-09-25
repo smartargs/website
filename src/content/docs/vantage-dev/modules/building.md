@@ -19,7 +19,7 @@ Place structures by paying items and currency. The builder shows a ghost that fo
 | Required Level, Required Completed Quests | Prerequisites. |
 | Required Unlock | An [unlock](unlocks.md) that must be owned first. Refused with `Locked` until then. |
 | Snap Mode | `Free`, `Grid`, `SurfaceAligned` (tilts to the surface) or `Socket` (see below). |
-| Grid Cell Size, Footprint Cells | How many cells the piece covers. Cell size 0 uses the scene's `VtWorldGrid`, which cliffs share; set a value to override it for this piece. A 1×1 piece sits on a cell centre, a 2×1 wall on the edge between two cells. |
+| Grid Cell Size, Footprint Cells | How many cells the piece covers. Cell size 0 uses the scene `VtWorldGrid`'s build cell (its Cell Size divided by Build Subdivisions); set a value to override it for this piece. A 1×1 piece sits on a cell centre, a 2×1 wall on the edge between two cells. |
 | Rotation Step Degrees | How far one rotate press turns the ghost. 0 disables rotation. |
 | Socket Family, Socket Snap Distance | Which sockets this piece connects to and from how far. |
 | Placement Range | How far from the builder the piece may go, on the ground plane. 0 = anywhere. The preview reports `OutOfRange` beyond it. |
@@ -33,9 +33,9 @@ Place structures by paying items and currency. The builder shows a ghost that fo
 5. Check **Use Builder** on the player's unit definition.
 6. Add **Vantage → Building → VtBuildInput** to the player for the controls. See [Controls](#controls).
 7. Optionally add the preview components to the player: **VtBuildGhostStyle**, **VtBuildRangeIndicator** and **VtBuildGridPatch**. See [Placement preview](#placement-preview).
-8. Add **Vantage → World → VtWorldGrid** to the scene once. Its position is the grid origin and **Cell Size** the cell edge. Without one, building uses one-unit cells from the world origin.
+8. Add **Vantage → World → VtWorldGrid** to the scene once. Its position is the grid origin and **Cell Size** the cell edge. **Build Subdivisions** splits each cell for building, so 2-unit cliff cells with 2 subdivisions give 1-unit building. Without one, building uses one-unit cells from the world origin.
 
-With a [cliff map](terrain-cliffs.md) in the scene, grid and socket placements must sit on one flat level. A footprint across a cliff edge or on a ramp fails with `CrossesCliff`. A footprint over a cell the map marks as blocked fails with `BlockedGround` in every snap mode.
+With a [cliff map](terrain-cliffs.md) in the scene, grid and socket placements must sit on one flat level. A footprint across a cliff edge or on a ramp fails with `CrossesCliff`. The footprint is measured in build cells, and every cliff cell it covers even partly must pass, so on a finer build grid a piece may share a cliff cell with its neighbour or span two flat ones. A footprint over a cell the map marks as blocked fails with `BlockedGround` in every snap mode.
 
 ## Controls
 

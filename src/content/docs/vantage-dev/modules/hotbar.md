@@ -22,7 +22,7 @@ A player can carry several bars. For six item slots and four build slots, add tw
 
 ## A hotbar that is part of the inventory
 
-For games where the hotbar is a row of the inventory, put an **Inventory Area** in the bar's slots, or call `bar.AssignArea(hotbarArea, 0, 6)`. The first bar slot holding the area shows the area's slot 0, the next one slot 1, and so on. Each bar slot shows that one stack: its icon, count and wear, so two stacks of wood are two slots.
+For games where the hotbar is a row of the inventory, put an **Inventory Area** in the bar's slots, or call `bar.AssignArea(hotbarArea, 0, 6)`. The first bar slot holding the area shows the area's slot 0, the next one slot 1, and so on. Each bar slot shows that one stack: its icon, count and wear, so two stacks of wood are two slots. `DurabilityLeft` and `DurabilityMax` give the numbers behind the wear bar, such as 350 of 400 for a tool that copies were [combined](items.md#combining-copies) into.
 
 - With a [held slot](items.md#holding-the-selected-hotbar-slot) on the same area, a press selects the slot, which puts its item in the hand; pressing the selected slot again uses its item, such as eating, or puts on armor kept there. An empty slot can be selected for empty hands. `Active` marks the selected slot.
 - Without one, a press uses the item, or puts it on when it can be worn.
@@ -39,7 +39,8 @@ var bar = player.GetComponent<VtHotbar>();
 for (int i = 0; i < bar.SlotCount; i++)
 {
     VtHotbarSlotState slot = bar.Read(i);
-    // slot.Icon / IconId / DisplayName, slot.Count (-1 = none), slot.Durability (-1 = none),
+    // slot.Icon / IconId / DisplayName, slot.Count (-1 = none), slot.Durability (0..1, -1 = none),
+    // slot.DurabilityLeft / DurabilityMax (uses left and full durability, -1 = none),
     // slot.Usable, slot.Active (aiming, placing, worn), slot.Locked (not open yet),
     // slot.CooldownFraction, slot.Action for the key cap
 }

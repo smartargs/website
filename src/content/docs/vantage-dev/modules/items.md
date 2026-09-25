@@ -17,7 +17,8 @@ See it running: the [05 · Items and Inventory](../demos/05-items-inventory.md) 
 | Tags | Item tag assets such as Cursed, Soulbound or Axe. Tools for resource nodes are recognised by tag. |
 | Modifiers / Attribute Grants / Trait Overrides | What the wearer gets while it is equipped. Same rows as a buff. |
 | Requirements | Minimum level, minimum attributes, required unit tag. |
-| Max Durability | 0 means indestructible. |
+| Max Durability | Durability of one copy. 0 means indestructible. |
+| Durability Mode | **Condition** (default): durability is the item's state, capped at Max Durability and restored by repair. **Uses**: Max Durability is what one copy gives, and copies combine, see [Combining copies](#combining-copies). |
 | Auto Unequip On Break | Clear the slot when durability hits zero. |
 | Set | Membership in an item set. |
 | Stackable / Max Stack Size | For the backpack. |
@@ -76,6 +77,7 @@ held.OnSelectionChanged += RedrawHotbar;
 
 - The item stays in its slot while held; its bonuses, abilities, set pieces and visuals work as if it were worn, and `equipment.IsHeldFromInventory` is true.
 - Wear from hits, repairs and deaths lands on the slot's stack. A held item that breaks with **Auto Unequip On Break** is gone from its slot.
+- Moving a copy of a **Uses** item onto the held one, or onto the main hand, combines it into the held stack, see [Combining copies](#combining-copies).
 - Selection is a position: moving or swapping stacks changes what is held, and selecting food or materials holds nothing in the main hand.
 - `TryEquip` into the main hand puts the item into the area and selects it (refused with `HeldSlotFull` when the area has no free slot); equipping from the bag selects the item or brings it into the area; taking the main hand off clears the selection.
 - The Two Hand Rule below applies when a two-hander is selected. A selection it refuses changes nothing.
@@ -109,9 +111,22 @@ equipment.RepairItem(VtEquipmentSlot.MainHand, 25);
 equipment.RepairAll();
 ```
 
-`OnItemBroken` fires once when an item reaches zero.
+`OnItemBroken` fires once when an item reaches zero. `OnDurabilityChanged` passes the slot, the durability left and the item's maximum.
 
 Wear stays with the item when it goes into the bag. `TryUnequipToInventory` and the swap in `TryEquipFromInventory` put the item away with the durability it lost, and putting it on again from the bag brings that durability back. When the bag holds several copies with different wear, `TryEquipFromInventory` takes the newest. `equipment.GetWear(slot)` reads what a worn item has lost.
+
+### Combining copies
+
+Set **Durability Mode** to **Uses** for items that last a number of uses, such as a sword with 200 durability that gives 200 hits. Two copies of the same item then combine into one with the uses of both:
+
+- Moving a copy onto another copy combines them: bag slot onto bag slot, a bag copy onto the worn one, or the worn one onto a bag copy. The combined item sits where the move ended, and the other slot empties. The worn item stays on when a copy is combined into it.
+- Quick-move (`TryQuickMove`, a right-click in most windows) combines a carried copy into the worn one.
+- There is no limit: five copies of a 200 sword make one item of 1000. More copies make an item last longer, never hit harder.
+- Nothing combines on its own. A crafted, bought or picked-up copy lands in a slot of its own.
+- Repair does nothing on Uses items; their uses are spent, not damaged. Respawn durability loss counts one copy's Max Durability.
+- Only items that do not stack combine. A combined item cannot be split again and sells for the price of one copy.
+
+`equipment.GetMaxDurability(slot)` and a bag entry's `Capacity` read the combined total; `GetExtraDurability(slot)` and the entry's `extraDurability` read what the combined copies added. The total is kept when the item comes off, goes on, moves between ring or trinket slots, is dropped and picked up, and in saves and replication. Saves from before combining existed load one copy.
 
 ## Item sets
 
@@ -119,7 +134,7 @@ Wear stays with the item when it goes into the bag. `TryUnequipToInventory` and 
 
 ## Items in the world
 
-Put a `VtWorldItem` on any GameObject with a collider and assign an item, count and, for worn items, wear. Right-clicking it walks the player over and picks it up into their backpack; when only part fits, the rest stays on the ground. Units drop items with `TryDropSlot`, see [Dropping things](inventory.md#dropping-things). Loot tables spawn these automatically, see [Loot](loot.md). Implement `IVtPickable` yourself for other interactables such as levers or gold piles.
+Put a `VtWorldItem` on any GameObject with a collider and assign an item, count and, for worn items, wear and extra durability. Right-clicking it walks the player over and picks it up into their backpack; when only part fits, the rest stays on the ground. Units drop items with `TryDropSlot`, see [Dropping things](inventory.md#dropping-things). Loot tables spawn these automatically, see [Loot](loot.md). Implement `IVtPickable` yourself for other interactables such as levers or gold piles.
 
 ## Events
 

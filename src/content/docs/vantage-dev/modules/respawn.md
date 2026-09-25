@@ -15,7 +15,7 @@ What happens after a player dies. Rules say how long the wait is, where the unit
 | Mode | `NearestPoint`, `FixedPoint` by id, `Checkpoint` from the last `SetCheckpoint` call, or `WhereDied`. Every mode falls back to the nearest point, then to where the unit died. |
 | Revive Hp Fraction | Health on return as a fraction of maximum, never below 1. |
 | Xp Loss Fraction | Share of the XP toward the next level that is lost. A level is never lost. |
-| Durability Loss Fraction | Share of each equipped item's maximum durability worn off. |
+| Durability Loss Fraction | Share of each equipped item's maximum durability worn off. For an item that copies were combined into, the share of one copy. |
 
 Monsters do not use this; spawners bring them back.
 

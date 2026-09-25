@@ -8,15 +8,7 @@ To keep the asset somewhere else, reference it from a boot scene and hand it ove
 VtTuning.OverrideInstance(myTuning);
 ```
 
-| Group | Values |
-|---|---|
-| Combat clamps | Resistance cap, evade cap, crit cap, default crit multiplier, armor constant, minimum attack interval, cooldown-reduction cap, thorns filter, out-of-combat delay. |
-| Abilities | Global cooldown, minimum cast time, minimum cooldown, cast queue depth, cast pushback seconds, channel pushback fraction, max pushbacks. |
-| Projectiles | Arrival radius, maximum lifetime, spawn height. |
-| Threat | Heal threat ratio, taunt multiplier, call-for-help ratio. |
-| Movement feel | Acceleration, rotation speed, waypoint reach distance, unreachable tolerance, stuck recovery, gravity. |
-
-Every field has a tooltip in the Inspector.
+The values are grouped into combat clamps, abilities, projectiles, threat, multiplayer, party, dropped items, chat, guilds, friends, mail, movement feel and server-authoritative movement. The [Tuning reference](../reference/tuning.md) lists every field with its default, allowed range and what it changes.
 
 ## The armor formula
 
